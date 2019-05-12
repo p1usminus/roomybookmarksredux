@@ -5,7 +5,7 @@ Most of the features work, but it is slightly buggy. Please read the tips.
 
 ## Tips ##
 * :warning: The browser __must__ be restarted after installation, then enable the bookmarks toolbar (from the customise menu) then __restart again__!
-* The fixed height option should be used with when the multirow option is selected, otherwise the toolbar will try to stay at single row height.
+* The fixed height option should be used when the multirow option is selected, otherwise the toolbar will try to stay at single row height.
 * The toolbar behaves strangely when using the multirow option with a non-standard favicon size. Solution: Use the option to fix incorrect height __with__ a non-zero margin size (see 3rd option tab). I wish this was less complicated.
 * Sometimes the toolbar simply breaks - such as when disabling the multirow option. Restarting the browser should fix this.
   * In other instances, re-enabling the bookmarks toolbar from the customise menu fixes this.
