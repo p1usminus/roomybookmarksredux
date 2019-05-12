@@ -1,0 +1,7 @@
+﻿@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
+
+@-moz-document url(chrome://browser/content/browser.xul), url(chrome://navigator/content/navigator.xul) {
+    #personal-bookmarks .bookmark-item:not([container]):not([query]):not([livemark]) image {
+		display:none !important;
+    }
+}

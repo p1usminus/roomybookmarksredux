@@ -1,0 +1,59 @@
+<!ENTITY roomybookmarkstoolbar.options.alignment.label "Yer imleri hizalama">
+<!ENTITY roomybookmarkstoolbar.options.alignment0.label "Sol">
+<!ENTITY roomybookmarkstoolbar.options.alignment1.label "Merkez">
+<!ENTITY roomybookmarkstoolbar.options.alignment2.label "Sağ">
+<!ENTITY roomybookmarkstoolbar.options.autohideBar.label "Yer imleri çubuğunu otomatik gizle">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZone.label "Göster imleri Vurgulu üzerinde bar: ">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneAll.label "Tüm ">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneButton.label "Düğme (gizle \ gösterisi imleri çubuğu)">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneMenu.label "Menüyü">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneNav.label "Navigasyon çubuğu">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneTab.label "Tabları">
+<!ENTITY roomybookmarkstoolbar.options.BBonNewTab.label "Yalnızca yeni sekmede ekran imleri çubuğu">
+<!ENTITY roomybookmarkstoolbar.options.bookmarksAboveTab.label "Yer imleri çubuğunu en üste yerleştir">
+<!ENTITY roomybookmarkstoolbar.options.BookmarksLabelGroup.label "Yer imleri etiketleri">
+<!ENTITY roomybookmarkstoolbar.options.folderArrow.label "Klasörlerdeki ok gizle">
+<!ENTITY roomybookmarkstoolbar.options.folderMargin.label "Imleri yapmak daha yakın (klasörde) seviyesinde">
+<!ENTITY roomybookmarkstoolbar.options.hideBookmarksIcon.label "Yer imleri simgelerini gizle">
+<!ENTITY roomybookmarkstoolbar.options.hideBookmarksName.label "Imleri isimlerini gizle">
+<!ENTITY roomybookmarkstoolbar.options.hideByDefault.label "Varsayılan olarak gizle imleri çubuğu">
+<!ENTITY roomybookmarkstoolbar.options.hideDefaultIcon.label "Varsayılan simgeleri gizle">
+<!ENTITY roomybookmarkstoolbar.options.hideFolderIcon.label "Yer imleri klasör simgelerini gizle">
+<!ENTITY roomybookmarkstoolbar.options.hideFoldersNames.label "Yer imi klasörleri isimlerini gizle">
+<!ENTITY roomybookmarkstoolbar.options.hideGroup.label "Yer imleri simgelerini gizle">
+<!ENTITY roomybookmarkstoolbar.options.hideNoFaviconNames.label "Faviconu olmayan yer imi isimlerini gizle">
+<!ENTITY roomybookmarkstoolbar.options.incorrectHeight.label "Panelin yüksekliği yanlış ise, Enable">
+<!ENTITY roomybookmarkstoolbar.options.linuxFix.label "Linux\OS X Fix devre dışı">
+<!ENTITY roomybookmarkstoolbar.options.location.label "Yer imleri Araç Çubuğu konumu">
+<!ENTITY roomybookmarkstoolbar.options.multirowBarFixed.label "Sabit yüksekliği">
+<!ENTITY roomybookmarkstoolbar.options.multirowBarGroup.label "Çok Satırlı Yer İmleri Çubuğu">
+<!ENTITY roomybookmarkstoolbar.options.multirowEnable.label "Çok satırlı yer imleri çubuğunu etkinleştir">
+<!ENTITY roomybookmarkstoolbar.options.multirowRows.label "satırlar">
+<!ENTITY roomybookmarkstoolbar.options.multirowRowsNumber.label "Yer imleri çubuğuyla göster">
+<!ENTITY roomybookmarkstoolbar.options.onHover.label "Fare üzerine geldiğinde yer imlerinin isimlerini göster">
+<!ENTITY roomybookmarkstoolbar.options.opacity.label "Yer imleri çubuğunu saydamlaştır:">
+<!ENTITY roomybookmarkstoolbar.options.opacityIn.label "içinde">
+<!ENTITY roomybookmarkstoolbar.options.overPage.label "Display bookmarks bar on page">
+<!ENTITY roomybookmarkstoolbar.options.pixels.label "piksel">
+<!ENTITY roomybookmarkstoolbar.options.rbtChangeColor.label "Bir renk seçimini açın">
+<!ENTITY roomybookmarkstoolbar.options.seconds.label "saniye">
+<!ENTITY roomybookmarkstoolbar.options.sizeGroup.label "Favicon boyutları">
+<!ENTITY roomybookmarkstoolbar.options.spacing0.label "En az">
+<!ENTITY roomybookmarkstoolbar.options.spacing1.label "Daha küçük">
+<!ENTITY roomybookmarkstoolbar.options.spacing2.label "Küçük">
+<!ENTITY roomybookmarkstoolbar.options.spacing3.label "Normal">
+<!ENTITY roomybookmarkstoolbar.options.spacing4.label "Büyük">
+<!ENTITY roomybookmarkstoolbar.options.spacingGroup.label "Yer imleri aralığıı">
+<!ENTITY roomybookmarkstoolbar.options.tab1.label "Araç çubuğu ayarları">
+<!ENTITY roomybookmarkstoolbar.options.tab2.label "Etiket ayarları">
+<!ENTITY roomybookmarkstoolbar.options.tab3.label "Simge ayarları">
+<!ENTITY roomybookmarkstoolbar.options.timeGroup.label "Yer imleri çubuğunu gizle">
+<!ENTITY roomybookmarkstoolbar.options.toolbarGroup.label "Yer imleri çubuğu">
+<!ENTITY roomybookmarkstoolbar.options.userWidthEnabled.label "Yerimi maksimum genişliğini değiştirme">
+<!ENTITY roomybookmarkstoolbar.options.userWidthMaxWidth.label "Maksimum imleri genişliği:">
+<!ENTITY roomybookmarkstoolbar.options.window.title "Roomy Yer İmleri Araç Çubuğu Seçenekleri">
+<!ENTITY roomybookmarkstoolbar.options.fixIncorrectHeight.label "Düzeltme yanlış yükseklik için Enable">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneButton.label "'Gizle \ göster imleri çubuğu' düğmesine">
+<!ENTITY roomybookmarkstoolbar.options.textSize.label "Metin boyutu:">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneBackButton.label "Geri düğmesi">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneMenuButton.label "Menü düğmesi">

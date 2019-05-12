@@ -1,0 +1,6 @@
+﻿@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
+
+@-moz-document url(chrome://browser/content/browser.xul), url(chrome://navigator/content/navigator.xul) {
+	#TabsToolbar { -moz-box-ordinal-group: 2 !important }
+	#nav-bar { -moz-box-ordinal-group: 3 !important }
+}

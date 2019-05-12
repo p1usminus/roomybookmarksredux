@@ -1,0 +1,59 @@
+<!ENTITY roomybookmarkstoolbar.options.alignment.label "Bookmarks alignment">
+<!ENTITY roomybookmarkstoolbar.options.alignment0.label "Left">
+<!ENTITY roomybookmarkstoolbar.options.alignment1.label "Center">
+<!ENTITY roomybookmarkstoolbar.options.alignment2.label "Right">
+<!ENTITY roomybookmarkstoolbar.options.autohideBar.label "Auto-hide bookmarks bar after">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZone.label "Show bookmarks bar on hover:">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneAll.label "All">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneButton.label "Button (Hide/show bookmarks bar)">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneMenu.label "Menu">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneNav.label "Navigation bar">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneTab.label "Tabs">
+<!ENTITY roomybookmarkstoolbar.options.BBonNewTab.label "Display bookmarks bar only in new tab">
+<!ENTITY roomybookmarkstoolbar.options.bookmarksAboveTab.label "Place the bookmarks bar on top">
+<!ENTITY roomybookmarkstoolbar.options.BookmarksLabelGroup.label "Bookmarks labels">
+<!ENTITY roomybookmarkstoolbar.options.folderArrow.label "Hide arrow from folders">
+<!ENTITY roomybookmarkstoolbar.options.folderMargin.label "Make bookmarks closer (in folder) by">
+<!ENTITY roomybookmarkstoolbar.options.hideBookmarksIcon.label "Hide bookmarks icons">
+<!ENTITY roomybookmarkstoolbar.options.hideBookmarksName.label "Hide bookmarks names">
+<!ENTITY roomybookmarkstoolbar.options.hideByDefault.label "Hide bookmarks bar by default">
+<!ENTITY roomybookmarkstoolbar.options.hideDefaultIcon.label "Hide default icons">
+<!ENTITY roomybookmarkstoolbar.options.hideFolderIcon.label "Hide bookmarks folder icons">
+<!ENTITY roomybookmarkstoolbar.options.hideFoldersNames.label "Hide bookmarks folders names">
+<!ENTITY roomybookmarkstoolbar.options.hideGroup.label "Bookmarks icons hiding">
+<!ENTITY roomybookmarkstoolbar.options.hideNoFaviconNames.label "Hide bookmarks names with no favicon">
+<!ENTITY roomybookmarkstoolbar.options.incorrectHeight.label "Enable, if the height of the panel is incorrect">
+<!ENTITY roomybookmarkstoolbar.options.linuxFix.label "Disable Linux/OS X Fix">
+<!ENTITY roomybookmarkstoolbar.options.location.label "Bookmarks Toolbar position">
+<!ENTITY roomybookmarkstoolbar.options.multirowBarFixed.label "Fixed height">
+<!ENTITY roomybookmarkstoolbar.options.multirowBarGroup.label "Multirow Bookmarks Bar">
+<!ENTITY roomybookmarkstoolbar.options.multirowEnable.label "Turn on multirow bookmarks bar">
+<!ENTITY roomybookmarkstoolbar.options.multirowRows.label "rows">
+<!ENTITY roomybookmarkstoolbar.options.multirowRowsNumber.label "Display bookmarks bar using ">
+<!ENTITY roomybookmarkstoolbar.options.onHover.label "Show bookmarks names on mouseover">
+<!ENTITY roomybookmarkstoolbar.options.opacity.label "Make bookmarks bar translucent after:">
+<!ENTITY roomybookmarkstoolbar.options.opacityIn.label "in">
+<!ENTITY roomybookmarkstoolbar.options.overPage.label "Display bookmarks bar over page">
+<!ENTITY roomybookmarkstoolbar.options.pixels.label "pixels">
+<!ENTITY roomybookmarkstoolbar.options.rbtChangeColor.label "Open a colour selection">
+<!ENTITY roomybookmarkstoolbar.options.seconds.label "s">
+<!ENTITY roomybookmarkstoolbar.options.sizeGroup.label "Favicon dimensions">
+<!ENTITY roomybookmarkstoolbar.options.spacing0.label "Minimal">
+<!ENTITY roomybookmarkstoolbar.options.spacing1.label "Smaller">
+<!ENTITY roomybookmarkstoolbar.options.spacing2.label "Small">
+<!ENTITY roomybookmarkstoolbar.options.spacing3.label "Normal">
+<!ENTITY roomybookmarkstoolbar.options.spacing4.label "Large">
+<!ENTITY roomybookmarkstoolbar.options.spacingGroup.label "Bookmarks spacing">
+<!ENTITY roomybookmarkstoolbar.options.tab1.label "Toolbar settings">
+<!ENTITY roomybookmarkstoolbar.options.tab2.label "Labels settings">
+<!ENTITY roomybookmarkstoolbar.options.tab3.label "Icons settings">
+<!ENTITY roomybookmarkstoolbar.options.timeGroup.label "Hiding bookmarks bar">
+<!ENTITY roomybookmarkstoolbar.options.toolbarGroup.label "Bookmarks bar">
+<!ENTITY roomybookmarkstoolbar.options.userWidthEnabled.label "Change bookmarks maximum width">
+<!ENTITY roomybookmarkstoolbar.options.userWidthMaxWidth.label "Maximum bookmarks width:">
+<!ENTITY roomybookmarkstoolbar.options.window.title "Roomy Bookmarks Toolbar Options">
+<!ENTITY roomybookmarkstoolbar.options.fixIncorrectHeight.label "Enable to fix incorrect height">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneButton.label "'Hide/Show bookmarks bar' button">
+<!ENTITY roomybookmarkstoolbar.options.textSize.label "Text size:">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneBackButton.label "Back button">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneMenuButton.label "Menu button">

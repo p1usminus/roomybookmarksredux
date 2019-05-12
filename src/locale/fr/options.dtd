@@ -1,0 +1,59 @@
+<!ENTITY roomybookmarkstoolbar.options.alignment.label "Alignement des Marque-pages">
+<!ENTITY roomybookmarkstoolbar.options.alignment0.label "À gauche">
+<!ENTITY roomybookmarkstoolbar.options.alignment1.label "Centré">
+<!ENTITY roomybookmarkstoolbar.options.alignment2.label "À droite">
+<!ENTITY roomybookmarkstoolbar.options.autohideBar.label "Masquer automatiquement la barre personnelle après">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZone.label "Afficher les signets barre au survol: ">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneAll.label "Toutes les">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneButton.label "Bouton (Masquer \ Afficher les signets bar)">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneMenu.label "Menu">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneNav.label "Barre de navigation">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneTab.label "Tabs">
+<!ENTITY roomybookmarkstoolbar.options.BBonNewTab.label "Affichage de la barre des signets seulement dans un nouvel onglet">
+<!ENTITY roomybookmarkstoolbar.options.bookmarksAboveTab.label "Placer la barre personnelle en haut">
+<!ENTITY roomybookmarkstoolbar.options.BookmarksLabelGroup.label "Vignettes des marque-pages">
+<!ENTITY roomybookmarkstoolbar.options.folderArrow.label "Cachez flèche de dossiers">
+<!ENTITY roomybookmarkstoolbar.options.folderMargin.label "Faire signets proche (dans le dossier) à">
+<!ENTITY roomybookmarkstoolbar.options.hideBookmarksIcon.label "Masquer les icônes des marque-pages">
+<!ENTITY roomybookmarkstoolbar.options.hideBookmarksName.label "Cacher les noms des signets">
+<!ENTITY roomybookmarkstoolbar.options.hideByDefault.label "Masquer la barre de favoris par défaut">
+<!ENTITY roomybookmarkstoolbar.options.hideDefaultIcon.label "Masquer les icônes par défaut">
+<!ENTITY roomybookmarkstoolbar.options.hideFolderIcon.label "Masquer les icônes des dossiers de marque-pages">
+<!ENTITY roomybookmarkstoolbar.options.hideFoldersNames.label "Masquer les noms des dossiers de marque-pages">
+<!ENTITY roomybookmarkstoolbar.options.hideGroup.label "Masquage des icônes de marque-pages">
+<!ENTITY roomybookmarkstoolbar.options.hideNoFaviconNames.label "Masquer les noms de marque-pages sans Favicon">
+<!ENTITY roomybookmarkstoolbar.options.incorrectHeight.label "Activer, si la hauteur du panneau est incorrect">
+<!ENTITY roomybookmarkstoolbar.options.linuxFix.label "Désactiver Fix Linux\OS X">
+<!ENTITY roomybookmarkstoolbar.options.location.label "Position de la barre personnelle">
+<!ENTITY roomybookmarkstoolbar.options.multirowBarFixed.label "Hauteur fixe">
+<!ENTITY roomybookmarkstoolbar.options.multirowBarGroup.label "Barre personnelle à lignes multiples">
+<!ENTITY roomybookmarkstoolbar.options.multirowEnable.label "Activer la barre personnelle à lignes multiples">
+<!ENTITY roomybookmarkstoolbar.options.multirowRows.label "ligne(s)">
+<!ENTITY roomybookmarkstoolbar.options.multirowRowsNumber.label "Afficher la barre personnelle sur">
+<!ENTITY roomybookmarkstoolbar.options.onHover.label "Afficher le nom des marque-pages au survol de la souris">
+<!ENTITY roomybookmarkstoolbar.options.opacity.label "Rendre la barre personnelle translucide après">
+<!ENTITY roomybookmarkstoolbar.options.opacityIn.label "dans">
+<!ENTITY roomybookmarkstoolbar.options.overPage.label "Afficher la barre personnelle sur la page">
+<!ENTITY roomybookmarkstoolbar.options.pixels.label "pixel">
+<!ENTITY roomybookmarkstoolbar.options.rbtChangeColor.label "Ouvrez une sélection de couleur">
+<!ENTITY roomybookmarkstoolbar.options.seconds.label "seconde(s)">
+<!ENTITY roomybookmarkstoolbar.options.sizeGroup.label "Taille de Favicon">
+<!ENTITY roomybookmarkstoolbar.options.spacing0.label "Minimal">
+<!ENTITY roomybookmarkstoolbar.options.spacing1.label "Plus petit">
+<!ENTITY roomybookmarkstoolbar.options.spacing2.label "Petit">
+<!ENTITY roomybookmarkstoolbar.options.spacing3.label "Normal">
+<!ENTITY roomybookmarkstoolbar.options.spacing4.label "Grand">
+<!ENTITY roomybookmarkstoolbar.options.spacingGroup.label "Espacement des marque-pages">
+<!ENTITY roomybookmarkstoolbar.options.tab1.label "Paramètres de la barre personnelle">
+<!ENTITY roomybookmarkstoolbar.options.tab2.label "Paramètres des vignettes">
+<!ENTITY roomybookmarkstoolbar.options.tab3.label "Paramètres des icônes">
+<!ENTITY roomybookmarkstoolbar.options.timeGroup.label "Masquage de la barre personnelle">
+<!ENTITY roomybookmarkstoolbar.options.toolbarGroup.label "Barre personnelle">
+<!ENTITY roomybookmarkstoolbar.options.userWidthEnabled.label "Changer signets largeur maximale">
+<!ENTITY roomybookmarkstoolbar.options.userWidthMaxWidth.label "Signets largeur maximale:">
+<!ENTITY roomybookmarkstoolbar.options.window.title "Options de Roomy Bookmarks Toolbar">
+<!ENTITY roomybookmarkstoolbar.options.fixIncorrectHeight.label "Activer pour fixer la hauteur incorrecte">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneButton.label "Bouton 'Masquer \ Afficher les signets bar'">
+<!ENTITY roomybookmarkstoolbar.options.textSize.label "Taille du texte:">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneBackButton.label "Bouton Back">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneMenuButton.label "Bouton Menu">

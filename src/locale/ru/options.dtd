@@ -1,0 +1,59 @@
+<!ENTITY roomybookmarkstoolbar.options.alignment.label "Выравнивание закладок">
+<!ENTITY roomybookmarkstoolbar.options.alignment0.label "Слева">
+<!ENTITY roomybookmarkstoolbar.options.alignment1.label "Центр">
+<!ENTITY roomybookmarkstoolbar.options.alignment2.label "Справа">
+<!ENTITY roomybookmarkstoolbar.options.autohideBar.label "Автоматически скрывать панель закладок после">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZone.label "Отображать панель закладок при наведении на:">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneAll.label "Всё">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneButton.label "Кнопка(Скрыть/показать панель закладок)">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneMenu.label "Меню">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneNav.label "Адресная строка">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneTab.label "Вкладки">
+<!ENTITY roomybookmarkstoolbar.options.BBonNewTab.label "Панель закладок только на новой вкладке">
+<!ENTITY roomybookmarkstoolbar.options.bookmarksAboveTab.label "Расположить панель закладок выше">
+<!ENTITY roomybookmarkstoolbar.options.BookmarksLabelGroup.label "Названия закладок">
+<!ENTITY roomybookmarkstoolbar.options.folderArrow.label "Спрятать стрелку у папок">
+<!ENTITY roomybookmarkstoolbar.options.folderMargin.label "Сделать закладки ближе (в папке) на">
+<!ENTITY roomybookmarkstoolbar.options.hideBookmarksIcon.label "Скрыть иконки заладок">
+<!ENTITY roomybookmarkstoolbar.options.hideBookmarksName.label "Скрыть названия закладок">
+<!ENTITY roomybookmarkstoolbar.options.hideByDefault.label "Спрятать панель закладок по умолчанию">
+<!ENTITY roomybookmarkstoolbar.options.hideDefaultIcon.label "Скрыть стандартную иконку">
+<!ENTITY roomybookmarkstoolbar.options.hideFolderIcon.label "Скрыть иконки папок">
+<!ENTITY roomybookmarkstoolbar.options.hideFoldersNames.label "Скрывать имена папок">
+<!ENTITY roomybookmarkstoolbar.options.hideGroup.label "Скрытие иконок">
+<!ENTITY roomybookmarkstoolbar.options.hideNoFaviconNames.label "Скрывать имена закладок без иконки">
+<!ENTITY roomybookmarkstoolbar.options.incorrectHeight.label "Включите, если высота панели некорректная">
+<!ENTITY roomybookmarkstoolbar.options.linuxFix.label "Отключить Linux\OS X патч">
+<!ENTITY roomybookmarkstoolbar.options.location.label "Положение панели закладок">
+<!ENTITY roomybookmarkstoolbar.options.multirowBarFixed.label "Фиксированая высота">
+<!ENTITY roomybookmarkstoolbar.options.multirowBarGroup.label "Многорядная панель закладок">
+<!ENTITY roomybookmarkstoolbar.options.multirowEnable.label "Включить несколько строк закладок">
+<!ENTITY roomybookmarkstoolbar.options.multirowRows.label "строк">
+<!ENTITY roomybookmarkstoolbar.options.multirowRowsNumber.label "Показать панель закладок использованием">
+<!ENTITY roomybookmarkstoolbar.options.onHover.label "Отображать названия закладок при наведении">
+<!ENTITY roomybookmarkstoolbar.options.opacity.label "Сделать панель закладок полупрозрачная после:">
+<!ENTITY roomybookmarkstoolbar.options.opacityIn.label "в">
+<!ENTITY roomybookmarkstoolbar.options.overPage.label "Отображать панель закладок на странице">
+<!ENTITY roomybookmarkstoolbar.options.pixels.label "пикселей">
+<!ENTITY roomybookmarkstoolbar.options.rbtChangeColor.label "Открыть выбор цвета">
+<!ENTITY roomybookmarkstoolbar.options.seconds.label "секунд">
+<!ENTITY roomybookmarkstoolbar.options.sizeGroup.label "Размеры иконок">
+<!ENTITY roomybookmarkstoolbar.options.spacing0.label "Отсутствует">
+<!ENTITY roomybookmarkstoolbar.options.spacing1.label "Маленькое">
+<!ENTITY roomybookmarkstoolbar.options.spacing2.label "Небольшое">
+<!ENTITY roomybookmarkstoolbar.options.spacing3.label "Нормальное">
+<!ENTITY roomybookmarkstoolbar.options.spacing4.label "Большое">
+<!ENTITY roomybookmarkstoolbar.options.spacingGroup.label "Расстояние между закладками">
+<!ENTITY roomybookmarkstoolbar.options.tab1.label "Настройки панели закладок">
+<!ENTITY roomybookmarkstoolbar.options.tab2.label "Настройки названий закладок">
+<!ENTITY roomybookmarkstoolbar.options.tab3.label "Настройки иконок">
+<!ENTITY roomybookmarkstoolbar.options.timeGroup.label "Скрытие панели закладок">
+<!ENTITY roomybookmarkstoolbar.options.toolbarGroup.label "Панель закладок">
+<!ENTITY roomybookmarkstoolbar.options.userWidthEnabled.label "Изменить максимальную длину закладки">
+<!ENTITY roomybookmarkstoolbar.options.userWidthMaxWidth.label "Максимальная длина закладки:">
+<!ENTITY roomybookmarkstoolbar.options.window.title "Настройки Roomy Bookmarks Toolbar">
+<!ENTITY roomybookmarkstoolbar.options.fixIncorrectHeight.label "Включите для исправления высоты">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneButton.label "'Скрыть\показать панель закладок' кнопка">
+<!ENTITY roomybookmarkstoolbar.options.textSize.label "Размер текста:">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneBackButton.label "Кнопка назад ">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneMenuButton.label "Кнопка меню">

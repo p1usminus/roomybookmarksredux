@@ -1,0 +1,69 @@
+﻿@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
+
+@-moz-document url(chrome://browser/content/browser.xul), url(chrome://navigator/content/navigator.xul) {
+	/* fix first bookmarks*/
+	#PlacesToolbar {
+		padding-left: 6px !important;
+	}
+	#personal-bookmarks toolbarbutton.bookmark-item:hover  {
+		margin-top: 0px !important;
+		margin-left: -1px !important;
+		margin-right: -1px !important;
+		margin-bottom: 0px !important;
+		border: 1px solid #ababab !important;
+		border-radius: 4px;
+	}
+	#personal-bookmarks #PlacesToolbar #PlacesToolbarItems {
+		overflow-y: visible;
+	}	
+
+	/* bookmark button normal */
+	#personal-bookmarks toolbarbutton.bookmark-item {
+	    -moz-appearance: none !important;
+	    margin-left: 1px !important;
+	    margin-top: 2px !important;
+	    max-height: 26px !important;
+	}
+	
+	/* bookmark button hover/active */
+	#personal-bookmarks toolbarbutton.bookmark-item:hover,
+	#personal-bookmarks toolbarbutton.bookmark-item:active,
+	#personal-bookmarks toolbarbutton.bookmark-item[open] {
+	    margin-left: 0 !important;
+	    margin-right: -1px !important;
+	    padding-left: 3px !important;
+	    padding-right: 3px !important;
+	    border-radius: 3px;
+	}
+	
+	/* bookmark button hover */
+	#personal-bookmarks toolbarbutton.bookmark-item:hover {
+	    border: 1px solid rgba(0,0,0,.17) !important;
+	    background: rgba(0,0,0,.074);
+	}
+	
+	/* bookmark button active */
+	#personal-bookmarks toolbarbutton.bookmark-item:active,
+	#personal-bookmarks toolbarbutton.bookmark-item[open] {
+	    padding-top: 1px !important;
+	    border: 1px solid rgba(0,0,0,.224) !important;
+	    box-shadow: inset 0 1px rgba(0,0,0,.04) !important;
+	    background: rgba(0,0,0,.114) !important;
+	}
+
+	/* bookmark folder active */
+	#personal-bookmarks toolbarbutton.bookmark-item[container]:active,
+	#personal-bookmarks toolbarbutton.bookmark-item[container][open] {
+	    margin-top: 2px !important;
+	    padding-top: 0px !important;
+	    max-height: 26px !important;
+	    border-radius: 3px 3px 0 0 !important;
+	    border-bottom: none !important;
+	}
+	
+	/* bookmark button text */
+	#personal-bookmarks toolbarbutton.bookmark-item .toolbarbutton-text,
+	#personal-bookmarks toolbarbutton.bookmark-item .toolbarbutton-text-shadow {
+	    margin-left: 1px !important;
+	}
+}

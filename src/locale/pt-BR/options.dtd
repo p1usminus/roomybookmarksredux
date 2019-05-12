@@ -1,0 +1,59 @@
+<!ENTITY roomybookmarkstoolbar.options.alignment.label "Alinhamento dos itens">
+<!ENTITY roomybookmarkstoolbar.options.alignment0.label "Esquerda">
+<!ENTITY roomybookmarkstoolbar.options.alignment1.label "Centro">
+<!ENTITY roomybookmarkstoolbar.options.alignment2.label "Direita">
+<!ENTITY roomybookmarkstoolbar.options.autohideBar.label "Ocultar automaticamente a barra dos favoritos após">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZone.label "Mostrar barra de favoritos em foco: ">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneAll.label "Tudo">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneButton.label "Botão (esconder \ mostrar a barra de favoritos)">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneMenu.label "Menu">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneNav.label "Barra de navegação ">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneTab.label "Tabs">
+<!ENTITY roomybookmarkstoolbar.options.BBonNewTab.label "Bookmarks Exibição bar apenas em nova aba">
+<!ENTITY roomybookmarkstoolbar.options.bookmarksAboveTab.label "Posicionar a barra dos favoritos no topo">
+<!ENTITY roomybookmarkstoolbar.options.BookmarksLabelGroup.label "Nomes dos itens">
+<!ENTITY roomybookmarkstoolbar.options.folderArrow.label "Esconder flecha de pastas">
+<!ENTITY roomybookmarkstoolbar.options.folderMargin.label "Faça marcador mais próximo (em pasta) em">
+<!ENTITY roomybookmarkstoolbar.options.hideBookmarksIcon.label "Ocultar ícones dos favoritos">
+<!ENTITY roomybookmarkstoolbar.options.hideBookmarksName.label "Ocultar nomes de favoritos">
+<!ENTITY roomybookmarkstoolbar.options.hideByDefault.label "Esconder a barra de favoritos por padrão">
+<!ENTITY roomybookmarkstoolbar.options.hideDefaultIcon.label "Ocultar itens sem ícone">
+<!ENTITY roomybookmarkstoolbar.options.hideFolderIcon.label "Ocultar ícones das pastas">
+<!ENTITY roomybookmarkstoolbar.options.hideFoldersNames.label "Ocultar nomes das pastas">
+<!ENTITY roomybookmarkstoolbar.options.hideGroup.label "Ícones dos itens">
+<!ENTITY roomybookmarkstoolbar.options.hideNoFaviconNames.label "Ocultar nomes dos favoritos sem ícone">
+<!ENTITY roomybookmarkstoolbar.options.incorrectHeight.label "Activar, se a altura do painel é incorrecta">
+<!ENTITY roomybookmarkstoolbar.options.linuxFix.label "Desativar Fix Linux\OS X">
+<!ENTITY roomybookmarkstoolbar.options.location.label "Posição da barra dos favoritos">
+<!ENTITY roomybookmarkstoolbar.options.multirowBarFixed.label "Altura fixa">
+<!ENTITY roomybookmarkstoolbar.options.multirowBarGroup.label "Exibir em múltiplas linhas">
+<!ENTITY roomybookmarkstoolbar.options.multirowEnable.label "Ativar barra de favoritos em múltiplas linhas">
+<!ENTITY roomybookmarkstoolbar.options.multirowRows.label "linhas">
+<!ENTITY roomybookmarkstoolbar.options.multirowRowsNumber.label "Exibir a barra dos favoritos usando">
+<!ENTITY roomybookmarkstoolbar.options.onHover.label "Exibir nomes dos itens ao passar o mouse">
+<!ENTITY roomybookmarkstoolbar.options.opacity.label "Deixar translúcida a barra dos favoritos após:">
+<!ENTITY roomybookmarkstoolbar.options.opacityIn.label "em">
+<!ENTITY roomybookmarkstoolbar.options.overPage.label "Display bookmarks bar on page">
+<!ENTITY roomybookmarkstoolbar.options.pixels.label "pixels">
+<!ENTITY roomybookmarkstoolbar.options.rbtChangeColor.label "Abra uma seleção de cores">
+<!ENTITY roomybookmarkstoolbar.options.seconds.label "segundos">
+<!ENTITY roomybookmarkstoolbar.options.sizeGroup.label "Tamanho dos ícones">
+<!ENTITY roomybookmarkstoolbar.options.spacing0.label "Mínimo">
+<!ENTITY roomybookmarkstoolbar.options.spacing1.label "Menor">
+<!ENTITY roomybookmarkstoolbar.options.spacing2.label "Pequeno">
+<!ENTITY roomybookmarkstoolbar.options.spacing3.label "Normal">
+<!ENTITY roomybookmarkstoolbar.options.spacing4.label "Big">
+<!ENTITY roomybookmarkstoolbar.options.spacingGroup.label "Espaçamento">
+<!ENTITY roomybookmarkstoolbar.options.tab1.label "Barra dos favoritos">
+<!ENTITY roomybookmarkstoolbar.options.tab2.label "Nomes">
+<!ENTITY roomybookmarkstoolbar.options.tab3.label "Ícones">
+<!ENTITY roomybookmarkstoolbar.options.timeGroup.label "Ocultar barra dos favoritos">
+<!ENTITY roomybookmarkstoolbar.options.toolbarGroup.label "Barra dos favoritos">
+<!ENTITY roomybookmarkstoolbar.options.userWidthEnabled.label "Mude bookmarks largura máxima">
+<!ENTITY roomybookmarkstoolbar.options.userWidthMaxWidth.label "Bookmarks largura máxima:">
+<!ENTITY roomybookmarkstoolbar.options.window.title "Opções do Roomy Bookmarks Toolbar">
+<!ENTITY roomybookmarkstoolbar.options.fixIncorrectHeight.label "Ativar para correção altura incorreta">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneButton.label "Botão 'Hide \ Mostrar a barra de favoritos'">
+<!ENTITY roomybookmarkstoolbar.options.textSize.label "Tamanho do texto:">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneBackButton.label "Botão de retroceder">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneMenuButton.label "Botão de menu">

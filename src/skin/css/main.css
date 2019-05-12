@@ -1,0 +1,28 @@
+﻿@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
+
+@-moz-document url(chrome://browser/content/browser.xul), url(chrome://navigator/content/navigator.xul) {
+	#personal-bookmarks toolbarbutton.bookmark-item {
+		margin: 0px !important;
+		border: none !important;
+	}
+
+	#personal-bookmarks toolbarbutton.bookmark-item .toolbarbutton-icon {
+		padding: 0px !important;
+		margin: 0px !important;
+		border: none !important;
+	}
+
+	#personal-bookmarks toolbarbutton.bookmark-item.bookmarks-toolbar-customize {
+		display: none !important;
+	}
+
+	#personal-bookmarks toolbarbutton.bookmark-item .toolbarbutton-text,
+	#personal-bookmarks toolbarbutton.bookmark-item .toolbarbutton-text-shadow {
+		padding-left: 4px !important;
+	}
+	
+	/* Taken from overPage */
+	#PersonalToolbar {
+		padding: 3px 0px 3px 3px;
+	}
+}

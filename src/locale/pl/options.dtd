@@ -1,0 +1,59 @@
+<!ENTITY roomybookmarkstoolbar.options.alignment.label "Wyrównanie elementów paska zakładek">
+<!ENTITY roomybookmarkstoolbar.options.alignment0.label "Do lewej">
+<!ENTITY roomybookmarkstoolbar.options.alignment1.label "Do środka">
+<!ENTITY roomybookmarkstoolbar.options.alignment2.label "Do prawej">
+<!ENTITY roomybookmarkstoolbar.options.autohideBar.label "Automatyczne ukrywanie paska zakładek po">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZone.label "Pokaż pasek zakładek przy aktywowaniu: ">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneAll.label "Wszystkie">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneButton.label "Przycisk (Ukryj/pokaż zakładki bar)">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneMenu.label "Menu">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneNav.label "Pasek nawigacyjny">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneTab.label "Zakładki">
+<!ENTITY roomybookmarkstoolbar.options.BBonNewTab.label "Pokaż pasek zakładek tylko w nowej karcie">
+<!ENTITY roomybookmarkstoolbar.options.bookmarksAboveTab.label "Umieść pasek zakładek na górze okna">
+<!ENTITY roomybookmarkstoolbar.options.BookmarksLabelGroup.label "Wyświetlanie etykiet zakładek">
+<!ENTITY roomybookmarkstoolbar.options.folderArrow.label "Ukryć strzałkę z folderów">
+<!ENTITY roomybookmarkstoolbar.options.folderMargin.label "Dodać do zakładki bliżej (w folderze) w">
+<!ENTITY roomybookmarkstoolbar.options.hideBookmarksIcon.label "Ukryj ikony zakładek">
+<!ENTITY roomybookmarkstoolbar.options.hideBookmarksName.label "Ukryj nazwy zakładek">
+<!ENTITY roomybookmarkstoolbar.options.hideByDefault.label "Ukryj pasek zakładek domyślnie">
+<!ENTITY roomybookmarkstoolbar.options.hideDefaultIcon.label "Ukryj domyślne ikony zakładek">
+<!ENTITY roomybookmarkstoolbar.options.hideFolderIcon.label "Ukryj ikony folderów zakładek">
+<!ENTITY roomybookmarkstoolbar.options.hideFoldersNames.label "Ukryj etykiety folderów">
+<!ENTITY roomybookmarkstoolbar.options.hideGroup.label "Ukrywanie ikon">
+<!ENTITY roomybookmarkstoolbar.options.hideNoFaviconNames.label "Ukryj etykiety zakładek bez ikon">
+<!ENTITY roomybookmarkstoolbar.options.incorrectHeight.label "Włączyć, jeżeli wysokość panela jest nieprawidłowe">
+<!ENTITY roomybookmarkstoolbar.options.linuxFix.label "Wyłącz Linux\OS X Fix">
+<!ENTITY roomybookmarkstoolbar.options.location.label "Położenie paska zakładek">
+<!ENTITY roomybookmarkstoolbar.options.multirowBarFixed.label "Fixed height">
+<!ENTITY roomybookmarkstoolbar.options.multirowBarGroup.label "Wielowierszowy pasek zakładek">
+<!ENTITY roomybookmarkstoolbar.options.multirowEnable.label "Włącz wielowierszowy pasek zakładek">
+<!ENTITY roomybookmarkstoolbar.options.multirowRows.label "wierszowego paska zakładek">
+<!ENTITY roomybookmarkstoolbar.options.multirowRowsNumber.label "Użyj">
+<!ENTITY roomybookmarkstoolbar.options.onHover.label "Pokaż etykiety zakładek po wskazaniu kursorem">
+<!ENTITY roomybookmarkstoolbar.options.opacity.label "Dodać do paska zakładek przezroczyste po:">
+<!ENTITY roomybookmarkstoolbar.options.opacityIn.label "w">
+<!ENTITY roomybookmarkstoolbar.options.overPage.label "Display bookmarks bar on page">
+<!ENTITY roomybookmarkstoolbar.options.pixels.label "pikseli">
+<!ENTITY roomybookmarkstoolbar.options.rbtChangeColor.label "Otwórz wybór kolorów">
+<!ENTITY roomybookmarkstoolbar.options.seconds.label "sekundach">
+<!ENTITY roomybookmarkstoolbar.options.sizeGroup.label "Wymiary ikon zakładek">
+<!ENTITY roomybookmarkstoolbar.options.spacing0.label "Minimalne">
+<!ENTITY roomybookmarkstoolbar.options.spacing1.label "Mniejsze">
+<!ENTITY roomybookmarkstoolbar.options.spacing2.label "Małe">
+<!ENTITY roomybookmarkstoolbar.options.spacing3.label "Normalne">
+<!ENTITY roomybookmarkstoolbar.options.spacing4.label "Duży">
+<!ENTITY roomybookmarkstoolbar.options.spacingGroup.label "Odstępy między zakładkami">
+<!ENTITY roomybookmarkstoolbar.options.tab1.label "Ustawienia paska zakładek">
+<!ENTITY roomybookmarkstoolbar.options.tab2.label "Ustawienia etykiet">
+<!ENTITY roomybookmarkstoolbar.options.tab3.label "Ustawienia ikon">
+<!ENTITY roomybookmarkstoolbar.options.timeGroup.label "Opcje ukrywania paska zakładek">
+<!ENTITY roomybookmarkstoolbar.options.toolbarGroup.label "Pasek zakładek">
+<!ENTITY roomybookmarkstoolbar.options.userWidthEnabled.label "Zmień zakładkę maksymalną szerokość">
+<!ENTITY roomybookmarkstoolbar.options.userWidthMaxWidth.label "Maksymalnie zakładki szerokość:">
+<!ENTITY roomybookmarkstoolbar.options.window.title "Roomy Bookmarks Toolbar Opcje">
+<!ENTITY roomybookmarkstoolbar.options.fixIncorrectHeight.label "Włącz do poprawek niewłaściwej wysokości">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneButton.label "Przycisk 'Ukryj \ Pokaż pasek zakładek'">
+<!ENTITY roomybookmarkstoolbar.options.textSize.label "Rozmiar tekstu:">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneBackButton.label "Przycisk Powrót">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneMenuButton.label "Przycisk menu">

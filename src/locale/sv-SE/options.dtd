@@ -1,0 +1,59 @@
+<!ENTITY roomybookmarkstoolbar.options.alignment.label "Justering av bokmärken">
+<!ENTITY roomybookmarkstoolbar.options.alignment0.label "Vänster">
+<!ENTITY roomybookmarkstoolbar.options.alignment1.label "Centrera">
+<!ENTITY roomybookmarkstoolbar.options.alignment2.label "Höger">
+<!ENTITY roomybookmarkstoolbar.options.autohideBar.label "Dölj bokmärkesfältet automatiskt efter">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZone.label "Visa bokmärken bar på hover: ">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneAll.label "Alla ">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneButton.label "Botão(esconder/mostrar a barra de favoritos)">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneMenu.label "Meny">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneNav.label "Navigeringsmeny">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneTab.label "Flikar ">
+<!ENTITY roomybookmarkstoolbar.options.BBonNewTab.label "Visa bokmärkesfältet endast i ny flik">
+<!ENTITY roomybookmarkstoolbar.options.bookmarksAboveTab.label "Placera bokmärkesfältet överst">
+<!ENTITY roomybookmarkstoolbar.options.BookmarksLabelGroup.label "Bokmärkesetiketter">
+<!ENTITY roomybookmarkstoolbar.options.folderArrow.label "Göm pil från mappar">
+<!ENTITY roomybookmarkstoolbar.options.folderMargin.label "Kufanya bookmarks karibu (katika folder) katika">
+<!ENTITY roomybookmarkstoolbar.options.hideBookmarksIcon.label "Dölj bokmärkesikoner">
+<!ENTITY roomybookmarkstoolbar.options.hideBookmarksName.label "Dölj bokmärken namn">
+<!ENTITY roomybookmarkstoolbar.options.hideByDefault.label "Göm bokmärkesfältet som standard">
+<!ENTITY roomybookmarkstoolbar.options.hideDefaultIcon.label "Dölj standardikoner">
+<!ENTITY roomybookmarkstoolbar.options.hideFolderIcon.label "Dölj bokmärkesmappikoner">
+<!ENTITY roomybookmarkstoolbar.options.hideFoldersNames.label "Dölj bokmärkesmappars namn">
+<!ENTITY roomybookmarkstoolbar.options.hideGroup.label "Dölja bokmärkesikoner">
+<!ENTITY roomybookmarkstoolbar.options.hideNoFaviconNames.label "Dölj namn för bokmärken utan sajtikon">
+<!ENTITY roomybookmarkstoolbar.options.incorrectHeight.label "Activar, se a altura do painel é incorrecta">
+<!ENTITY roomybookmarkstoolbar.options.linuxFix.label "Inaktivera Linux\OS X Fix">
+<!ENTITY roomybookmarkstoolbar.options.location.label "Bokmärkesfältets placering">
+<!ENTITY roomybookmarkstoolbar.options.multirowBarFixed.label "Fast höjd">
+<!ENTITY roomybookmarkstoolbar.options.multirowBarGroup.label "Flerradigt bokmärkesfält">
+<!ENTITY roomybookmarkstoolbar.options.multirowEnable.label "Aktivera flerradigt bokmärkesfält">
+<!ENTITY roomybookmarkstoolbar.options.multirowRows.label "rader">
+<!ENTITY roomybookmarkstoolbar.options.multirowRowsNumber.label "Visa bokmärkesfältet med">
+<!ENTITY roomybookmarkstoolbar.options.onHover.label "Visa bokmärkesnamn vid muspekarhovring">
+<!ENTITY roomybookmarkstoolbar.options.opacity.label "Gör bokmärkesfältet genomskinligt efter:">
+<!ENTITY roomybookmarkstoolbar.options.opacityIn.label "i">
+<!ENTITY roomybookmarkstoolbar.options.overPage.label "Display bookmarks bar on page">
+<!ENTITY roomybookmarkstoolbar.options.pixels.label "pixlar">
+<!ENTITY roomybookmarkstoolbar.options.rbtChangeColor.label "Öppna ett färgval">
+<!ENTITY roomybookmarkstoolbar.options.seconds.label "sekunder">
+<!ENTITY roomybookmarkstoolbar.options.sizeGroup.label "Dimensioner för sajtikon">
+<!ENTITY roomybookmarkstoolbar.options.spacing0.label "Minimalt">
+<!ENTITY roomybookmarkstoolbar.options.spacing1.label "Mindre">
+<!ENTITY roomybookmarkstoolbar.options.spacing2.label "Litet">
+<!ENTITY roomybookmarkstoolbar.options.spacing3.label "Normalt">
+<!ENTITY roomybookmarkstoolbar.options.spacing4.label "Stor">
+<!ENTITY roomybookmarkstoolbar.options.spacingGroup.label "Bokmärkesavstånd">
+<!ENTITY roomybookmarkstoolbar.options.tab1.label "Verktygsfält">
+<!ENTITY roomybookmarkstoolbar.options.tab2.label "Etiketter">
+<!ENTITY roomybookmarkstoolbar.options.tab3.label "Ikoner">
+<!ENTITY roomybookmarkstoolbar.options.timeGroup.label "Dölja bokmärkesfältet">
+<!ENTITY roomybookmarkstoolbar.options.toolbarGroup.label "Bokmärkesfältet">
+<!ENTITY roomybookmarkstoolbar.options.userWidthEnabled.label "Ändra bokmärken maximal bredd">
+<!ENTITY roomybookmarkstoolbar.options.userWidthMaxWidth.label "Maximal bokmärken Bredd:">
+<!ENTITY roomybookmarkstoolbar.options.window.title "Inställningar för Roomy Bookmarks Toolbar">
+<!ENTITY roomybookmarkstoolbar.options.fixIncorrectHeight.label "Aktivera för fix felaktig höjd">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneButton.label "'Göm \ Visa bokmärkesfältet 'knappen">
+<!ENTITY roomybookmarkstoolbar.options.textSize.label "Textstorlek:">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneBackButton.label "Bakåtknappen">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneMenuButton.label "Menyknappen">

@@ -1,0 +1,59 @@
+<!ENTITY roomybookmarkstoolbar.options.alignment.label "Вирівнювання закладок">
+<!ENTITY roomybookmarkstoolbar.options.alignment0.label "Зліва">
+<!ENTITY roomybookmarkstoolbar.options.alignment1.label "По центру">
+<!ENTITY roomybookmarkstoolbar.options.alignment2.label "Зправа">
+<!ENTITY roomybookmarkstoolbar.options.autohideBar.label "Автоприховування панелі закладок після">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZone.label "Показувати панель закладок при наведенні миші:">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneAll.label "Усе">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneButton.label "Кнопка «Приховати/показати панель закладок»">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneMenu.label "Меню">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneNav.label "Панель навігації">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneTab.label "Вкладки">
+<!ENTITY roomybookmarkstoolbar.options.BBonNewTab.label "Відображати панель закладок тільки в новій вкладці">
+<!ENTITY roomybookmarkstoolbar.options.bookmarksAboveTab.label "Розмістити панель закладок нагорі">
+<!ENTITY roomybookmarkstoolbar.options.BookmarksLabelGroup.label "Назви закладок">
+<!ENTITY roomybookmarkstoolbar.options.folderArrow.label "Приховати стрілку з тек">
+<!ENTITY roomybookmarkstoolbar.options.folderMargin.label "Зробити закладки ближче (у теці) на">
+<!ENTITY roomybookmarkstoolbar.options.hideBookmarksIcon.label "Приховати іконки закладок">
+<!ENTITY roomybookmarkstoolbar.options.hideBookmarksName.label "Приховати назви закладок">
+<!ENTITY roomybookmarkstoolbar.options.hideByDefault.label "Приховати панель закладок за замовчуванням">
+<!ENTITY roomybookmarkstoolbar.options.hideDefaultIcon.label "Приховати типові іконки">
+<!ENTITY roomybookmarkstoolbar.options.hideFolderIcon.label "Приховати іконки тек">
+<!ENTITY roomybookmarkstoolbar.options.hideFoldersNames.label "Приховати назви тек">
+<!ENTITY roomybookmarkstoolbar.options.hideGroup.label "Приховування іконок">
+<!ENTITY roomybookmarkstoolbar.options.hideNoFaviconNames.label "Приховати назви закладок без значка">
+<!ENTITY roomybookmarkstoolbar.options.incorrectHeight.label "Увімкніть, коли висота неправильна">
+<!ENTITY roomybookmarkstoolbar.options.linuxFix.label "Вимкнути Linux\OS X Fix">
+<!ENTITY roomybookmarkstoolbar.options.location.label "Позиція панелі закладок">
+<!ENTITY roomybookmarkstoolbar.options.multirowBarFixed.label "Визначена висота">
+<!ENTITY roomybookmarkstoolbar.options.multirowBarGroup.label "Багаторядкова панель закладок">
+<!ENTITY roomybookmarkstoolbar.options.multirowEnable.label "Увімкнути багаторядкову панель закладок">
+<!ENTITY roomybookmarkstoolbar.options.multirowRows.label "ряд(и)">
+<!ENTITY roomybookmarkstoolbar.options.multirowRowsNumber.label "Відображати використання панелі закладок">
+<!ENTITY roomybookmarkstoolbar.options.onHover.label "Показати назви закладок при наведенні миші">
+<!ENTITY roomybookmarkstoolbar.options.opacity.label "Зробити панель закладок напівпрозорою після:">
+<!ENTITY roomybookmarkstoolbar.options.opacityIn.label "в">
+<!ENTITY roomybookmarkstoolbar.options.overPage.label "Відображати панель закладок на сторінці">
+<!ENTITY roomybookmarkstoolbar.options.pixels.label "пікселів">
+<!ENTITY roomybookmarkstoolbar.options.rbtChangeColor.label "Відкрити вибір кольору">
+<!ENTITY roomybookmarkstoolbar.options.seconds.label "сек">
+<!ENTITY roomybookmarkstoolbar.options.sizeGroup.label "Розміри іконки сайту">
+<!ENTITY roomybookmarkstoolbar.options.spacing0.label "Відсутня">
+<!ENTITY roomybookmarkstoolbar.options.spacing1.label "Найменша">
+<!ENTITY roomybookmarkstoolbar.options.spacing2.label "Менша">
+<!ENTITY roomybookmarkstoolbar.options.spacing3.label "Нормальна">
+<!ENTITY roomybookmarkstoolbar.options.spacing4.label "Велика">
+<!ENTITY roomybookmarkstoolbar.options.spacingGroup.label "Відстань між закладками">
+<!ENTITY roomybookmarkstoolbar.options.tab1.label "Налаштування панелі">
+<!ENTITY roomybookmarkstoolbar.options.tab2.label "Опції написів">
+<!ENTITY roomybookmarkstoolbar.options.tab3.label "Опції іконок">
+<!ENTITY roomybookmarkstoolbar.options.timeGroup.label "Приховування панелі закладок">
+<!ENTITY roomybookmarkstoolbar.options.toolbarGroup.label "Панель закладок">
+<!ENTITY roomybookmarkstoolbar.options.userWidthEnabled.label "Змінити максимальну ширину закладок">
+<!ENTITY roomybookmarkstoolbar.options.userWidthMaxWidth.label "Максимальна ширина закладок:">
+<!ENTITY roomybookmarkstoolbar.options.window.title "Налаштування Roomy Bookmarks Toolbar">
+<!ENTITY roomybookmarkstoolbar.options.fixIncorrectHeight.label "Включити для виправлення неправильної висоті">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneButton.label "Кнопка 'Приховати \ Показати панель закладок'">
+<!ENTITY roomybookmarkstoolbar.options.textSize.label "Розмір шрифту:">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneBackButton.label "Кнопка назад">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneMenuButton.label "Кнопка меню">

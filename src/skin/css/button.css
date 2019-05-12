@@ -1,0 +1,12 @@
+﻿@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
+
+@-moz-document url(chrome://browser/content/browser.xul), url(chrome://navigator/content/navigator.xul) {
+	#rbtlibbutton {
+		list-style-image: url("chrome://roomybookmarkstoolbar/skin/button16.png");
+	}
+	
+	/* Added for Australis support */
+	#rbtlibbutton[cui-areatype="menu-panel"], toolbarpaletteitem[place="palette"] > #rbtlibbutton {
+		list-style-image: url("chrome://roomybookmarkstoolbar/skin/button32.png");
+	}
+}

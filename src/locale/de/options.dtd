@@ -1,0 +1,59 @@
+<!ENTITY roomybookmarkstoolbar.options.alignment.label "Lesezeichen-Ausrichtung">
+<!ENTITY roomybookmarkstoolbar.options.alignment0.label "Links">
+<!ENTITY roomybookmarkstoolbar.options.alignment1.label "Zentriert">
+<!ENTITY roomybookmarkstoolbar.options.alignment2.label "Rechts">
+<!ENTITY roomybookmarkstoolbar.options.autohideBar.label "Lesezeichen-Symbolleiste automatisch ausblenden nach">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZone.label "Lesezeichen-Symbolleiste beim Überfahren mit der Maus einblenden:">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneAll.label "Alle">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneButton.label "Button (ausblenden \ Show Lesezeichenleiste)">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneMenu.label "Menü">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneNav.label "Navigations-Symbolleiste ">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneTab.label "Tabs">
+<!ENTITY roomybookmarkstoolbar.options.BBonNewTab.label "Lesezeichen-Symbolleiste nur in neuem Tab anzeigen">
+<!ENTITY roomybookmarkstoolbar.options.bookmarksAboveTab.label "Lesezeichen-Symbolleiste über Tableiste anzeigen">
+<!ENTITY roomybookmarkstoolbar.options.BookmarksLabelGroup.label "Lesezeichen-Beschriftung">
+<!ENTITY roomybookmarkstoolbar.options.folderArrow.label "Pfeilsymbol in Ordnern ausblenden">
+<!ENTITY roomybookmarkstoolbar.options.folderMargin.label "Make bookmarks closer(in folder) at">
+<!ENTITY roomybookmarkstoolbar.options.hideBookmarksIcon.label "Lesezeichen-Symbole (Favicons) ausblenden">
+<!ENTITY roomybookmarkstoolbar.options.hideBookmarksName.label "Namen der Lesezeichen ausblenden">
+<!ENTITY roomybookmarkstoolbar.options.hideByDefault.label "Lesezeichen-Symbolleiste standardmäßig ausblenden">
+<!ENTITY roomybookmarkstoolbar.options.hideDefaultIcon.label "Standardsymbole ausblenden">
+<!ENTITY roomybookmarkstoolbar.options.hideFolderIcon.label "Symbole von Lesezeichenordnern ausblenden">
+<!ENTITY roomybookmarkstoolbar.options.hideFoldersNames.label "Namen der Lesezeichen Ordner ausblenden">
+<!ENTITY roomybookmarkstoolbar.options.hideGroup.label "Lesezeichen-Symbole ausblenden">
+<!ENTITY roomybookmarkstoolbar.options.hideNoFaviconNames.label "Lesezeichen-Namen ohne Favicon ausblenden">
+<!ENTITY roomybookmarkstoolbar.options.incorrectHeight.label "Ermöglichen, wenn die Höhe der Platte nicht korrekt">
+<!ENTITY roomybookmarkstoolbar.options.linuxFix.label "Deaktivieren Linux\OS X Fix ">
+<!ENTITY roomybookmarkstoolbar.options.location.label "Position der Lesezeichen-Symbolleiste">
+<!ENTITY roomybookmarkstoolbar.options.multirowBarFixed.label "Feste Höhe">
+<!ENTITY roomybookmarkstoolbar.options.multirowBarGroup.label "Mehrzeilige Lesezeichen-Symbolleiste">
+<!ENTITY roomybookmarkstoolbar.options.multirowEnable.label "Mehrzeilige Lesezeichen-Symbolleiste aktivieren">
+<!ENTITY roomybookmarkstoolbar.options.multirowRows.label "Reihen">
+<!ENTITY roomybookmarkstoolbar.options.multirowRowsNumber.label "Lesezeichen-Symbolleiste anzeigen in">
+<!ENTITY roomybookmarkstoolbar.options.onHover.label "Lesezeichen-Namen beim Überfahren mit der Maus anzeigen">
+<!ENTITY roomybookmarkstoolbar.options.opacity.label "Transparenz der Lesezeichen-Symbolleiste nach">
+<!ENTITY roomybookmarkstoolbar.options.opacityIn.label "in">
+<!ENTITY roomybookmarkstoolbar.options.overPage.label "Lesezeichen-Symbolleiste auf einer Seite anzeigen">
+<!ENTITY roomybookmarkstoolbar.options.pixels.label "Pixel">
+<!ENTITY roomybookmarkstoolbar.options.rbtChangeColor.label "Farbauswahl öffnen">
+<!ENTITY roomybookmarkstoolbar.options.seconds.label "Sekunden">
+<!ENTITY roomybookmarkstoolbar.options.sizeGroup.label "Größe der Lesezeichen-Symbole">
+<!ENTITY roomybookmarkstoolbar.options.spacing0.label "Minimal">
+<!ENTITY roomybookmarkstoolbar.options.spacing1.label "Kleiner">
+<!ENTITY roomybookmarkstoolbar.options.spacing2.label "Klein">
+<!ENTITY roomybookmarkstoolbar.options.spacing3.label "Normal">
+<!ENTITY roomybookmarkstoolbar.options.spacing4.label "Gross">
+<!ENTITY roomybookmarkstoolbar.options.spacingGroup.label "Abstand zwischen Lesezeichen">
+<!ENTITY roomybookmarkstoolbar.options.tab1.label "Symbolleisten-Einstellungen">
+<!ENTITY roomybookmarkstoolbar.options.tab2.label "Beschriftung">
+<!ENTITY roomybookmarkstoolbar.options.tab3.label "Symbol-Einstellungen">
+<!ENTITY roomybookmarkstoolbar.options.timeGroup.label "Lesezeichen-Symbolleiste ausblenden">
+<!ENTITY roomybookmarkstoolbar.options.toolbarGroup.label "Lesezeichen-Symbolleiste">
+<!ENTITY roomybookmarkstoolbar.options.userWidthEnabled.label "Maximale Breite von Lesezeichen festlegen">
+<!ENTITY roomybookmarkstoolbar.options.userWidthMaxWidth.label "Maximale Breite der Lesezeichen:">
+<!ENTITY roomybookmarkstoolbar.options.window.title "Roomy Bookmarks Toolbar - Einstellungen">
+<!ENTITY roomybookmarkstoolbar.options.fixIncorrectHeight.label "Aktivieren Sie für fix falschen Höhe">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneButton.label "'Hide \ Lesezeichenleiste anzeigen' Taste">
+<!ENTITY roomybookmarkstoolbar.options.textSize.label "Textgröße:">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneBackButton.label "Zurück-Button">
+<!ENTITY roomybookmarkstoolbar.options.autoHideZoneMenuButton.label "Menü-Taste">

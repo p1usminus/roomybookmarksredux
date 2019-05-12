@@ -1,0 +1,10 @@
+@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
+
+@-moz-document url(chrome://browser/content/browser.xul), url(chrome://navigator/content/navigator.xul) {
+	#PersonalToolbar {
+		position: fixed !important;
+		width: 100% !important;
+		padding: 3px 0px 3px 3px !important;
+		z-index: 100;
+	}
+}
