@@ -24,6 +24,8 @@ Most of the features work, but it is slightly buggy. Please read the tips.
 * Hide default icons
 
 ## Other notes ##
+* :question: I would like to know if users prefer having the scrollbar visible when using the multirow option, or would rather have it hidden.
+ * The single row multirow toolbar is neat.
 * I repurposed one of the prefs to change the top & bottom margin of bookmark items. Adding new prefs looks like it could be annoying, but there may be a couple of other ones that could be re-used.
 * The browser's hamburger menu (app menu) gets weird after enabling the multirow option. Probably related to the CSS the option uses but I couldn't fix it.
 * Please highlight any issues you find, but I honestly don't know if I will be able to fix them! I uploaded everything here in the hopes that even if I cannot do anything more, perhaps someone else can...
