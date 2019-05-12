@@ -1,0 +1,17 @@
+{
+  "addons": {
+    "ALone-live@ya.ru": {
+      "updates": [
+        {
+          "applications": {
+            "gecko": {
+              "strict_min_version": "65.0"
+            }
+          },
+          "version": "1.5.0",
+          "update_link": "https://raw.githubusercontent.com/p1usminus/roomybookmarksredux/master/ALone-live@ya.ru.xpi"
+        }
+      ]
+    }
+  }
+}
