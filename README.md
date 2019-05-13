@@ -1,5 +1,6 @@
 # Roomy Bookmarks Toolbar redux #
 [Roomy Bookmarks Toolbar](https://legacycollector.org/firefox-addons/210846/index.html "Roomy Bookmarks Toolbar") for Waterfox 68
+Originally created by [Someone free](https://chrome.google.com/webstore/detail/roomy-bookmarks-toolbar/kmfbpoigddhdibjcilijiejaidggonfc) (Chrome version)
 
 Most of the features work, but it is slightly buggy. Please read the tips.
 
@@ -33,6 +34,6 @@ Most of the features work, but it is slightly buggy. Please read the tips.
 
 <details>
   <summary>P.S.</summary>
-  <p>Thank you to [Someone free](https://chrome.google.com/webstore/detail/roomy-bookmarks-toolbar/kmfbpoigddhdibjcilijiejaidggonfc "add-on author") Alex and the Thunderbird team! :clap:</p>
+  <p>Thank you to Someone free, Alex and the Thunderbird team! :clap:</p>
   <p>I only really use the autohide feature of Roomy, but after getting that to work again I thought it would be fun to get the rest of the features of this extension working again. It was, mostly.</p>
 </details>
