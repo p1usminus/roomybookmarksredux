@@ -1,6 +1,7 @@
 # Roomy Bookmarks Toolbar redux #
 [Roomy Bookmarks Toolbar](https://legacycollector.org/firefox-addons/210846/index.html "Roomy Bookmarks Toolbar") for Waterfox 68
-Originally created by [Someone free](https://chrome.google.com/webstore/detail/roomy-bookmarks-toolbar/kmfbpoigddhdibjcilijiejaidggonfc) (Chrome version)
+
+Originally created by [Someone free](https://chrome.google.com/webstore/detail/roomy-bookmarks-toolbar/kmfbpoigddhdibjcilijiejaidggonfc)
 
 Most of the features work, but it is slightly buggy. Please read the tips.
 
