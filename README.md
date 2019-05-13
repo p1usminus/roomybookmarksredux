@@ -13,6 +13,7 @@ Most of the features work, but it is slightly buggy. Please read the tips.
 ## Untested features ##
 * Locales - do strings in languages other than English work?
 * Linux/OS X fix - I don't even know what it's supposed to do
+* 'Hide bookmark names with no favicon' - probably broken
 
 ## Not working
 * Colour menu
