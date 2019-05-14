@@ -21,9 +21,9 @@ Most of the features work, but it is slightly buggy. Please read the tips.
 * Colour menu
   * I don't think this method works at all any more so I have commented out virtually everything related to it.
   * There is an alternative of sorts, see [issue #3](https://github.com/p1usminus/roomybookmarksredux/issues/3)
-* Toolbar button
-  * This may be related to browser changes because other legacy extensions I have tested (which all use bootstrap.js) cannot produce buttons either.
-  * It may be possible to add the button bootstrap style (https://developer.mozilla.org/en-US/docs/Mozilla/Tech/XUL/Toolbars/Creating_toolbar_buttons), but I don't know how to!
+* ~~Toolbar button~~
+  * ~~This may be related to browser changes because other legacy extensions I have tested (which all use bootstrap.js) cannot produce buttons either.~~
+  * ~~It may be possible to add the button bootstrap style (https://developer.mozilla.org/en-US/docs/Mozilla/Tech/XUL/Toolbars/Creating_toolbar_buttons), but I don't know how to!~~
 * Hide default icons
 
 ## Other notes ##
