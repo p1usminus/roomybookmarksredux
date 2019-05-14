@@ -13,7 +13,6 @@ let options = {
 let man = `
 overlay	chrome://browser/content/browser.xul	chrome://roomybookmarkstoolbar/content/overlay.xul
 overlay	chrome://navigator/content/navigator.xul	chrome://roomybookmarkstoolbar/content/overlay.xul
-style chrome://global/content/customizeToolbar.xul	chrome://roomybookmarkstoolbar/skin/css/button.css
 `;
 
 function showRestartNotifcation(verb, window) {
@@ -62,6 +61,17 @@ function startup(data, reason) {
   Components.utils.import("chrome://roomybookmarkstoolbar/content/Overlays.jsm");
   Components.utils.import("resource:///modules/CustomizableUI.jsm");
 
+  // Create toolbar icon here
+  var button_label = "Show bookmarks toolbar";
+  
+  CustomizableUI.createWidget(
+    { id : "rbtlibbutton",
+	  defaultArea : CustomizableUI.AREA_NAVBAR,
+	  label : button_label,
+	  tooltiptext : button_label,
+	  //onCommand : roomybookmarkstoolbar.hideBookmarksBar();
+    });
+  
   const window = Services.wm.getMostRecentWindow('navigator:browser');
   if (reason === ADDON_UPGRADE || reason === ADDON_DOWNGRADE) {
       showRestartNotifcation("upgraded", window);
@@ -110,4 +120,6 @@ function shutdown(data, reason) {
       showRestartNotifcation("uninstalled", window);
       return;
   }
+  
+  CustomizableUI.destroyWidget("rbtlibbutton");
 }

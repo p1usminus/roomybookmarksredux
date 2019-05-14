@@ -74,7 +74,7 @@
 					roomybookmarkstoolbar.visible = true;
 					roomybookmarkstoolbar.setVisibly();
 				}
-			} else {	//Hide bookmarks bar after fast mouse out(event not catched)
+			} else {	//Hide bookmarks bar after fast mouse out (event not caught)
 				this.timeOutHide = setTimeout(roomybookmarkstoolbar.setVisibly, 700);
 			}
 		}
@@ -95,13 +95,13 @@
 			if(e.relatedTarget) {
 				var target = e.relatedTarget;
 				while(target) {					//Get all parents of target element
-					if(target == toolbox) {		//Check parent == toobox, if true- mouse out not happaned
+					if(target == toolbox) {		//Check parent == toolbox, if true - mouse out not happaned
 						return;
 					}
 					if (target.class == 'anonymous-div') {
 						return;
 					}
-					target = target.parentNode;	//Get nex parent
+					target = target.parentNode;	//Get next parent
 				}
 			}
 			roomybookmarkstoolbar.hovered = false;
@@ -124,7 +124,7 @@
 		roomybookmarkstoolbar.hideHandler();
 	},
 
-	onMouseOverFix: function(e) {		//Fix problem with wrong hide, when enabled menu\nav bar\ tabs
+	onMouseOverFix: function(e) {		//Fix problem with wrong hide, when enabled menu\nav bar\tabs
 		if (this.timeOutHide) {
 			clearTimeout(this.timeOutHide);
 		}
@@ -330,7 +330,7 @@
 			var opacityTime = this.branch.getIntPref('opacityTime');
 			var opacityTimeLong = this.branch.getIntPref('opacityTimeLong');
 			var userWidth = this.branch.getIntPref('userWidth');
-			if (userWidth < iconSize) { var userWidth = iconSize };		//We not can set 0px as width(bookmarks bar will collapse)
+			if (userWidth < iconSize) { var userWidth = iconSize };		//We cannot set 0px as width (bookmarks bar will collapse)
 
 			if(this.cssStr !== 'null') {
 				this.styleService('string', this.cssStr, true)
@@ -460,6 +460,7 @@
 		}
 
 		this.styleService('file', 'main');
+		this.styleService('file', 'button'); 
 
 		if (hideFoldersNames) { this.styleService('file', 'hideFoldersNames');}
 		if (hideNoFaviconNames) {this.styleService('file', 'hideNoFaviconNames');}
