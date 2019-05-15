@@ -81,7 +81,8 @@ function startup(data, reason) {
       return;
   }
 
-  if (reason === ADDON_INSTALL || reason === ADDON_ENABLE) {
+  // This may be relevant if colorMenu is used
+  /* if (reason === ADDON_INSTALL || (reason === ADDON_ENABLE && !window.document.getElementById('rbtChangeColor'))) {
     var enumerator = Services.wm.getEnumerator(null);
     while (enumerator.hasMoreElements()) {
       var win = enumerator.getNext();
@@ -94,7 +95,7 @@ function startup(data, reason) {
         }
       })(win);
     }
-  }
+  } */
 
   (async function () {
     let chromeManifest = new ChromeManifest(function () { return man; }, options);

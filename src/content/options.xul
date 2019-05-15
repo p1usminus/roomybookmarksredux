@@ -180,11 +180,10 @@
 	<vbox>
 		<checkbox preference="extensions.roomybookmarkstoolbar.hideBookmarksIcons" id="hideBookmarksIconsPerf" label="&roomybookmarkstoolbar.options.hideBookmarksIcon.label;" oncommand="roomybookmarkstoolbarOptions.showName();" />
 		<checkbox preference="extensions.roomybookmarkstoolbar.hideFolderIcons" id="hideFolderIconsPerf" label="&roomybookmarkstoolbar.options.hideFolderIcon.label;" oncommand="roomybookmarkstoolbarOptions.showName();" />
-		<checkbox preference="extensions.roomybookmarkstoolbar.hideDefaultIcons" id="hideDefaultIconsPerf" label="&roomybookmarkstoolbar.options.hideDefaultIcon.label;" oncommand="roomybookmarkstoolbarOptions.showName();" />
-		<checkbox preference="extensions.roomybookmarkstoolbar.folderArrow" id="folderArrowPerf" label="&roomybookmarkstoolbar.options.folderArrow.label;" oncommand="roomybookmarkstoolbarOptions.OSFix();" disabled="true"/>	
+		<checkbox preference="extensions.roomybookmarkstoolbar.hideDefaultIcons" id="hideDefaultIconsPerf" label="&roomybookmarkstoolbar.options.hideDefaultIcon.label;" oncommand="roomybookmarkstoolbarOptions.showName();" disabled="true" />
+		<checkbox preference="extensions.roomybookmarkstoolbar.folderArrow" id="folderArrowPerf" label="&roomybookmarkstoolbar.options.folderArrow.label;" oncommand="roomybookmarkstoolbarOptions.OSFix();" disabled="true" />	
 	</vbox>
 	</html:fieldset>
-
 	</tabpanel>
 	
 	</tabpanels>

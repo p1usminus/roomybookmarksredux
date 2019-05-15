@@ -6,11 +6,11 @@
 		} else {
 			document.getElementById('hideBookmarksIconsPerf').disabled = false;
 		};
-		if (document.getElementById('hideNoFaviconNamesPerf').checked ) {
+		/* if (document.getElementById('hideNoFaviconNamesPerf').checked ) {
 			document.getElementById('hideDefaultIconsPerf').disabled = true;
 		} else {
 			document.getElementById('hideDefaultIconsPerf').disabled = false;
-		};
+		}; */
 		if (document.getElementById('hideFoldersNamesPerf').checked) {
 			document.getElementById('hideFolderIconsPerf').disabled = true;
 		} else {

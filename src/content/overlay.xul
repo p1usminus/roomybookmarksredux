@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE overlay SYSTEM "chrome://roomybookmarkstoolbar/locale/overlay.dtd">
-<?xml-stylesheet href="chrome://roomybookmarkstoolbar/skin/css/button.css" type="text/css"?>
 
 <overlay id="roomybookmarkstoolbar-overlay"
 		xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
