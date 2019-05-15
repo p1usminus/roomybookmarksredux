@@ -15,12 +15,13 @@ Most of the features work, but it is slightly buggy. Please read the tips.
 ## Untested features ##
 * Locales - do strings in languages other than English work?
 * Linux/OS X fix - I don't even know what it's supposed to do, but it can apparently be disabled
-* 'Hide bookmark names with no favicon' - probably broken
+
 
 ## Not working
 * Colour menu
   * I don't think this method works at all any more so I have commented out virtually everything related to it.
   * There is an alternative of sorts, see [issue #3](https://github.com/p1usminus/roomybookmarksredux/issues/3)
+* 'Hide bookmark names with no favicon'
 * Hide default icons
 
 ## Other notes ##
