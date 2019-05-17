@@ -1,7 +1,7 @@
 ﻿var roomybookmarkstoolbar = {
 	branch: null,				//Perf system
 	cssStr: null,				//CSS string for user style
-	colorCSS: null,				//CSS string for bookamrks color
+	colorCSS: null,				//CSS string for bookmarks color
 	visible: null,				//Autohide visible
 	hovered: null,				//Autohide if mous on browser panel- not hide
 	popup: null,				//Autohide if popup open- not hide bookmrks bar
@@ -231,8 +231,6 @@
 
 	multirow: function(change) {
 		var PlacesToolbar = document.getElementById('PlacesToolbar');
-		var NavToolbox = document.getElementById('navigator-toolbox');
-		var PersToolbar = document.getElementById('PersonalToolbar');
 		var multirowBar = this.branch.getBoolPref('multirowBar');
 		var heightOrig = 0;
 
@@ -280,7 +278,7 @@
 
 			if (heightOrig < this.branch.getIntPref('iconSize') && this.PersonalToolbar) {			//If height not correct - set it = icon size
 				heightOrig = this.branch.getIntPref('iconSize')
-				if(this.branch.getIntPref('height') > this.branch.getIntPref('iconSize')) {		//If height was set and correct(bigger than icon size) set it as height
+				if(this.branch.getIntPref('height') > this.branch.getIntPref('iconSize')) {		//If height was set and correct (bigger than icon size) set it as height
 					heightOrig =  this.branch.getIntPref('height')
 				}
 			}
@@ -294,15 +292,12 @@
 			}
 
 			PlacesToolbar.style.maxHeight = height+'px';
-			PersToolbar.style.maxHeight = height+'px';
+			this.PersonalToolbar.style.maxHeight = height+'px';
 			if (fixedHeight) {
 				PlacesToolbar.style.minHeight = height+'px';
 			} else {
 				PlacesToolbar.style.minHeight = heightOrig+'px';
 			}
-			
-			NavToolbox.style.maxHeight = height+'px';
-			this.PersonalToolbar.style.maxHeight = height+'px';
 
 			//this.separatorAdded(heightOrig);				//Separator fix(apply css if added new element)
 		

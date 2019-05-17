@@ -8,9 +8,10 @@
 	#PersonalToolbar {
 	  min-height: unset !important;
 	  max-height: unset !important;
+	  padding: 0px 0px 3px 0px !important;
 	}
 
-	#PersonalToolbar #PlacesToolbarItems {
+	#personal-bookmarks #PlacesToolbar #PlacesToolbarItems {
 	  overflow-x: visible !important;
 	  overflow-y: auto !important;
 	  display: inline-block !important;
