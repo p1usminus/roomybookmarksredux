@@ -19,7 +19,7 @@
 	
 	#personal-bookmarks #PlacesToolbar #PlacesToolbarDropIndicator[collapsed="true"],
 	#personal-bookmarks #PlacesToolbar #PlacesToolbarDropIndicator{
-	  display: none;
+	  display: none !important;
 	}
 	
 	#personal-bookmarks #PlacesToolbar .chevron{
