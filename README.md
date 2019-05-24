@@ -1,5 +1,5 @@
 # Roomy Bookmarks Toolbar redux #
-[Roomy Bookmarks Toolbar](https://legacycollector.org/firefox-addons/210846/index.html "Roomy Bookmarks Toolbar") for Waterfox 68
+[Roomy Bookmarks Toolbar](https://legacycollector.org/firefox-addons/210846/index.html "Roomy Bookmarks Toolbar") for Waterfox 68 - __[download here!](https://github.com/p1usminus/roomybookmarksredux/releases/latest)__
 
 Originally created by [Someone free](https://chrome.google.com/webstore/detail/roomy-bookmarks-toolbar/kmfbpoigddhdibjcilijiejaidggonfc)
 
@@ -11,6 +11,8 @@ Most of the features work, but it is slightly buggy. Please read the tips.
 * The toolbar behaves strangely when using the multirow option with a non-standard favicon size. Solution: Use the option to fix incorrect height __with__ a non-zero margin size (see 2nd option tab). I wish this was less complicated.
 * Sometimes the toolbar simply breaks - such as when disabling the multirow option. Restarting the browser should fix this.
   * In other instances, re-enabling the bookmarks toolbar from the customise menu fixes this.
+  
+- - - -
 
 ## Untested features ##
 * Locales - do strings in languages other than English work?
