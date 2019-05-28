@@ -8,7 +8,7 @@
 		<em:multiprocessCompatible>true</em:multiprocessCompatible>
 		<em:name>Roomy Bookmarks Toolbar redux</em:name>
 		<em:description>Make your bookmarks bar better. Customise your bookmarks bar using one add-on.</em:description>
-		<em:version>1.5.4.1</em:version>
+		<em:version>1.5.5</em:version>
 		<em:creator>Someone free</em:creator>
 		<em:contributor>Users, contributors and testers</em:contributor>
 		<em:contributor>Grzglo</em:contributor>
@@ -25,7 +25,7 @@
 		<em:translator>Sacredwheels (uk-UA translation)</em:translator>
 
 		<em:homepageURL>https://github.com/p1usminus/roomybookmarksredux</em:homepageURL>
-		<em:updateURL>https://raw.githubusercontent.com/p1usminus/roomybookmarksredux/master/update.rdf</em:updateURL>
+		<em:updateURL>https://raw.githubusercontent.com/p1usminus/roomybookmarksredux/master/update.json</em:updateURL>
 		<em:optionsURL>chrome://roomybookmarkstoolbar/content/options.xul</em:optionsURL>
 		<em:optionsType>3</em:optionsType>
 		<em:iconURL>chrome://roomybookmarkstoolbar/skin/icon.png</em:iconURL>

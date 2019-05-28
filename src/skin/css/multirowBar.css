@@ -19,11 +19,11 @@
 	
 	#personal-bookmarks #PlacesToolbar #PlacesToolbarDropIndicator[collapsed="true"],
 	#personal-bookmarks #PlacesToolbar #PlacesToolbarDropIndicator{
-	  display: none !important;
+	  display: none;
 	}
 	
 	#personal-bookmarks #PlacesToolbar .chevron{
-	  visibility: collapse;
+	  visibility: collapse !important;
 	}
 	
 	#personal-bookmarks #PlacesToolbar toolbarbutton.bookmark-item{
