@@ -9,8 +9,9 @@ Most of the features work, but it is slightly buggy. Please read the tips.
 * :warning: The browser __must__ be restarted after installation, then enable the bookmarks toolbar (from the customise menu) then __restart again__!
 * The fixed height option should be used when the multirow option is selected, otherwise the toolbar will try to stay at single row height.
 * The toolbar behaves strangely when using the multirow option with a non-standard favicon size. Solution: Use the option to fix incorrect height __with__ a non-zero margin size (see 2nd option tab). I wish this was less complicated.
-* Sometimes the toolbar simply breaks - such as when disabling the multirow option. Restarting the browser should fix this.
-  * In other instances, re-enabling the bookmarks toolbar from the customise menu fixes this.
+* Sometimes the toolbar simply breaks - such as when disabling the multirow option (while using the auto-hide feature).
+  * Re-enabling the bookmarks toolbar from the customise menu (or restarting the browser) should fix this.
+* Setting the about:config option `browser.preferences.instantApply` to true will make the options apply without having to click the OK button in the dialog box.
   
 - - - -
 
@@ -23,6 +24,7 @@ Most of the features work, but it is slightly buggy. Please read the tips.
 * Colour menu
   * I don't think this method works at all any more so I have commented out virtually everything related to it.
   * There is an alternative of sorts, see [issue #3](https://github.com/p1usminus/roomybookmarksredux/issues/3)
+* Hide default icons - I can make them invisible but that's about it...
 * 'Hide bookmark names with no favicon'
 
 ## Other notes ##
@@ -30,7 +32,6 @@ Most of the features work, but it is slightly buggy. Please read the tips.
   * The single row multirow toolbar is neat.
 * I repurposed one of the prefs to change the top & bottom margin of bookmark items. Adding new prefs looks like it could be annoying, but there may be a couple of other ones that could be re-used.
 * The browser's hamburger menu (app menu) gets weird after enabling the multirow option. Probably related to the CSS the option uses but I couldn't fix it.
-* Hide default icons - this works now, but it's not pretty.
 * Please highlight any issues you find, but I honestly don't know if I will be able to fix them! I uploaded everything here in the hopes that even if I cannot do anything more, perhaps someone else can...
 	* CSS fixes are always welcome.
 
