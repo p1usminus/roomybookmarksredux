@@ -1,5 +1,5 @@
 # Roomy Bookmarks Toolbar redux #
-[Roomy Bookmarks Toolbar](https://legacycollector.org/firefox-addons/210846/index.html "Roomy Bookmarks Toolbar") for Waterfox 68 - __[download here!](https://github.com/p1usminus/roomybookmarksredux/releases/latest)__
+[Roomy Bookmarks Toolbar](https://legacycollector.org/firefox-addons/210846/index.html "Roomy Bookmarks Toolbar") for Waterfox Current - __[download here!](https://github.com/p1usminus/roomybookmarksredux/releases/latest)__
 
 Originally created by [Someone free](https://chrome.google.com/webstore/detail/roomy-bookmarks-toolbar/kmfbpoigddhdibjcilijiejaidggonfc)
 
