@@ -1,7 +1,7 @@
 # Roomy Bookmarks Toolbar redux #
-[Roomy Bookmarks Toolbar](https://legacycollector.org/firefox-addons/210846/index.html "Roomy Bookmarks Toolbar") for Waterfox Current - __[download here!](https://github.com/p1usminus/roomybookmarksredux/releases/latest)__
+Roomy Bookmarks Toolbar for Waterfox Current - __[download here!](https://github.com/p1usminus/roomybookmarksredux/releases/latest)__
 
-Originally created by [Someone free](https://chrome.google.com/webstore/detail/roomy-bookmarks-toolbar/kmfbpoigddhdibjcilijiejaidggonfc)
+Originally created by [Someone free](https://www.crx4chrome.com/crx/36659/)
 
 Most of the features work, but it is slightly buggy. Please read the tips.
 
@@ -16,7 +16,7 @@ Most of the features work, but it is slightly buggy. Please read the tips.
 - - - -
 
 ## Untested features ##
-* Locales - do strings in languages other than English work?
+* ~~Locales - do strings in languages other than English work?~~ Yes (tested with German language pack 07/06/20)
 * Linux/OS X fix - I don't even know what it's supposed to do, but it can apparently be disabled
 
 
