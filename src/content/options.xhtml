@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE dialog SYSTEM "chrome://roomybookmarkstoolbar/locale/options.dtd">
+
+<dialog id="roomybookmarkstoolbarPreferences"
+		buttons="accept"
+		title="&roomybookmarkstoolbar.options.window.title;"
+		onload="roomybookmarkstoolbarOptions.onLoad();"
+		xmlns:html="http://www.w3.org/1999/xhtml"
+		xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	
+	<stringbundleset id="stringbundleset">
+		<stringbundle id="roomybookmarkstoolbar-strings" src="chrome://roomybookmarkstoolbar/locale/roomybookmarkstoolbar.properties" />
+	</stringbundleset>
+	
+	<script type="text/javascript">
+	  <![CDATA[
+		// avoid opening prefs in tab, workaround to bug 1414406
+		var {
+		  classes: Cc,
+		  interfaces: Ci,
+		  utils: Cu
+		} = Components;
+		var chromewin = window.docShell.rootTreeItem.domWindow;
+		if (chromewin.location.href !== 'chrome://roomybookmarkstoolbar/content/options.xhtml') {
+			var gBrowser = chromewin.gBrowser;
+      		let kcTab = gBrowser.selectedTab;
+      		let previousTab;
+      		let lastAccessed  = 0;
+      		for (let tab of gBrowser.tabs) {
+      		  if (!tab._notselectedsinceload && !tab.getAttribute('pending') && tab._lastAccessed > lastAccessed && tab != kcTab) {
+      		    lastAccessed = tab._lastAccessed;
+      		    previousTab = tab;
+      		  }
+      		}
+      		gBrowser.selectedTab = previousTab;
+		  
+      		chromewin.setTimeout(() => {		  
+				chromewin.openDialog('chrome://roomybookmarkstoolbar/content/options.xhtml', '&roomybookmarkstoolbar.options.window.title;', 'chrome,centerscreen,toolbar');
+			}, 0);
+
+			gBrowser.removeTab(kcTab);
+		} else {
+		  setTimeout(function () {
+			var navwin = Cc['@mozilla.org/appshell/window-mediator;1']
+							 .getService(Ci.nsIWindowMediator).getMostRecentWindow('navigator:browser');
+			var {SessionStoreInternal} = Cu.import('resource:///modules/sessionstore/SessionStore.jsm', navwin);
+			var data = SessionStoreInternal._windows[navwin.__SSi];
+			if (data._closedTabs && data._closedTabs.length && data._closedTabs[0].state.entries[0].url === 'chrome://roomybookmarkstoolbar/content/options.xhtml')
+			  data._closedTabs.shift();
+		  }, 0);
+		}
+	  ]]>
+	</script>
+	
+	<tabbox id="roomybookmarkstoolbarTabBox">
+		<tabs id="roomybookmarkstoolbar.options.tabs">
+			<tab id="roomybookmarkstoolbar.options.tab1" label="&roomybookmarkstoolbar.options.tab1.label;" />
+			<tab id="roomybookmarkstoolbar.options.tab2" label="&roomybookmarkstoolbar.options.tab2.label;" />
+			<tab id="roomybookmarkstoolbar.options.tab3" label="&roomybookmarkstoolbar.options.tab3.label;" />
+		</tabs>
+		
+	<tabpanels>
+	<tabpanel id="roomybookmarkstoolbar.options.tab1" orient="vertical">
+	<html:fieldset>
+	<html:legend>&roomybookmarkstoolbar.options.multirowBarGroup.label;</html:legend>
+	<vbox>
+		<hbox>
+			<checkbox preference="extensions.roomybookmarkstoolbar.multirowBar" id="multirowBarPerf" label="&roomybookmarkstoolbar.options.multirowEnable.label;" oncommand="roomybookmarkstoolbarOptions.location()"/>
+			<html:span>&roomybookmarkstoolbar.options.opacityIn.label; </html:span>
+			<html:input type="number" id="rowsPerf" preference="extensions.roomybookmarkstoolbar.rows" size="2"  disabled="false"/>
+			<html:span> &roomybookmarkstoolbar.options.multirowRows.label;</html:span>
+		</hbox>
+		<hbox>
+			<checkbox preference="extensions.roomybookmarkstoolbar.fixedHeight" id="fixedHeightPerf" label="&roomybookmarkstoolbar.options.multirowBarFixed.label;" oncommand="roomybookmarkstoolbarOptions.location()"/>
+			<checkbox preference="extensions.roomybookmarkstoolbar.disableLinuxFix" id="disableLinuxFixPerf" label="&roomybookmarkstoolbar.options.linuxFix.label;" oncommand="roomybookmarkstoolbarOptions.OSFix();" disabled="true"/>
+		</hbox>
+		<hbox>
+			<checkbox preference="extensions.roomybookmarkstoolbar.heightFix" id="heightFixPerf" label="&roomybookmarkstoolbar.options.fixIncorrectHeight.label;" oncommand="roomybookmarkstoolbarOptions.location()"/>
+		</hbox>
+	</vbox>
+	</html:fieldset>
+	
+	<html:fieldset>
+	<html:legend>&roomybookmarkstoolbar.options.timeGroup.label;</html:legend>
+	<vbox>
+		<hbox><html:span id="autoHideBarDisabled"></html:span></hbox>
+		<hbox>
+			<checkbox preference="extensions.roomybookmarkstoolbar.autoHideBar" id="autoHideBarPerf" label="&roomybookmarkstoolbar.options.autohideBar.label;" oncommand="roomybookmarkstoolbarOptions.autoHideBar(); roomybookmarkstoolbarOptions.autoHideZone();" />
+			<html:input type="number" preference="extensions.roomybookmarkstoolbar.autoHideBarTime" id="autoHideBarTimePerf" size="2"  disabled="false" />
+			<html:span> &roomybookmarkstoolbar.options.seconds.label;</html:span>
+		</hbox>
+		<html:fieldset>
+		<html:legend>&roomybookmarkstoolbar.options.autoHideZone.label;</html:legend>
+		<vbox>					
+			<hbox>
+				<checkbox preference="extensions.roomybookmarkstoolbar.autoHideZoneAll" id="autoHideZoneAllPerf" label="&roomybookmarkstoolbar.options.autoHideZoneAll.label;" oncommand="roomybookmarkstoolbarOptions.autoHideZone()" />
+				<checkbox preference="extensions.roomybookmarkstoolbar.autoHideZoneMenu" id="autoHideZoneMenuPerf" label="&roomybookmarkstoolbar.options.autoHideZoneMenu.label;" />
+				<checkbox preference="extensions.roomybookmarkstoolbar.autoHideZoneTab" id="autoHideZoneTabPerf" label="&roomybookmarkstoolbar.options.autoHideZoneTab.label;" />
+				<checkbox preference="extensions.roomybookmarkstoolbar.autoHideZoneNav" id="autoHideZoneNavPerf" label="&roomybookmarkstoolbar.options.autoHideZoneNav.label;" />
+			</hbox>
+			<hbox>
+				<checkbox preference="extensions.roomybookmarkstoolbar.autoHideZoneButton" id="autoHideZoneButtonPerf" label="&roomybookmarkstoolbar.options.autoHideZoneButton.label;" />
+			</hbox>
+			<hbox>
+				<checkbox preference="extensions.roomybookmarkstoolbar.autoHideZoneBackButton" id="autoHideZoneBackButtonPerf" label="&roomybookmarkstoolbar.options.autoHideZoneBackButton.label;" />
+				<checkbox preference="extensions.roomybookmarkstoolbar.autoHideZoneMenuButton" id="autoHideZoneMenuButtonPerf" label="&roomybookmarkstoolbar.options.autoHideZoneMenuButton.label;" />
+			</hbox>
+		</vbox>
+		</html:fieldset>
+		<vbox>
+			<checkbox preference="extensions.roomybookmarkstoolbar.hideByDefault" id="hideByDefaultPerf" label="&roomybookmarkstoolbar.options.hideByDefault.label;" oncommand="roomybookmarkstoolbarOptions.autoHideBar()"/>
+			<checkbox preference="extensions.roomybookmarkstoolbar.BBonNewTab" id="BBonNewTabPerf" label="&roomybookmarkstoolbar.options.BBonNewTab.label;" oncommand="roomybookmarkstoolbarOptions.autoHideBar()" />
+		</vbox>
+		<vbox>
+			<hbox>
+				<checkbox preference="extensions.roomybookmarkstoolbar.opacity" id="opacityPerf" label="&roomybookmarkstoolbar.options.opacity.label;" oncommand="roomybookmarkstoolbarOptions.autoHideBar()" />
+				<html:input type="number" preference="extensions.roomybookmarkstoolbar.opacityTime" id="opacityTimePerf" size="2"  disabled="false" />
+				<html:span> &roomybookmarkstoolbar.options.seconds.label;</html:span>
+				<html:span> &roomybookmarkstoolbar.options.opacityIn.label; </html:span>
+				<html:input type="number" preference="extensions.roomybookmarkstoolbar.opacityTimeLong" id="opacityTimeLongPerf" size="2"  disabled="false" />
+				<html:span> &roomybookmarkstoolbar.options.seconds.label;</html:span>
+			</hbox>
+		</vbox>
+	</vbox>
+	</html:fieldset>
+	<html:fieldset>
+	<html:legend>&roomybookmarkstoolbar.options.location.label;</html:legend>
+	<vbox>
+		<checkbox preference="extensions.roomybookmarkstoolbar.bookmarksAboveTab" id="bookmarksAboveTabPerf" label="&roomybookmarkstoolbar.options.bookmarksAboveTab.label;" disabled="false" oncommand="roomybookmarkstoolbarOptions.topOnPage()" />
+		<checkbox preference="extensions.roomybookmarkstoolbar.overPage" id="overPagePerf" label="&roomybookmarkstoolbar.options.overPage.label;" disabled="false" oncommand="roomybookmarkstoolbarOptions.topOnPage()" />
+	</vbox>
+	</html:fieldset>
+	<html:fieldset>
+	<html:legend>&roomybookmarkstoolbar.options.alignment.label;</html:legend>
+	<vbox>
+		<hbox>
+			<radiogroup preference="extensions.roomybookmarkstoolbar.location" id="locationPerf" orient="horizontal" disabled="false">
+				<radio id="location0" value="0" label="&roomybookmarkstoolbar.options.alignment0.label;" />
+				<radio id="location1" value="1" label="&roomybookmarkstoolbar.options.alignment1.label;" />
+				<radio id="location2" value="2" label="&roomybookmarkstoolbar.options.alignment2.label;" />
+			</radiogroup>		
+		</hbox>
+	</vbox>
+	</html:fieldset>
+	</tabpanel>
+	
+	<tabpanel id="roomybookmarkstoolbar.options.tab2" orient="vertical">
+	<html:fieldset>
+	<html:legend>&roomybookmarkstoolbar.options.BookmarksLabelGroup.label;</html:legend>
+	<vbox>
+		<checkbox preference="extensions.roomybookmarkstoolbar.hideBookmarksName" id="hideBookmarksNamePerf" label="&roomybookmarkstoolbar.options.hideBookmarksName.label;" oncommand="roomybookmarkstoolbarOptions.showName()" />
+		<checkbox preference="extensions.roomybookmarkstoolbar.hideFoldersNames" id="hideFoldersNamesPerf" label="&roomybookmarkstoolbar.options.hideFoldersNames.label;" disabled="false" oncommand="roomybookmarkstoolbarOptions.showName();" />
+		<checkbox preference="extensions.roomybookmarkstoolbar.hideNoFaviconNames" id="hideNoFaviconNamesPerf" label="&roomybookmarkstoolbar.options.hideNoFaviconNames.label;" disabled="false" oncommand="roomybookmarkstoolbarOptions.showName();" />
+	</vbox>
+	</html:fieldset>
+	<vbox>
+		<checkbox preference="extensions.roomybookmarkstoolbar.mousehover" id="mousehoverPerf" label="&roomybookmarkstoolbar.options.onHover.label;" disabled="false" oncommand="roomybookmarkstoolbarOptions.showName();" />
+	</vbox>
+	<vbox>
+		<vbox>
+			<checkbox preference="extensions.roomybookmarkstoolbar.userWidthEnabled" id="userWidthEnabledPerf" label="&roomybookmarkstoolbar.options.userWidthEnabled.label;" oncommand="roomybookmarkstoolbarOptions.userWidth()"/>
+		</vbox>
+		<vbox>
+			<html:span>&roomybookmarkstoolbar.options.userWidthMaxWidth.label; </html:span>
+			<html:input type="number" preference="extensions.roomybookmarkstoolbar.userWidth" id="userWidthPerf" size="3"  disabled="false" />
+			<html:span> &roomybookmarkstoolbar.options.pixels.label;</html:span>
+		</vbox>
+		
+	</vbox>
+	<spacer style="height: 10px"/>
+	<html:fieldset>
+	<vbox>
+	<vbox>
+		<html:span>Enable translucent bar, different bookmarks max width, or set favicon size to value other than 16 px for these to work</html:span>
+	</vbox>
+	<spacer style="height: 10px"/>
+	<vbox>
+		<html:span>&roomybookmarkstoolbar.options.textSize.label; </html:span>
+		<html:input type="number" preference="extensions.roomybookmarkstoolbar.textSize" id="textSizePerf" size="3" />
+		<html:span> %</html:span>
+	</vbox>
+	<spacer style="height: 10px"/>
+	<vbox>
+		<hbox>
+			<html:span>New: Bookmark toolbar item top/bottom margin: </html:span>
+			<html:input type="number" preference="extensions.roomybookmarkstoolbar.folderMargin" id="folderMarginPerf" size="3" />
+			<html:span> &roomybookmarkstoolbar.options.pixels.label;</html:span>
+		</hbox>
+	</vbox>
+	</vbox>
+	</html:fieldset>
+	</tabpanel>
+	
+	<tabpanel id="roomybookmarkstoolbar.options.tab3" orient="vertical">
+	<vbox>
+		<hbox>
+			<html:span>&roomybookmarkstoolbar.options.sizeGroup.label; </html:span>
+			<html:input type="number" preference="extensions.roomybookmarkstoolbar.iconSize" min="1" size="2" />
+			<html:span> &roomybookmarkstoolbar.options.pixels.label;</html:span>
+		</hbox>
+	</vbox>
+	<html:fieldset>
+	<html:legend>&roomybookmarkstoolbar.options.spacingGroup.label;</html:legend>
+	<vbox>
+		<hbox>
+			<radiogroup preference="extensions.roomybookmarkstoolbar.spacing" orient="horizontal">
+				<radio id="spacing0" value="0" label="&roomybookmarkstoolbar.options.spacing0.label;" />
+				<radio id="spacing1" value="1" label="&roomybookmarkstoolbar.options.spacing1.label;" />
+				<radio id="spacing2" value="2" label="&roomybookmarkstoolbar.options.spacing2.label;" />
+				<radio id="spacing3" value="3" label="&roomybookmarkstoolbar.options.spacing3.label;" />
+				<radio id="spacing4" value="4" label="&roomybookmarkstoolbar.options.spacing4.label;" />
+			</radiogroup>		
+		</hbox>
+	</vbox>
+	</html:fieldset>
+	<html:fieldset>
+	<html:legend>&roomybookmarkstoolbar.options.hideGroup.label;</html:legend>
+	<vbox>
+		<checkbox preference="extensions.roomybookmarkstoolbar.hideBookmarksIcons" id="hideBookmarksIconsPerf" label="&roomybookmarkstoolbar.options.hideBookmarksIcon.label;" oncommand="roomybookmarkstoolbarOptions.showName();" />
+		<checkbox preference="extensions.roomybookmarkstoolbar.hideFolderIcons" id="hideFolderIconsPerf" label="&roomybookmarkstoolbar.options.hideFolderIcon.label;" oncommand="roomybookmarkstoolbarOptions.showName();" />
+		<checkbox preference="extensions.roomybookmarkstoolbar.hideDefaultIcons" id="hideDefaultIconsPerf" label="&roomybookmarkstoolbar.options.hideDefaultIcon.label;" oncommand="roomybookmarkstoolbarOptions.showName();" />
+		<checkbox preference="extensions.roomybookmarkstoolbar.folderArrow" id="folderArrowPerf" label="&roomybookmarkstoolbar.options.folderArrow.label;" oncommand="roomybookmarkstoolbarOptions.OSFix();" disabled="true" />	
+	</vbox>
+	</html:fieldset>
+	</tabpanel>
+	
+	</tabpanels>
+	</tabbox>
+	
+	<script type="application/javascript" src="chrome://roomybookmarkstoolbar/content/overlay.js" />
+	<script type="application/javascript" src="chrome://global/content/preferencesBindings.js" />
+	<script type="application/javascript" src="chrome://roomybookmarkstoolbar/content/options.js" />
+	<script type="application/javascript" src="chrome://roomybookmarkstoolbar/content/preferences.js" />	
+</dialog>
