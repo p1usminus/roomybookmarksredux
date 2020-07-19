@@ -3,7 +3,7 @@
 /* https://www.e2app.com/memories/how-to-get-multirow-bookmarks-back-in-firefox-57-and-newer/ */
 /* https://github.com/Aris-t2/CustomCSSforFx/blob/master/classic/css/toolbars/bookmarks_toolbar_multiple_lines_fx66.css */
 
-@-moz-document url(chrome://browser/content/browser.xul), url(chrome://navigator/content/navigator.xul) {
+@-moz-document url(chrome://browser/content/browser.xhtml), url(chrome://browser/content/browser.xul), url(chrome://navigator/content/navigator.xul) {
 	
 	#PersonalToolbar {
 	  min-height: unset !important;
