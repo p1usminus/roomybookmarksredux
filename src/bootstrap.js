@@ -11,8 +11,10 @@ let options = {
 };
 
 let man = `
-overlay	chrome://browser/content/browser.xul	chrome://roomybookmarkstoolbar/content/overlay.xul
-overlay	chrome://navigator/content/navigator.xul	chrome://roomybookmarkstoolbar/content/overlay.xul
+overlay	chrome://browser/content/browser.xul	chrome://roomybookmarkstoolbar/content/overlay.xhtml
+overlay	chrome://browser/content/browser.xhtml	chrome://roomybookmarkstoolbar/content/overlay.xhtml
+overlay	chrome://navigator/content/navigator.xul	chrome://roomybookmarkstoolbar/content/overlay.xhtml
+overlay	chrome://navigator/content/navigator.xhtml	chrome://roomybookmarkstoolbar/content/overlay.xhtml
 `;
 
 function showRestartNotifcation(verb, window) {
@@ -64,25 +66,25 @@ function startup(data, reason) {
   // Create toolbar icon here
   var button_label = "Show bookmarks toolbar";
   
-  CustomizableUI.createWidget(
-    { id : "rbtlibbutton",
-	  defaultArea : CustomizableUI.AREA_NAVBAR,
-	  label : button_label,
-	  tooltiptext : button_label,
-	  //onCommand : roomybookmarkstoolbar.hideBookmarksBar();
-    });
+  // CustomizableUI.createWidget(
+  //   { id : "rbtlibbutton",
+	//   defaultArea : CustomizableUI.AREA_NAVBAR,
+	//   label : button_label,
+	//   tooltiptext : button_label,
+	//   //onCommand : roomybookmarkstoolbar.hideBookmarksBar();
+  //   });
   
   const window = Services.wm.getMostRecentWindow('navigator:browser');
   if (reason === ADDON_UPGRADE || reason === ADDON_DOWNGRADE) {
       showRestartNotifcation("upgraded", window);
       return;
-  } else if (reason === ADDON_ENABLE) {
+  } /*else if (reason === ADDON_ENABLE) {
       showRestartNotifcation("re-enabled", window);
       return;
-  }
+  }*/
 
   // This may be relevant if colorMenu is used
-  /* if (reason === ADDON_INSTALL || (reason === ADDON_ENABLE && !window.document.getElementById('rbtChangeColor'))) {
+  if (reason === ADDON_INSTALL || (reason === ADDON_ENABLE && !window.document.getElementById('rbtChangeColor'))) {
     var enumerator = Services.wm.getEnumerator(null);
     while (enumerator.hasMoreElements()) {
       var win = enumerator.getNext();
@@ -90,12 +92,12 @@ function startup(data, reason) {
       (async function (win) {
         let chromeManifest = new ChromeManifest(function () { return man; }, options);
         await chromeManifest.parse();
-        if (win.document.constructor.name === "XULDocument") {
+        if (win.document.createXULElement) {
           Overlays.load(chromeManifest, win.document.defaultView);
         }
       })(win);
     }
-  } */
+  }
 
   (async function () {
     let chromeManifest = new ChromeManifest(function () { return man; }, options);
@@ -103,7 +105,7 @@ function startup(data, reason) {
 
     let documentObserver = {
       observe(document) {
-        if (document.constructor.name === "XULDocument") {
+        if (document.createXULElement) {
           Overlays.load(chromeManifest, document.defaultView);
         }
       }
@@ -122,5 +124,5 @@ function shutdown(data, reason) {
       return;
   }
   
-  CustomizableUI.destroyWidget("rbtlibbutton");
+  // CustomizableUI.destroyWidget("rbtlibbutton");
 }
