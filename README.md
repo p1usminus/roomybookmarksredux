@@ -1,5 +1,5 @@
 # Roomy Bookmarks Toolbar redux #
-# Modifiyed to work on Firefox Developer Edition #
+Modifiyed to work on Firefox Developer Edition
 
 Roomy Bookmarks Toolbar for Waterfox Current - __[download here!](https://github.com/p1usminus/roomybookmarksredux/releases/latest)__
 
