@@ -1,4 +1,4 @@
-﻿var roomybookmarkstoolbar = {
+var roomybookmarkstoolbar = {
 	branch: null,				//Perf system
 	cssStr: null,				//CSS string for user style
 	colorCSS: null,				//CSS string for bookmarks color
@@ -124,7 +124,7 @@
 			// roomybookmarkstoolbar.toolboxOver = false;
 
 			if(e.target == toolbox){
-				this.timeOutHide = setTimeout(roomybookmarkstoolbar.hideHandler, 700);
+				this.timeOutHide = setTimeout(roomybookmarkstoolbar.hideHandler, 100);
 			}
 			// roomybookmarkstoolbar.eventListenerhandler(true, true);
 
@@ -193,9 +193,8 @@
 		var menuButton = document.getElementById("PanelUI-menu-button");
 		
 		if (register) {
-			PersonalToolbar.addEventListener("mouseenter", this.onMouseOver, false);
-			PersonalToolbar.addEventListener("mouseleave", this.onMouseOutput, false);
 			if (type) {
+			PersonalToolbar.addEventListener("mouseenter", this.onMouseOver, false);
 				if(autoHideZoneAll) {
 					toolbox.addEventListener("mouseenter", this.onMouseOver, false);
 					// toolbox.addEventListener("mouseenter", this.onMouseOverFix, false);
@@ -212,6 +211,7 @@
 				// toolbox.addEventListener("popupshown", this.onPopupshown, false);
 				// toolbox.addEventListener("popuphidden", this.onPopuphidden, false);
 			} else {
+			PersonalToolbar.addEventListener("mouseleave", this.onMouseOutput, false);
 					try { toolbox.addEventListener("mouseleave", this.onMouseOutput, false);} catch(e) {}
 				if(!autoHideZoneAll) {
 					if(autoHideZoneNav) {try { navBar.addEventListener("mouseleave", this.onMouseOutput, false);} catch(e) {}}
@@ -224,9 +224,9 @@
 		
 			}
 		} else {
-			PersonalToolbar.removeEventListener("mouseenter", this.onMouseOver, false);
-			PersonalToolbar.removeEventListener("mouseleave", this.onMouseOutput, false);
+			toolbox.removeEventListener("mousemove", roomybookmarkstoolbar.onMouseMove, false)
 			if (type) {
+			PersonalToolbar.removeEventListener("mouseenter", this.onMouseOver, false);
 				try { navBar.removeEventListener("mouseenter", roomybookmarkstoolbar.onMouseOver, false); } catch(e) {}
 				try { toolbarmenubar.removeEventListener("mouseenter", roomybookmarkstoolbar.onMouseOver, false); } catch(e) {}
 				try { TabsToolbar.removeEventListener("mouseenter", roomybookmarkstoolbar.onMouseOver, false); } catch(e) {}
@@ -235,6 +235,7 @@
 				try { menuButton.removeEventListener("mouseenter", roomybookmarkstoolbar.onMouseOver, false); } catch(e) {}
 				try { toolbox.removeEventListener("mouseenter", roomybookmarkstoolbar.onMouseOver, false); } catch(e) {}		
 			} else {
+			PersonalToolbar.removeEventListener("mouseleave", this.onMouseOutput, false);
 				try { navBar.removeEventListener("mouseleave", roomybookmarkstoolbar.onMouseOutput, false); } catch(e) {}
 				try { toolbarmenubar.removeEventListener("mouseleave", roomybookmarkstoolbar.onMouseOutput, false); } catch(e) {}
 				try { TabsToolbar.removeEventListener("mouseleave", roomybookmarkstoolbar.onMouseOutput, false); } catch(e) {}
