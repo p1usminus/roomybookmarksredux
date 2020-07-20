@@ -6,6 +6,12 @@
 		width: 100% !important;
 		padding: 3px 0px 3px 3px !important;
 		z-index: 100;
+		border-bottom-color: inherit;
+		border-bottom-left-radius: inherit;
+		border-bottom-right-radius: inherit;
+		border-bottom-style: inherit;
+		border-bottom-width: inherit;
+		border-collapse: inherit;
 	}
 }
 
@@ -16,5 +22,11 @@
 		padding: 3px 0px 3px 3px !important;
 		z-index: 2;
 		display: -webkit-box !important;
+		border-bottom-color: inherit;
+		border-bottom-left-radius: inherit;
+		border-bottom-right-radius: inherit;
+		border-bottom-style: inherit;
+		border-bottom-width: inherit;
+		border-collapse: inherit;
 	}
 }
