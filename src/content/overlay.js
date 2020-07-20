@@ -212,16 +212,15 @@
 				// toolbox.addEventListener("popupshown", this.onPopupshown, false);
 				// toolbox.addEventListener("popuphidden", this.onPopuphidden, false);
 			} else {
-				// if(autoHideZoneAll) {
 					try { toolbox.addEventListener("mouseleave", this.onMouseOutput, false);} catch(e) {}
-				// } else {
+				if(!autoHideZoneAll) {
 					if(autoHideZoneNav) {try { navBar.addEventListener("mouseleave", this.onMouseOutput, false);} catch(e) {}}
 					if(autoHideZoneMenu) {try { toolbarmenubar.addEventListener("mouseleave", this.onMouseOutput, false);} catch(e) {}}
 					if(autoHideZoneTab) {try { TabsToolbar.addEventListener("mouseleave", this.onMouseOutput, false);} catch(e) {}}
 					if(autoHideZoneButton) {try { rbtlibbutton.addEventListener("mouseleave", this.onMouseOutput, false);} catch(e) {}}
 					if(autoHideZoneBackButton) {try { backButton.addEventListener("mouseleave", this.onMouseOutput, false);} catch(e) {}}
 					if(autoHideZoneMenuButton) {try { menuButton.addEventListener("mouseleave", this.onMouseOutput, false);} catch(e) {}}
-				// }
+				}
 		
 			}
 		} else {
