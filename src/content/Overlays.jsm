@@ -10,10 +10,17 @@
 
 this.EXPORTED_SYMBOLS = ["Overlays"];
 
-Components.utils.import("resource://gre/modules/Console.jsm");
-Components.utils.import("resource://gre/modules/Services.jsm");
-
-Components.utils.importGlobalProperties(["XMLHttpRequest"]);
+const { ConsoleAPI } = ChromeUtils.import("resource://gre/modules/Console.jsm");
+ChromeUtils.defineModuleGetter(
+  this,
+  "Services",
+  "resource://gre/modules/Services.jsm"
+);
+ChromeUtils.defineModuleGetter(
+  this,
+  "setTimeout",
+  "resource://gre/modules/Timer.jsm"
+);
 
 let oconsole = new ConsoleAPI({
   prefix: "Overlays.jsm",
@@ -76,10 +83,17 @@ class Overlays {
     let forwardReferences = [];
     let unloadedScripts = [];
     let unloadedSheets = [];
+    this._toolbarsToResolve = [];
+    let xulStore = Services.xulStore;
+    this.persistedIDs = new Set();
 
     // Load css styles from the registry
     for (let sheet of this.overlayProvider.style.get(this.location, false)) {
       unloadedSheets.push(sheet);
+    }
+
+    if (!unloadedOverlays.length && !unloadedSheets.length) {
+      return;
     }
 
     while (unloadedOverlays.length) {
@@ -90,7 +104,13 @@ class Overlays {
       oconsole.debug(`Applying ${url} to ${this.location}`);
 
       // clean the document a bit
-      let emptyNodes = doc.evaluate("//text()[normalize-space(.) = '']", doc, null, 7, null);
+      let emptyNodes = doc.evaluate(
+        "//text()[normalize-space(.) = '']",
+        doc,
+        null,
+        7,
+        null
+      );
       for (let i = 0, len = emptyNodes.snapshotLength; i < len; ++i) {
         let node = emptyNodes.snapshotItem(i);
         node.remove();
@@ -102,18 +122,32 @@ class Overlays {
         node.remove();
       }
 
+      // Force a re-evaluation of inline styles to work around an issue
+      // causing inline styles to be initially ignored.
+      let styledNodes = doc.evaluate("//*[@style]", doc, null, 7, null);
+      for (let i = 0, len = styledNodes.snapshotLength; i < len; ++i) {
+        let node = styledNodes.snapshotItem(i);
+        node.style.display = node.style.display; // eslint-disable-line no-self-assign
+      }
+
       // Load css styles from the registry
       for (let sheet of this.overlayProvider.style.get(url, false)) {
         unloadedSheets.push(sheet);
       }
 
       // Load css processing instructions from the overlay
-      let stylesheets = doc.evaluate("/processing-instruction('xml-stylesheet')", doc, null, 7, null);
+      let stylesheets = doc.evaluate(
+        "/processing-instruction('xml-stylesheet')",
+        doc,
+        null,
+        7,
+        null
+      );
       for (let i = 0, len = stylesheets.snapshotLength; i < len; ++i) {
         let node = stylesheets.snapshotItem(i);
         let match = node.nodeValue.match(/href=["']([^"']*)["']/);
         if (match) {
-          unloadedSheets.push(match[1]);
+          unloadedSheets.push(new URL(match[1], node.baseURI).href);
         }
       }
 
@@ -136,6 +170,11 @@ class Overlays {
       }
     }
 
+    let ids = xulStore.getIDsEnumerator(this.location);
+    while (ids.hasMore()) {
+      this.persistedIDs.add(ids.getNext());
+    }
+
     // At this point, all (recursive) overlays are loaded. Unloaded scripts and sheets are ready and
     // in order, and forward references are good to process.
     let previous = 0;
@@ -153,12 +192,37 @@ class Overlays {
     }
 
     if (forwardReferences.length) {
-      oconsole.warn(`Could not resolve ${forwardReferences.length} references`, forwardReferences);
+      oconsole.warn(
+        `Could not resolve ${forwardReferences.length} references`,
+        forwardReferences
+      );
     }
 
     // Loading the sheets now to avoid race conditions with xbl bindings
     for (let sheet of unloadedSheets) {
       this.loadCSS(sheet);
+    }
+
+    this._decksToResolve = new Map();
+    for (let id of this.persistedIDs.values()) {
+      let element = this.document.getElementById(id);
+      if (element) {
+        let attrNames = xulStore.getAttributeEnumerator(this.location, id);
+        while (attrNames.hasMore()) {
+          let attrName = attrNames.getNext();
+          let attrValue = xulStore.getValue(this.location, id, attrName);
+          if (attrName == "selectedIndex" && element.localName == "deck") {
+            this._decksToResolve.set(element, attrValue);
+          } else if (
+            (element != this.document.documentElement ||
+            !["height", "screenX", "screenY", "sizemode", "width"].includes(
+              attrName)) &&
+            element.getAttribute(attrName) != attrValue.toString()
+          ) {
+            element.setAttribute(attrName, attrValue);
+          }
+        }
+      }
     }
 
     // We've resolved all the forward references we can, we can now go ahead and load the scripts
@@ -167,24 +231,48 @@ class Overlays {
       deferredLoad.push(...this.loadScript(script));
     }
 
-    if (this.window.document.readyState == "complete") {
-      // Now execute load handlers since we are done loading scripts
-      let bubbles = [];
-      for (let { listener, useCapture } of deferredLoad) {
-        if (useCapture) {
-          this._fireEventListener(listener);
-        } else {
-          bubbles.push(listener);
-        }
-      }
+    if (this.document.readyState == "complete") {
+      setTimeout(() => {
+        this._finish();
 
-      for (let listener of bubbles) {
-        this._fireEventListener(listener);
-      }
+        // Now execute load handlers since we are done loading scripts
+        let bubbles = [];
+        for (let { listener, useCapture } of deferredLoad) {
+          if (useCapture) {
+            this._fireEventListener(listener);
+          } else {
+            bubbles.push(listener);
+          }
+        }
+
+        for (let listener of bubbles) {
+          this._fireEventListener(listener);
+        }
+      });
     } else {
-      // Window load is not yet complete, just add the listener normally
-      for (let { listener, useCapture } of deferredLoad) {
-        this.window.addEventListener("load", listener, useCapture);
+      this.document.defaultView.addEventListener(
+        "load",
+        this._finish.bind(this),
+        { once: true }
+      );
+    }
+  }
+
+  _finish() {
+    for (let [deck, selectedIndex] of this._decksToResolve.entries()) {
+      deck.setAttribute("selectedIndex", selectedIndex);
+    }
+
+    for (let bar of this._toolbarsToResolve) {
+      let currentset = Services.xulStore.getValue(
+        this.location,
+        bar.id,
+        "currentset"
+      );
+      if (currentset) {
+        bar.currentSet = currentset;
+      } else if (bar.getAttribute("defaultset")) {
+        bar.currentSet = bar.getAttribute("defaultset");
       }
     }
   }
@@ -197,7 +285,13 @@ class Overlays {
    */
   _collectOverlays(doc) {
     let urls = [];
-    let instructions = doc.evaluate("/processing-instruction('xul-overlay')", doc, null, 7, null);
+    let instructions = doc.evaluate(
+      "/processing-instruction('xul-overlay')",
+      doc,
+      null,
+      7,
+      null
+    );
     for (let i = 0, len = instructions.snapshotLength; i < len; ++i) {
       let node = instructions.snapshotItem(i);
       let match = node.nodeValue.match(/href=["']([^"']*)["']/);
@@ -233,28 +327,44 @@ class Overlays {
    * @return {Boolean}              True, if the node was merged/inserted, false otherwise
    */
   _resolveForwardReference(node) {
-    if (node.id && node.localName == "toolbarpalette") {
-      // These vanish from the document but still exist via the palette property
-      let boxes = [...this.document.getElementsByTagName("toolbox")];
-      let box = boxes.find(box => box.palette && box.palette.id == node.id);
-      let palette = box ? box.palette : null;
-
-      if (!palette) {
-        oconsole.debug(`The palette for ${node.id} could not be found, deferring to later`);
-        return false;
-      }
-
-      this._mergeElement(palette, node);
-    } else if (node.id) {
+    if (node.id) {
       let target = this.document.getElementById(node.id);
-      if (!target) {
-        oconsole.debug(`The node ${node.id} could not be found, deferring to later`);
+      if (node.localName == "toolbarpalette") {
+        let box;
+        if (target) {
+          box = target.closest("toolbox");
+        } else {
+          // These vanish from the document but still exist via the palette property
+          let boxes = [...this.document.getElementsByTagName("toolbox")];
+          box = boxes.find(box => box.palette && box.palette.id == node.id);
+          let palette = box ? box.palette : null;
+
+          if (!palette) {
+            oconsole.debug(
+              `The palette for ${
+                node.id
+              } could not be found, deferring to later`
+            );
+            return false;
+          }
+
+          target = palette;
+        }
+
+        this._toolbarsToResolve.push(...box.querySelectorAll("toolbar"));
+        this._toolbarsToResolve.push(
+          ...this.document.querySelectorAll(`toolbar[toolboxid="${box.id}"]`)
+        );
+      } else if (!target) {
+        oconsole.debug(
+          `The node ${node.id} could not be found, deferring to later`
+        );
         return false;
       }
 
       this._mergeElement(target, node);
     } else {
-       this._insertElement(this.document.documentElement, node);
+      this._insertElement(this.document.documentElement, node);
     }
     return true;
   }
@@ -266,6 +376,23 @@ class Overlays {
    * @param {Element} node          The node to insert.
    */
   _insertElement(parent, node) {
+    // These elements need their values set before they are added to
+    // the document, or bad things happen.
+    for (let element of node.querySelectorAll("menulist")) {
+      if (element.id && this.persistedIDs.has(element.id)) {
+        element.setAttribute(
+          "value",
+          Services.xulStore.getValue(this.location, element.id, "value")
+        );
+      }
+    }
+
+    if (node.localName == "toolbar") {
+      this._toolbarsToResolve.push(node);
+    } else {
+      this._toolbarsToResolve.push(...node.querySelectorAll("toolbar"));
+    }
+
     let wasInserted = false;
     let pos = node.getAttribute("insertafter");
     let after = true;
@@ -279,9 +406,12 @@ class Overlays {
       for (let id of pos.split(",")) {
         let targetchild = this.document.getElementById(id);
         if (targetchild && targetchild.parentNode == parent) {
-          parent.insertBefore(node, after ? targetchild.nextSibling : targetchild);
+          parent.insertBefore(
+            node,
+            after ? targetchild.nextElementSibling : targetchild
+          );
           wasInserted = true;
-          // Not breaking here to match original behavior
+          break;
         }
       }
     }
@@ -289,8 +419,8 @@ class Overlays {
     if (!wasInserted) {
       // position is 1-based
       let position = parseInt(node.getAttribute("position"), 10);
-      if (position > 0 && (position - 1) <= parent.childNodes.length) {
-        parent.insertBefore(node, parent.childNodes[position - 1]);
+      if (position > 0 && position - 1 <= parent.children.length) {
+        parent.insertBefore(node, parent.children[position - 1]);
         wasInserted = true;
       }
     }
@@ -319,14 +449,20 @@ class Overlays {
         return;
       }
 
-      target.setAttributeNS(attribute.namespaceURI, attribute.name, attribute.value);
+      target.setAttributeNS(
+        attribute.namespaceURI,
+        attribute.name,
+        attribute.value
+      );
     }
 
     for (let i = 0, len = node.childElementCount; i < len; i++) {
       let child = node.firstElementChild;
       child.remove();
 
-      let elementInDocument = child.id ? this.document.getElementById(child.id) : null;
+      let elementInDocument = child.id
+        ? this.document.getElementById(child.id)
+        : null;
       let parentId = elementInDocument ? elementInDocument.parentNode.id : null;
 
       if (parentId && parentId == target.id) {
@@ -346,10 +482,12 @@ class Overlays {
    */
   fetchOverlay(srcUrl) {
     if (!srcUrl.startsWith("chrome://") && !srcUrl.startsWith("resource://")) {
-      throw "May only load overlays from chrome:// or resource:// uris";
+      throw new Error(
+        "May only load overlays from chrome:// or resource:// uris"
+      );
     }
 
-    let xhr = new XMLHttpRequest();
+    let xhr = new this.window.XMLHttpRequest();
     xhr.overrideMimeType("application/xml");
     xhr.open("GET", srcUrl, false);
 
@@ -358,9 +496,11 @@ class Overlays {
     try {
       xhr.channel.owner = Services.scriptSecurityManager.getSystemPrincipal();
     } catch (ex) {
-      oconsole.error("Failed to set system principal while fetching overlay " + srcUrl);
+      oconsole.error(
+        "Failed to set system principal while fetching overlay " + srcUrl
+      );
       xhr.close();
-      throw "Failed to set system principal";
+      throw new Error("Failed to set system principal");
     }
 
     xhr.send(null);
@@ -380,42 +520,58 @@ class Overlays {
     let deferredLoad = [];
 
     let oldAddEventListener = this.window.addEventListener;
-    this.window.addEventListener = function(type, listener, useCapture, ...args) {
-      if (type == "load") {
-        if (typeof useCapture == "object") {
-          useCapture = useCapture.capture;
-        }
+    if (this.document.readyState == "complete") {
+      this.window.addEventListener = function(
+        type,
+        listener,
+        useCapture,
+        ...args
+      ) {
+        if (type == "load") {
+          if (typeof useCapture == "object") {
+            useCapture = useCapture.capture;
+          }
 
-        if (typeof useCapture == "undefined") {
-          useCapture = true;
+          if (typeof useCapture == "undefined") {
+            useCapture = true;
+          }
+          deferredLoad.push({ listener, useCapture });
+          return null;
         }
-        deferredLoad.push({ listener, useCapture });
-        return null;
-      }
-      return oldAddEventListener.call(this, type, listener, useCapture, ...args);
-    };
+        return oldAddEventListener.call(
+          this,
+          type,
+          listener,
+          useCapture,
+          ...args
+        );
+      };
+    }
 
     if (node.hasAttribute("src")) {
-      let url = node.getAttribute("src");
+      let url = new URL(node.getAttribute("src"), node.baseURI).href;
       oconsole.debug(`Loading script ${url} into ${this.window.location}`);
       try {
         Services.scriptloader.loadSubScript(url, this.window);
       } catch (ex) {
-        oconsole.error(`Error loading script ${url} into ${this.window.location}`, ex.message);
+        Cu.reportError(ex);
       }
     } else if (node.textContent) {
       oconsole.debug(`Loading eval'd script into ${this.window.location}`);
       try {
+        let dataURL =
+          "data:application/javascript," + encodeURIComponent(node.textContent);
         // It would be great if we could have script errors show the right url, but for now
-        // window.eval will have to do.
-        this.window.eval(node.textContent);
+        // loadSubScript will have to do.
+        Services.scriptloader.loadSubScript(dataURL, this.window);
       } catch (ex) {
-        oconsole.error(`Error loading eval script from ${node.baseURI} into ` +
-                       this.window.location, ex.message);
+        Cu.reportError(ex);
       }
     }
 
-    this.window.addEventListener = oldAddEventListener;
+    if (this.document.readyState == "complete") {
+      this.window.addEventListener = oldAddEventListener;
+    }
 
     // This works because we only care about immediately executed addEventListener calls and
     // loadSubScript is synchronous. Everyone else should be checking readyState anyway.
@@ -431,14 +587,7 @@ class Overlays {
   loadCSS(url) {
     oconsole.debug(`Loading ${url} into ${this.window.location}`);
 
-    // domWindowUtils.loadSheetUsingURIString doesn't record the sheet in document.styleSheets,
-    // adding a html link element seems to do so.
-    let link = this.document.createElementNS("http://www.w3.org/1999/xhtml", "link");
-    link.setAttribute("rel", "stylesheet");
-    link.setAttribute("type", "text/css");
-    link.setAttribute("href", url);
-
-    this.document.documentElement.appendChild(link);
-    return link;
+    let winUtils = this.window.windowUtils;
+    winUtils.loadSheetUsingURIString(url, winUtils.AUTHOR_SHEET);
   }
 }
