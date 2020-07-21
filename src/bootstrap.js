@@ -75,9 +75,9 @@ function startup(data, reason) {
   //   });
   
   const window = Services.wm.getMostRecentWindow('navigator:browser');
-  
+
   // This may be relevant if colorMenu is used
-  if (reason === ADDON_INSTALL || (reason === ADDON_ENABLE && !window.document.querySelector('script[src="chrome://roomybookmarkstoolbar/content/overlay.js"]'))) {
+  if (reason === ADDON_INSTALL || (reason === ADDON_ENABLE && !window.document.getElementById('roomybookmarkstoolbar'))) {
     var enumerator = Services.wm.getEnumerator(null);
     while (enumerator.hasMoreElements()) {
       var win = enumerator.getNext();
@@ -95,11 +95,11 @@ function startup(data, reason) {
   if (reason === ADDON_UPGRADE || reason === ADDON_DOWNGRADE) {
       showRestartNotifcation("upgraded", window);
       return;
-  } else if (reason === ADDON_ENABLE && !window.document.querySelector('script[src="chrome://roomybookmarkstoolbar/content/overlay.js"]')) {
+  } else if (reason === ADDON_ENABLE && !window.document.getElementById('roomybookmarkstoolbar')) {
       showRestartNotifcation("re-enabled", window);
       // return;
-  }
-
+  }  
+  
   (async function () {
     let chromeManifest = new ChromeManifest(function () { return man; }, options);
     await chromeManifest.parse();
