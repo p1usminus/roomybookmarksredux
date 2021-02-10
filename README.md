@@ -1,7 +1,6 @@
 # Roomy Bookmarks Toolbar redux #
-Modifiyed to work on Firefox Developer Edition
 
-~~Roomy Bookmarks Toolbar for Waterfox Current - __[download here!](https://github.com/p1usminus/roomybookmarksredux/releases/latest)__~~
+Roomy Bookmarks Toolbar for Waterfox G3 - __[download here!](https://github.com/p1usminus/roomybookmarksredux/releases/latest)__
 
 Originally created by [Someone free](https://www.crx4chrome.com/crx/36659/)
 
@@ -19,7 +18,7 @@ Most of the features work, but it is slightly buggy. Please read the tips.
 
 ## Untested features ##
 * ~~Locales - do strings in languages other than English work?~~ Yes (tested with German language pack 07/06/20)
-* Linux/OS X fix - I don't even know what it's supposed to do, but it can apparently be disabled
+* Linux/OS X fix - Seems to affect some height settings. Enlarged favicons are squashed when this fix is not selected (tested with Ubuntu 09/02/21)
 
 
 ## Not working
@@ -28,17 +27,17 @@ Most of the features work, but it is slightly buggy. Please read the tips.
   * There is an alternative of sorts, see [issue #3](https://github.com/p1usminus/roomybookmarksredux/issues/3)
 * Hide default icons - I can make them invisible but that's about it...
 * 'Hide bookmark names with no favicon'
+* Scrolling within the multirow toolbar
 
 ## Other notes ##
-* :question: I would like to know if users prefer having the scrollbar visible when using the multirow option, or would rather have it hidden.
+* :question: ~~I would like to know if users prefer having the scrollbar visible when using the multirow option, or would rather have it hidden.~~ The scrolling within the toolbar is currently not working.
   * The single row multirow toolbar is neat.
 * I repurposed one of the prefs to change the top & bottom margin of bookmark items. Adding new prefs looks like it could be annoying, but there may be a couple of other ones that could be re-used.
-* The browser's hamburger menu (app menu) gets weird after enabling the multirow option. Probably related to the CSS the option uses but I couldn't fix it.
 * Please highlight any issues you find, but I honestly don't know if I will be able to fix them! I uploaded everything here in the hopes that even if I cannot do anything more, perhaps someone else can...
 	* CSS fixes are always welcome.
 
 <details>
   <summary>P.S.</summary>
-  <p>Thank you to Someone free, Alex and the Thunderbird team! :clap:</p>
+  <p>Thank you to Someone free, xiaoxiaoflood, 117649, Alex and the Thunderbird team! :clap:</p>
   <p>I only really use the autohide feature of Roomy, but after getting that to work again I thought it would be fun to get the rest of the features of this extension working again. It was, mostly.</p>
 </details>

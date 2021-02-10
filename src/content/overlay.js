@@ -3,7 +3,7 @@ var roomybookmarkstoolbar = {
 	cssStr: null,				//CSS string for user style
 	colorCSS: null,				//CSS string for bookmarks color
 	visible: null,				//Autohide visible
-	hovered: null,				//Autohide if mous on browser panel- not hide
+	hovered: null,				//Autohide if mouse on browser panel- not hide
 	popup: null,				//Autohide if popup open- not hide bookmrks bar
 	autohide: null,				//Autohide enabled\disabled
 	hideBarTime: null,			//Auto-hide time
@@ -261,7 +261,7 @@ var roomybookmarkstoolbar = {
 				this.eventListenerhandler(true, true);
 				this.eventListenerhandler(true, false);
 
-				this.styleService('string', '@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul); @-moz-document url(chrome://browser/content/browser.xul), url(chrome://browser/content/browser.xhtml) {#TabsToolbar {margin-top: 0px !important;}}');
+				this.styleService('string', '@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul); @-moz-document url(chrome://browser/content/browser.xhtml) {#TabsToolbar {margin-top: 0px !important;}}');
 
 			} else {
 				this.eventListenerhandler(false, true);
@@ -311,11 +311,11 @@ var roomybookmarkstoolbar = {
 				for (var i = 0; i < bookmarkItem.length; i = i + 3) {
 					var marginTop = +document.defaultView.getComputedStyle(bookmarkItem[i], null).getPropertyValue('margin-top').replace('px', '');
 					var marginBottom = +document.defaultView.getComputedStyle(bookmarkItem[i], null).getPropertyValue('margin-bottom').replace('px', '');
-					heightOrig = Math.max(heightOrig, bookmarkItem[i].boxObject.height + marginTop + marginBottom);
+					heightOrig = Math.max(heightOrig, bookmarkItem[i].getBoundingClientRect().height + marginTop + marginBottom);
 				}
 			} else {
 				for (var i = 0; i < bookmarkItem.length; i = i + 3) {
-					heightOrig = Math.max(heightOrig, bookmarkItem[i].boxObject.height);
+					heightOrig = Math.max(heightOrig, bookmarkItem[i].getBoundingClientRect().height);
 				}
 			}
 
@@ -333,7 +333,6 @@ var roomybookmarkstoolbar = {
 				}
 			}
 
-
 			if (heightOrig < this.branch.getIntPref('iconSize') && this.PersonalToolbar) {			//If height not correct - set it = icon size
 				heightOrig = this.branch.getIntPref('iconSize')
 				if (this.branch.getIntPref('height') > this.branch.getIntPref('iconSize')) {		//If height was set and correct (bigger than icon size) set it as height
@@ -342,33 +341,27 @@ var roomybookmarkstoolbar = {
 			}
 
 			var height = heightOrig * rows;
-			this.branch.setIntPref('height', heightOrig);
-
-			var tseparator = document.getElementsByTagName("toolbarseparator");
-			for (var i = 0; i < tseparator.length; i++) {
-				tseparator[i].style.height = heightOrig + 'px';
-			}
+			this.branch.setIntPref('height', heightOrig);  // why?
 
 			PlacesToolbar.style.maxHeight = height + 'px';
 			this.PersonalToolbar.style.maxHeight = height + 'px';
+			
 			if (fixedHeight) {
 				PlacesToolbar.style.minHeight = height + 'px';
 			} else {
 				PlacesToolbar.style.minHeight = heightOrig + 'px';
 			}
 
-			//this.separatorAdded(heightOrig);				//Separator fix(apply css if added new element)
-
 			window.addEventListener("beforecustomization", function () { roomybookmarkstoolbar.styleService('file', 'multirowBar', true); }, false);
 			window.addEventListener("aftercustomization", function () { roomybookmarkstoolbar.styleService('file', 'multirowBar'); }, false);
 		}
+		
 		if (change && !multirowBar) {
 			PlacesToolbar.style.minHeight = heightOrig + 'px';
 			this.styleService('file', 'multirowBar', true);
 			this.branch.setBoolPref('fixedHeight', false); //change with options.js:33
 			window.removeEventListener("beforecustomization", function () { roomybookmarkstoolbar.styleService('file', 'multirowBar', true); }, false);
 			window.removeEventListener("aftercustomization", function () { roomybookmarkstoolbar.styleService('file', 'multirowBar'); }, false);
-
 		}
 	},
 
@@ -391,7 +384,7 @@ var roomybookmarkstoolbar = {
 
 			this.cssStr = '@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);';
 
-			this.cssStr += '@-moz-document url(chrome://browser/content/browser.xul), url(chrome://navigator/content/navigator.xul), url(chrome://browser/content/browser.xhtml), url(chrome://navigator/content/navigator.xhtml) {';
+			this.cssStr += '@-moz-document url(chrome://browser/content/browser.xhtml) {';
 
 			if (opacity) {
 				this.cssStr += '#PersonalToolbar{opacity:0.4; transition: opacity ' + opacityTimeLong + 's linear ' + opacityTime + 's !important;}#navigator-toolbox >#PersonalToolbar:hover {opacity:1; transition:opacity !important}';
@@ -475,7 +468,6 @@ var roomybookmarkstoolbar = {
 	unRegisterCss: function () {
 		this.styleService('file', 'base', true);
 		this.styleService('file', 'main', true);
-		this.styleService('file', 'linux', true);
 		this.styleService('file', 'mousehover', true);
 		this.styleService('file', 'hideFoldersNames', true);
 		this.styleService('file', 'hideNoFaviconNames', true);
@@ -513,7 +505,6 @@ var roomybookmarkstoolbar = {
 		}
 
 		this.styleService('file', 'main');
-		this.styleService('file', 'button');
 
 		if (hideFoldersNames) { this.styleService('file', 'hideFoldersNames'); }
 		if (hideNoFaviconNames) { this.styleService('file', 'hideNoFaviconNames'); }
@@ -529,11 +520,6 @@ var roomybookmarkstoolbar = {
 
 		this.styleService('file', 'spacing-' + this.branch.getIntPref('spacing'));
 		if (location != 0) { this.styleService('file', 'location-' + location); }
-
-		//fix style in linux
-		if (Components.classes['@mozilla.org/xre/app-info;1'].getService(Components.interfaces.nsIXULRuntime).OS == 'Linux' && disableLinuxFix == false) {
-			this.styleService('file', 'linux');
-		}
 	},
 
 	startUpMainCheck: function () {
@@ -604,7 +590,7 @@ var roomybookmarkstoolbar = {
 		Components.utils.import("resource://gre/modules/Services.jsm");
 		Components.utils.import("resource://gre/modules/FileUtils.jsm");
 		this.colorCSS = '@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);'+'\n'+'\n';
-		this.colorCSS += '@-moz-document url(chrome://browser/content/browser.xul), url(chrome://navigator/content/navigator.xul) {'+'\n';
+		this.colorCSS += '@-moz-document url(chrome://browser/content/browser.xhtml) {'+'\n';
 		var firstBookmarksId=0;
 		var macOS = false;
 

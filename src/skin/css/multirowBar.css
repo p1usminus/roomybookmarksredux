@@ -1,45 +1,26 @@
 @namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
 
-/* https://www.e2app.com/memories/how-to-get-multirow-bookmarks-back-in-firefox-57-and-newer/ */
-/* https://github.com/Aris-t2/CustomCSSforFx/blob/master/classic/css/toolbars/bookmarks_toolbar_multiple_lines_fx66.css */
+/* https://github.com/MrOtherGuy/firefox-csshacks/blob/master/chrome/multi-row_bookmarks.css */
 
-@-moz-document url(chrome://browser/content/browser.xhtml), url(chrome://browser/content/browser.xul), url(chrome://navigator/content/navigator.xul) {
-	
+@-moz-document url(chrome://browser/content/browser.xhtml) {
 	#PersonalToolbar {
-	  min-height: unset !important;
-	  max-height: unset !important;
-	  padding: 0px 0px 3px 0px !important;
+		min-height: unset !important;
+		max-height: unset !important;
+		padding: 0px 0px 3px 0px !important;
+	}
+	  
+	#PlacesToolbar > hbox { 
+		display: block;
+		width: 100vw;
+	}
+	  
+	#PlacesToolbarItems {
+		display: flex;
+		flex-wrap: wrap;
+		overflow-y: auto;
+		scrollbar-color: var(--lwt-accent-color) var(--toolbar-bgcolor);
+  		scrollbar-width: thin;
 	}
 
-	#personal-bookmarks #PlacesToolbar #PlacesToolbarItems {
-	  overflow-x: visible !important;
-	  overflow-y: auto !important;
-	  display: inline-block !important;
-	}
-	
-	#personal-bookmarks #PlacesToolbar #PlacesToolbarDropIndicator[collapsed="true"],
-	#personal-bookmarks #PlacesToolbar #PlacesToolbarDropIndicator{
-	  display: none;
-	}
-	
-	#personal-bookmarks #PlacesToolbar .chevron{
-	  visibility: collapse !important;
-	}
-	
-	#personal-bookmarks #PlacesToolbar toolbarbutton.bookmark-item{
-	  padding-top: 0px !important;
-	  padding-bottom: 0px !important;
-	  vertical-align: middle;
-	}
-	
-	#personal-bookmarks #PlacesToolbar toolbarseparator{
-	  -moz-appearance: none !important;
-	  visibility: visible !important;
-	  display: inline;
-	  text-shadow: none !important;
-	  border-left: 1px solid ThreeDShadow !important;
-	  border-right: 1px solid ThreeDHighlight !important;
-	  vertical-align: middle;
-	}
-	
+	#PlacesChevron { display: none }	
 }

@@ -1,6 +1,7 @@
 Components.utils.import("resource://gre/modules/Services.jsm");
 
 let appinfo = Services.appinfo;
+
 let options = {
   application: appinfo.ID,
   appversion: appinfo.version,
@@ -11,10 +12,7 @@ let options = {
 };
 
 let man = `
-overlay	chrome://browser/content/browser.xul	chrome://roomybookmarkstoolbar/content/overlay.xhtml
 overlay	chrome://browser/content/browser.xhtml	chrome://roomybookmarkstoolbar/content/overlay.xhtml
-overlay	chrome://navigator/content/navigator.xul	chrome://roomybookmarkstoolbar/content/overlay.xhtml
-overlay	chrome://navigator/content/navigator.xhtml	chrome://roomybookmarkstoolbar/content/overlay.xhtml
 `;
 
 function showRestartNotifcation(verb, window) {
@@ -64,15 +62,15 @@ function startup(data, reason) {
   Components.utils.import("resource:///modules/CustomizableUI.jsm");
 
   // Create toolbar icon here
-  var button_label = "Show bookmarks toolbar";
-  
-  // CustomizableUI.createWidget(
-  //   { id : "rbtlibbutton",
-	//   defaultArea : CustomizableUI.AREA_NAVBAR,
-	//   label : button_label,
-	//   tooltiptext : button_label,
-	//   //onCommand : roomybookmarkstoolbar.hideBookmarksBar();
-  //   });
+  CustomizableUI.createWidget({
+    id: 'rbtlibbutton',
+    defaultArea: CustomizableUI.AREA_NAVBAR,
+    label: 'Show bookmarks toolbar',
+    tooltiptext: 'Show bookmarks toolbar',
+    onCreated: function (toolbaritem) {
+      toolbaritem.setAttribute('image', 'chrome://roomybookmarkstoolbar/skin/button32.png');
+    }
+  });
   
   const window = Services.wm.getMostRecentWindow('navigator:browser');
 
@@ -126,5 +124,5 @@ function shutdown(data, reason) {
       return;
   }
   
-  // CustomizableUI.destroyWidget("rbtlibbutton");
+  CustomizableUI.destroyWidget('rbtlibbutton');
 }
