@@ -2,7 +2,7 @@
 
 Roomy Bookmarks Toolbar for Waterfox G3 - __[download here!](https://github.com/p1usminus/roomybookmarksredux/releases/latest)__
 
-Originally created by [Someone free](https://www.crx4chrome.com/crx/36659/)
+Originally created by [Someone free](https://addons.firefoxmania.uci.cu/roomy-bookmarks-toolbar/)
 
 Most of the features work, but it is slightly buggy. Please read the tips.
 
