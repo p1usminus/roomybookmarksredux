@@ -246,7 +246,7 @@ var roomybookmarkstoolbar = {
 		var autoHideBar = this.branch.getBoolPref('autoHideBar');
 		var BBonNewTab = this.branch.getBoolPref('BBonNewTab');
 
-		if (this.PersonalToolbar) {
+		if (this.PersonalToolbar) {			
 			if (autoHideBar && !BBonNewTab) {
 				roomybookmarkstoolbar.autohide = true;
 				roomybookmarkstoolbar.popup = false;
@@ -260,8 +260,6 @@ var roomybookmarkstoolbar = {
 				this.eventListenerhandler(false, false);
 				this.eventListenerhandler(true, true);
 				this.eventListenerhandler(true, false);
-
-				this.styleService('string', '@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul); @-moz-document url(chrome://browser/content/browser.xhtml) {#TabsToolbar {margin-top: 0px !important;}}');
 
 			} else {
 				this.eventListenerhandler(false, true);
@@ -532,19 +530,10 @@ var roomybookmarkstoolbar = {
 				this.multirow();
 			}
 			if (this.branch.getBoolPref('autoHideBar')) {
-				if (this.PersonalToolbar.collapsed) {
-					this.branch.setBoolPref('bookmarksBarHided', true)
-					//popup("Roomy Bookmarks Toolbar enabled") //I promise I'll remove this
-				} else {
+				// wait a while to hide toolbar
+				if (!this.PersonalToolbar.collapsed) { setTimeout(() => {
 					this.autoHideBookmarksBar();
-					this.branch.setBoolPref('bookmarksBarHided', false)
-				}
-			} else {
-				if (this.PersonalToolbar.collapsed) {
-					this.branch.setBoolPref('bookmarksBarHided', true)
-				} else {
-					this.branch.setBoolPref('bookmarksBarHided', false)
-				}
+				}, 3000); }
 			}
 			if (this.branch.getBoolPref('hideByDefault')) {
 				this.hideByDefault();
@@ -557,14 +546,6 @@ var roomybookmarkstoolbar = {
 			//After customisation colors are wiped
 			window.addEventListener("aftercustomization", function() {setTimeout(function() {roomybookmarkstoolbar.setColor();}, 1000)}, false);*/
 		}
-		// function popup(title, msg) {
-		//   var image = null;
-		//   var win = Components.classes['@mozilla.org/embedcomp/window-watcher;1']
-		// 					  .getService(Components.interfaces.nsIWindowWatcher)
-		// 					  .openWindow(null, 'chrome://global/content/alerts/alert.xul',
-		// 								  '_blank', 'chrome,titlebar=no,popup=yes', null);
-		//   win.arguments = [image, title, msg, false, ''];
-		// }
 	},
 
 	//I don't think this method works any more

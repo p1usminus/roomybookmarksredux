@@ -63,11 +63,6 @@
 		document.getElementById('opacityTimePerf').disabled = !document.getElementById('opacityPerf').checked;
 		document.getElementById('opacityTimeLongPerf').disabled = !document.getElementById('opacityPerf').checked;
 		document.getElementById('autoHideZoneAllPerf').disabled = !document.getElementById('autoHideBarPerf').checked;
-			//Not entirely sure what this pref is for anyway
-			/*if(this.branch.getBoolPref('bookmarksBarHided')) {
-				document.getElementById('autoHideBarPerf').disabled = true;
-				document.getElementById('autoHideBarDisabled').label = "Enable bookmarks bar in context menu(right-click on some browser element(like menu or menu button)) and restart browser";
-			}*/
 	},
 
 	topOnPage: function() {

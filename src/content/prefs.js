@@ -60,6 +60,5 @@
 	pref("extensions.roomybookmarkstoolbar.showBookmarksNames", false);
 	pref("extensions.roomybookmarkstoolbar.DBcreated", false);
 	pref("extensions.roomybookmarkstoolbar.textSize", 100);
-	pref("extensions.roomybookmarkstoolbar.bookmarksBarHided", false);
  
 })()

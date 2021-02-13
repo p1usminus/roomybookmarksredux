@@ -1,25 +1,21 @@
 # Roomy Bookmarks Toolbar redux #
 
-Roomy Bookmarks Toolbar for Waterfox G3 & Firefox Developer Edition (with [bootstrapLoader](https://github.com/xiaoxiaoflood/firefox-scripts/tree/master/extensions/bootstrapLoader)) - __[download here!](https://github.com/p1usminus/roomybookmarksredux/releases/latest)__
+Roomy Bookmarks Toolbar for Waterfox G3 & Firefox Developer Edition (with [userChromeJS](https://github.com/xiaoxiaoflood/firefox-scripts) or [bootstrapLoader](https://github.com/xiaoxiaoflood/firefox-scripts/tree/master/extensions/bootstrapLoader)) - __[download here!](https://github.com/p1usminus/roomybookmarksredux/releases/latest)__
 
 Originally created by [Someone free](https://addons.firefoxmania.uci.cu/roomy-bookmarks-toolbar/)
 
 Most of the features work, but it is slightly buggy. Please read the tips.
 
 ## Tips ##
-* :warning: The browser __must__ be restarted after installation, then enable the bookmarks toolbar (from the customise menu) then __restart again__!
+* :warning: If using Waterfox and/or bootstrapLoader the browser __must__ be restarted after installation, (and then install the extension again?)
+  * (If using userChromeJS the startup cache may need to be cleared between updates.)
 * The fixed height option should be used when the multirow option is selected, otherwise the toolbar will try to stay at single row height.
 * The toolbar behaves strangely when using the multirow option with a non-standard favicon size. Solution: Use the option to fix incorrect height __with__ a non-zero margin size (see 2nd option tab). I wish this was less complicated.
+* Setting the about:config option `browser.preferences.instantApply` to true will make the options apply without having to click the OK button in the dialog box.
 * Sometimes the toolbar simply breaks - such as when disabling the multirow option (while using the auto-hide feature).
   * Re-enabling the bookmarks toolbar from the customise menu (or restarting the browser) should fix this.
-* Setting the about:config option `browser.preferences.instantApply` to true will make the options apply without having to click the OK button in the dialog box.
   
 - - - -
-
-## Untested features ##
-* ~~Locales - do strings in languages other than English work?~~ Yes (tested with German language pack 07/06/20)
-* Linux/OS X fix - Seems to affect some height settings. Enlarged favicons are squashed when this fix is not selected (tested with Ubuntu 09/02/21)
-
 
 ## Not working
 * Colour menu
@@ -35,6 +31,7 @@ Most of the features work, but it is slightly buggy. Please read the tips.
 * I repurposed one of the prefs to change the top & bottom margin of bookmark items. Adding new prefs looks like it could be annoying, but there may be a couple of other ones that could be re-used.
 * Please highlight any issues you find, but I honestly don't know if I will be able to fix them! I uploaded everything here in the hopes that even if I cannot do anything more, perhaps someone else can...
 	* CSS fixes are always welcome.
+* Linux/OS X fix - Seems to affect some height settings. Enlarged favicons are squashed when this fix is not selected.
 
 <details>
   <summary>P.S.</summary>

@@ -18,6 +18,13 @@
           "browser_specific_settings": {
             "gecko": { "strict_min_version": "78" }
           }
+        },
+        {
+          "version": "1.6.2",
+          "update_link": "https://github.com/p1usminus/roomybookmarksredux/releases/download/v1.6.2/ALone-live@ya.ru.xpi",
+          "browser_specific_settings": {
+            "gecko": { "strict_min_version": "78" }
+          }
         }
       ]
     }

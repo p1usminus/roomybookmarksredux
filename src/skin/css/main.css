@@ -12,10 +12,6 @@
 		border: none !important;
 	}
 
-	#personal-bookmarks toolbarbutton.bookmark-item.bookmarks-toolbar-customize {
-		display: none !important;
-	}
-
 	#personal-bookmarks toolbarbutton.bookmark-item .toolbarbutton-text,
 	#personal-bookmarks toolbarbutton.bookmark-item .toolbarbutton-text-shadow {
 		padding-left: 4px !important;
