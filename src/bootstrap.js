@@ -14,6 +14,35 @@ let options = {
 let man = `
 overlay	chrome://browser/content/browser.xhtml	chrome://roomybookmarkstoolbar/content/overlay.xhtml
 `;
+/**
+ * restartApplication: Restarts the application, keeping it in
+ * safe mode if it is already in safe mode.
+ */
+function restartApplication() {
+  const cancelQuit = Cc["@mozilla.org/supports-PRBool;1"].createInstance(
+    Ci.nsISupportsPRBool
+  );
+  Services.obs.notifyObservers(
+    cancelQuit,
+    "quit-application-requested",
+    "restart"
+  );
+  if (cancelQuit.data) {
+    // The quit request has been canceled.
+    return false;
+  }
+  // if already in safe mode restart in safe mode
+  if (Services.appinfo.inSafeMode) {
+    Services.startup.restartInSafeMode(
+      Ci.nsIAppStartup.eAttemptQuit | Ci.nsIAppStartup.eRestart
+    );
+    return undefined;
+  }
+  Services.startup.quit(
+    Ci.nsIAppStartup.eAttemptQuit | Ci.nsIAppStartup.eRestart
+  );
+  return undefined;
+}
 
 function showRestartNotifcation(verb, window) {
   window.PopupNotifications._currentNotifications.shift();
@@ -26,7 +55,7 @@ function showRestartNotifcation(verb, window) {
       label: 'Restart Now',
       accessKey: 'R',
       callback() {
-        window.BrowserUtils.restartApplication();
+        restartApplication();
       }
     },
     [{

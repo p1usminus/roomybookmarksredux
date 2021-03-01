@@ -56,15 +56,16 @@ var roomybookmarkstoolbar = {
 	},
 
 	hideHandler: function () {
-		var visible = roomybookmarkstoolbar.visible;
-		var hovered = roomybookmarkstoolbar.hovered;
+		// var visible = roomybookmarkstoolbar.visible;
+		const hovered = roomybookmarkstoolbar.hovered;
+		const popup = roomybookmarkstoolbar.popup;
 
 		if (this.timeOutHide) {
 			clearTimeout(this.timeOutHide);
 		}
 		this.timeOutHide = null;
 
-		if (!roomybookmarkstoolbar.PersonalToolbar.collapsed && !hovered) {
+		if (!roomybookmarkstoolbar.PersonalToolbar.collapsed && !hovered && !popup) {
 			roomybookmarkstoolbar.visible = false;
 			this.timeOutHide = setTimeout(roomybookmarkstoolbar.setVisibly, roomybookmarkstoolbar.hideBarTime);
 		} else {
@@ -77,7 +78,7 @@ var roomybookmarkstoolbar = {
 
 	onMouseOver: function (e) {
 		roomybookmarkstoolbar.lastY = null;
-		var toolbox = document.getElementById("navigator-toolbox");
+		// var toolbox = document.getElementById("navigator-toolbox");
 
 		if (roomybookmarkstoolbar.autohide) {
 			if (roomybookmarkstoolbar.timeOutHide) {
@@ -113,7 +114,7 @@ var roomybookmarkstoolbar = {
 
 	onMouseMove: function (e) {
 		if (e.target == document.getElementById("PanelUI-button")) return;
-		var toolbox = document.getElementById("navigator-toolbox");
+		// var toolbox = document.getElementById("navigator-toolbox");
 
 		if (roomybookmarkstoolbar.PersonalToolbar.collapsed || !roomybookmarkstoolbar.autohide) {
 			// try { toolbox.removeEventListener("mousemove", roomybookmarkstoolbar.onMouseMove, false); } catch (e) { }
@@ -140,15 +141,15 @@ var roomybookmarkstoolbar = {
 		roomybookmarkstoolbar.lastY = y;
 	},
 
-	// onPopupshown: function(e){
-	// 	roomybookmarkstoolbar.popup = true;
-	// 	roomybookmarkstoolbar.hideHandler();
-	// },
+	onPopupshown: function(e){
+		roomybookmarkstoolbar.popup = true;
+		roomybookmarkstoolbar.hideHandler();
+	},
 
-	// onPopuphidden: function(e){
-	// 	roomybookmarkstoolbar.popup = false;
-	// 	roomybookmarkstoolbar.hideHandler();
-	// },
+	onPopuphidden: function(e){
+		roomybookmarkstoolbar.popup = false;
+		roomybookmarkstoolbar.hideHandler();
+	},
 
 	// onMouseOverFix: function (e) {		//Fix problem with wrong hide, when enabled menu\nav bar\tabs
 	// 	if (this.timeOutHide) {
@@ -186,6 +187,7 @@ var roomybookmarkstoolbar = {
 		var rbtlibbutton = document.getElementById("rbtlibbutton");
 		var backButton = document.getElementById("back-button");
 		var menuButton = document.getElementById("PanelUI-menu-button");
+		var barContextMenu = document.getElementById("placesContext");
 
 		if (register) {
 			if (type) {
@@ -204,6 +206,7 @@ var roomybookmarkstoolbar = {
 				}
 				// toolbox.addEventListener("popupshown", this.onPopupshown, false);
 				// toolbox.addEventListener("popuphidden", this.onPopuphidden, false);
+				try { barContextMenu.addEventListener("popupshown", this.onPopupshown, false); } catch (e) { }
 			} else {
 				try { toolbox.addEventListener("mouseleave", this.onMouseOutput, false); } catch (e) { }
 				if (!autoHideZoneAll) {
@@ -215,6 +218,7 @@ var roomybookmarkstoolbar = {
 					if (autoHideZoneBackButton) { try { backButton.addEventListener("mouseleave", this.onMouseOutput, false); } catch (e) { } }
 					if (autoHideZoneMenuButton) { try { menuButton.addEventListener("mouseleave", this.onMouseOutput, false); } catch (e) { } }
 				} else roomybookmarkstoolbar.toolboxOver = true;
+				try { barContextMenu.addEventListener("popuphidden", this.onPopuphidden, false); } catch (e) { }
 			}
 		} else {
 			// toolbox.removeEventListener("mousemove", roomybookmarkstoolbar.onMouseMove, false)
@@ -228,6 +232,7 @@ var roomybookmarkstoolbar = {
 				try { backButton.removeEventListener("mouseenter", roomybookmarkstoolbar.onMouseOver, false); } catch (e) { }
 				try { menuButton.removeEventListener("mouseenter", roomybookmarkstoolbar.onMouseOver, false); } catch (e) { }
 				try { toolbox.removeEventListener("mouseenter", roomybookmarkstoolbar.onMouseOver, false); } catch (e) { }
+				try { barContextMenu.removeEventListener("popupshown", this.onPopupshown, false); } catch (e) { }
 			} else {
 				PersonalToolbar.removeEventListener("mouseleave", this.onMouseOutput, false);
 				try { navBar.removeEventListener("mouseleave", roomybookmarkstoolbar.onMouseOutput, false); } catch (e) { }
@@ -237,12 +242,13 @@ var roomybookmarkstoolbar = {
 				try { backButton.removeEventListener("mouseleave", roomybookmarkstoolbar.onMouseOutput, false); } catch (e) { }
 				try { menuButton.removeEventListener("mouseleave", roomybookmarkstoolbar.onMouseOutput, false); } catch (e) { }
 				try { toolbox.removeEventListener("mouseleave", roomybookmarkstoolbar.onMouseOutput, false); } catch (e) { }
+				try { barContextMenu.removeEventListener("popuphidden", this.onPopuphidden, false); } catch (e) { }
 			}
 		}
 	},
 
 	autoHideBookmarksBar: function (change) {
-		var bookmarkItem = document.getElementsByClassName("bookmark-item");
+		// var bookmarkItem = document.getElementsByClassName("bookmark-item");
 		var autoHideBar = this.branch.getBoolPref('autoHideBar');
 		var BBonNewTab = this.branch.getBoolPref('BBonNewTab');
 
@@ -496,7 +502,7 @@ var roomybookmarkstoolbar = {
 		var hideDefaultIcons = this.branch.getBoolPref('hideDefaultIcons');
 		var hideBookmarksName = this.branch.getBoolPref('hideBookmarksName');
 		var hideBookmarksIcons = this.branch.getBoolPref('hideBookmarksIcons');
-		var disableLinuxFix = this.branch.getBoolPref('disableLinuxFix');
+		// var disableLinuxFix = this.branch.getBoolPref('disableLinuxFix');
 		var location = this.branch.getIntPref('location');
 
 		//If was enabled showBookmarksNames - need disable hiding
