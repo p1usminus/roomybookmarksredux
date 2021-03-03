@@ -393,7 +393,8 @@ var roomybookmarkstoolbar = {
 			}
 			if (folderMargin != 0) { //repurposed
 				//this.cssStr += '#personal-bookmarks #PlacesToolbar toolbarbutton.bookmark-item{margin-top: ' + folderMargin + 'px !important;margin-bottom: ' + folderMargin + 'px !important}'
-				this.cssStr += '#PlacesToolbarItems > .bookmark-item{margin-top: ' + folderMargin + 'px !important;margin-bottom: ' + folderMargin + 'px !important}'
+				this.cssStr += '#personal-bookmarks toolbarbutton.bookmark-item{margin-top: ' + folderMargin + 'px !important;margin-bottom: ' + folderMargin + 'px !important}'
+				//this.cssStr += '#PlacesToolbarItems > .bookmark-item{margin-top: ' + folderMargin + 'px !important;margin-bottom: ' + folderMargin + 'px !important}'
 			}
 			if (textSize != 100) {
 				this.cssStr += '#PersonalToolbar .toolbarbutton-text{font-size: ' + textSize + '% !important}';
