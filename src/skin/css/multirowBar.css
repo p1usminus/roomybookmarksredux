@@ -5,7 +5,7 @@
 @-moz-document url(chrome://browser/content/browser.xhtml) {
 	#PersonalToolbar {
 		min-height: unset !important;
-		max-height: unset !important;
+		max-height: none !important;
 		padding: 0px 0px 3px 0px !important;
 	}
 	  

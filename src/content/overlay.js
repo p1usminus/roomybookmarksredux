@@ -383,17 +383,17 @@ var roomybookmarkstoolbar = {
 			this.cssStr += '@-moz-document url(chrome://browser/content/browser.xhtml) {';
 
 			if (opacity) {
-				this.cssStr += '#PersonalToolbar{opacity:0.4; transition: opacity ' + opacityTimeLong + 's linear ' + opacityTime + 's !important;}#navigator-toolbox >#PersonalToolbar:hover {opacity:1; transition:opacity !important}';
+				this.cssStr += '#PersonalToolbar{opacity:0.4; transition: opacity ' + opacityTimeLong + 's linear ' + opacityTime + 's !important;} #navigator-toolbox > #PersonalToolbar:hover {opacity:1; transition:opacity !important}';
 			}
 			if (iconSize != 16) {
-				// testing shorter CSS string
 				this.cssStr += '.bookmark-item > .toolbarbutton-icon{width:' + iconSize + 'px !important;height:' + iconSize + 'px !important}';
 			}
 			if (userWidthEnabled) {
 				this.cssStr += '.bookmark-item{max-width: ' + userWidth + 'px !important}';
 			}
 			if (folderMargin != 0) { //repurposed
-				this.cssStr += '#personal-bookmarks #PlacesToolbar toolbarbutton.bookmark-item{margin-top: ' + folderMargin + 'px !important;margin-bottom: ' + folderMargin + 'px !important}'
+				//this.cssStr += '#personal-bookmarks #PlacesToolbar toolbarbutton.bookmark-item{margin-top: ' + folderMargin + 'px !important;margin-bottom: ' + folderMargin + 'px !important}'
+				this.cssStr += '#PlacesToolbarItems > .bookmark-item{margin-top: ' + folderMargin + 'px !important;margin-bottom: ' + folderMargin + 'px !important}'
 			}
 			if (textSize != 100) {
 				this.cssStr += '#PersonalToolbar .toolbarbutton-text{font-size: ' + textSize + '% !important}';
