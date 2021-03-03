@@ -10,7 +10,7 @@
 		padding: 0px !important;
 		margin: 0px !important;
 		border: none !important;
-		max-height: 1000px !important;
+		max-height: 1000px !important; /* Previously a fix for OSX - still required? */
 	}
 
 	#personal-bookmarks toolbarbutton.bookmark-item .toolbarbutton-text,
