@@ -6,11 +6,11 @@
 		} else {
 			document.getElementById('hideBookmarksIconsPerf').disabled = false;
 		};
-		/* if (document.getElementById('hideNoFaviconNamesPerf').checked ) {
+		if (document.getElementById('hideNoFaviconNamesPerf').checked ) {
 			document.getElementById('hideDefaultIconsPerf').disabled = true;
 		} else {
 			document.getElementById('hideDefaultIconsPerf').disabled = false;
-		}; */
+		};
 		if (document.getElementById('hideFoldersNamesPerf').checked) {
 			document.getElementById('hideFolderIconsPerf').disabled = true;
 		} else {
@@ -20,7 +20,7 @@
 
 	location: function() {
 		//If multirow is On, location don't work so:
-		if (document.getElementById('multirowBarPerf').checked || document.getElementById('overPagePerf').checked) {
+		if (document.getElementById('multirowBarPerf').checked) {
 			document.getElementById('locationPerf').disabled = true;
 			this.branch.setIntPref('location', 0);
 		} else {
@@ -68,7 +68,7 @@
 	topOnPage: function() {
 		document.getElementById('overPagePerf').disabled = document.getElementById('bookmarksAboveTabPerf').checked;
 		document.getElementById('bookmarksAboveTabPerf').disabled = document.getElementById('overPagePerf').checked;
-		if (document.getElementById('multirowBarPerf').checked || document.getElementById('overPagePerf').checked) {
+		if (document.getElementById('multirowBarPerf').checked) {
 			document.getElementById('locationPerf').disabled = true;
 			this.branch.setIntPref('location', 0);
 		} else {
@@ -119,5 +119,6 @@
 		this.autoHideZone();
 		this.OSFix();
 		this.location();
+		Preferences.forceEnableInstantApply()
 	},
 };
