@@ -276,6 +276,7 @@ var roomybookmarkstoolbar = {
 		}
 	},
 
+	// currently unused - browser handles this now
 	separatorAdded: function (heightSep) {
 		var heightOrig = heightSep;
 		var bookmarkService = Components.classes["@mozilla.org/browser/nav-bookmarks-service;1"].getService(Components.interfaces.nsINavBookmarksService);
@@ -512,7 +513,8 @@ var roomybookmarkstoolbar = {
 		if (location != 0) { this.styleService('file', 'location-' + location); }
 	},
 
-	startUpMainCheck: function () {
+	startUpMainCheck: async function () {
+		await PlacesToolbarHelper.init(); // wait until bookmarks bar has loaded
 		var PersonalToolbar = document.getElementById('PersonalToolbar');
 		var bookmarkItem = document.getElementsByClassName("bookmark-item");
 		if (PersonalToolbar && bookmarkItem.length >= 0) {
@@ -522,10 +524,9 @@ var roomybookmarkstoolbar = {
 				this.multirow();
 			}
 			if (this.branch.getBoolPref('autoHideBar')) {
-				// wait a while to hide toolbar
-				if (!this.PersonalToolbar.collapsed) { setTimeout(() => {
+				if (!this.PersonalToolbar.collapsed) {
 					this.autoHideBookmarksBar();
-				}, 3000); }
+				}
 			}
 			if (this.branch.getBoolPref('hideByDefault')) {
 				this.hideByDefault();
@@ -647,17 +648,9 @@ var roomybookmarkstoolbar = {
 
 window.addEventListener("load", function load() {
 	window.removeEventListener("load", load, false);
+	roomybookmarkstoolbar.startUpMainCheck();
 	roomybookmarkstoolbar.register();
 	roomybookmarkstoolbar.registerCss();
-	var timeOut = setTimeout(function () { roomybookmarkstoolbar.startUpMainCheck(); }, 3000);
-
-	//Load event so fast for linux/old version. Css can't apply
-	var readyStateCheckInterval = setInterval(function () {
-		if (document.readyState === "complete") {
-			clearInterval(readyStateCheckInterval);
-			roomybookmarkstoolbar.startUpMainCheck();
-		}
-	}, 10);
 }, false);
 
 window.addEventListener("unload", function (event) { roomybookmarkstoolbar.unregister(); }, false);
