@@ -500,7 +500,7 @@ var roomybookmarkstoolbar = {
 		var hideDefaultIcons = this.branch.getBoolPref('hideDefaultIcons');
 		var hideBookmarksName = this.branch.getBoolPref('hideBookmarksName');
 		var hideBookmarksIcons = this.branch.getBoolPref('hideBookmarksIcons');
-		// var disableLinuxFix = this.branch.getBoolPref('disableLinuxFix');
+		var disableLinuxFix = this.branch.getBoolPref('disableLinuxFix');
 		var location = this.branch.getIntPref('location');
 
 		//If was enabled showBookmarksNames - need disable hiding

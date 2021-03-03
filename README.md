@@ -11,7 +11,6 @@ Most of the features work, but it is slightly buggy. Please read the tips.
   * (If using userChromeJS the startup cache may need to be cleared between updates.)
 * The fixed height option should be used when the multirow option is selected, otherwise the toolbar will try to stay at single row height.
 * The toolbar behaves strangely when using the multirow option with a non-standard favicon size. Solution: Use the option to fix incorrect height __with__ a non-zero margin size (see 2nd option tab). I wish this was less complicated.
-* Setting the about:config option `browser.preferences.instantApply` to true will make the options apply without having to click the OK button in the dialog box.
 * Firefox: Set `browser.toolbars.bookmarks.2h2020` to false otherwise the extension will misbehave.
 * Sometimes the toolbar simply breaks - such as when disabling the multirow option (while using the auto-hide feature).
   * Re-enabling the bookmarks toolbar from the customise menu (or restarting the browser) should fix this.
@@ -24,10 +23,9 @@ Most of the features work, but it is slightly buggy. Please read the tips.
   * There is an alternative of sorts, see [issue #3](https://github.com/p1usminus/roomybookmarksredux/issues/3)
 * Hide default icons - I can make them invisible but that's about it...
 * 'Hide bookmark names with no favicon'
-* Scrolling within the multirow toolbar
 
 ## Other notes ##
-* :question: ~~I would like to know if users prefer having the scrollbar visible when using the multirow option, or would rather have it hidden.~~ The scrolling within the toolbar is currently not working.
+* :question: ~~I would like to know if users prefer having the scrollbar visible when using the multirow option, or would rather have it hidden.~~ The scrolling within the toolbar is currently not working (I think this was an accidental feature in the first place!)
   * The single row multirow toolbar is neat.
 * I repurposed one of the prefs to change the top & bottom margin of bookmark items. Adding new prefs looks like it could be annoying, but there may be a couple of other ones that could be re-used.
 * Please highlight any issues you find, but I honestly don't know if I will be able to fix them! I uploaded everything here in the hopes that even if I cannot do anything more, perhaps someone else can...
