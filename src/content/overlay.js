@@ -323,18 +323,10 @@ var roomybookmarkstoolbar = {
 				}
 			}
 
-			if (Components.classes['@mozilla.org/xre/app-info;1'].getService(Components.interfaces.nsIXULRuntime).OS == 'Linux') {
-				if (this.branch.getBoolPref('disableLinuxFix') == false) {
-					heightOrig += 6;
-				}
-			} else if (Components.classes['@mozilla.org/xre/app-info;1'].getService(Components.interfaces.nsIXULRuntime).OS == 'Darwin') {
+			if (this.branch.getIntPref('iconSize') >= 18) {
 				heightOrig += 3;
 			} else {
-				if (this.branch.getIntPref('iconSize') >= 18) {
-					heightOrig += 3;
-				} else {
-					heightOrig += 2;
-				}
+				heightOrig += 2;
 			}
 
 			if (heightOrig < this.branch.getIntPref('iconSize') && this.PersonalToolbar) {			//If height not correct - set it = icon size
@@ -394,19 +386,17 @@ var roomybookmarkstoolbar = {
 				this.cssStr += '#PersonalToolbar{opacity:0.4; transition: opacity ' + opacityTimeLong + 's linear ' + opacityTime + 's !important;}#navigator-toolbox >#PersonalToolbar:hover {opacity:1; transition:opacity !important}';
 			}
 			if (iconSize != 16) {
-				this.cssStr += '#personal-bookmarks toolbarbutton.bookmark-item .toolbarbutton-icon{width:' + iconSize + 'px !important;height:' + iconSize + 'px !important}';
+				// testing shorter CSS string
+				this.cssStr += '.bookmark-item > .toolbarbutton-icon{width:' + iconSize + 'px !important;height:' + iconSize + 'px !important}';
 			}
 			if (userWidthEnabled) {
-				this.cssStr += '#personal-bookmarks toolbarbutton.bookmark-item{max-width: ' + userWidth + 'px !important}';
+				this.cssStr += '.bookmark-item{max-width: ' + userWidth + 'px !important}';
 			}
 			if (folderMargin != 0) { //repurposed
-				this.cssStr += '#personal-bookmarks #PlacesToolbar toolbarbutton.bookmark-item{margin-top: ' + folderMargin + 'px !important;margin-bottom: ' + folderMargin + 'px !important}'
+				this.cssStr += '.bookmark-item{margin-top: ' + folderMargin + 'px !important;margin-bottom: ' + folderMargin + 'px !important}'
 			}
 			if (textSize != 100) {
 				this.cssStr += '#PersonalToolbar .toolbarbutton-text{font-size: ' + textSize + '% !important}';
-			}
-			if (Components.classes['@mozilla.org/xre/app-info;1'].getService(Components.interfaces.nsIXULRuntime).OS == 'Darwin') {
-				this.cssStr += '#personal-bookmarks toolbarbutton.bookmark-item .toolbarbutton-icon{max-height:1000px !important;}'
 			}
 			this.cssStr += '}';
 
@@ -480,7 +470,6 @@ var roomybookmarkstoolbar = {
 		this.styleService('file', 'hideBookmarksIcons', true);
 		this.styleService('file', 'multirowBar', true);
 		this.styleService('file', 'top', true);
-		this.styleService('file', 'folderArrow', true);
 		this.styleService('file', 'overPage', true);
 
 		this.styleService('file', 'spacing-0', true);
@@ -500,7 +489,6 @@ var roomybookmarkstoolbar = {
 		var hideDefaultIcons = this.branch.getBoolPref('hideDefaultIcons');
 		var hideBookmarksName = this.branch.getBoolPref('hideBookmarksName');
 		var hideBookmarksIcons = this.branch.getBoolPref('hideBookmarksIcons');
-		var disableLinuxFix = this.branch.getBoolPref('disableLinuxFix');
 		var location = this.branch.getIntPref('location');
 
 		//If was enabled showBookmarksNames - need disable hiding
@@ -520,7 +508,6 @@ var roomybookmarkstoolbar = {
 		if (this.branch.getBoolPref('mousehover')) { this.styleService('file', 'mousehover'); }
 		if (this.branch.getBoolPref('bookmarksAboveTab')) { this.styleService('file', 'top'); }
 		if (this.branch.getBoolPref('overPage')) { this.styleService('file', 'overPage'); }
-		if (this.branch.getBoolPref('folderArrow')) { this.styleService('file', 'folderArrow'); }
 
 		this.styleService('file', 'spacing-' + this.branch.getIntPref('spacing'));
 		if (location != 0) { this.styleService('file', 'location-' + location); }

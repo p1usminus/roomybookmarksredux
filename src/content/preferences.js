@@ -32,8 +32,6 @@ Preferences.addAll([
 	{ id: "extensions.roomybookmarkstoolbar.bookmarksAboveTab", type: "bool" },
 	{ id: "extensions.roomybookmarkstoolbar.overPage", type: "bool" },
 	{ id: "extensions.roomybookmarkstoolbar.folderMargin", type: "int" },
-	{ id: "extensions.roomybookmarkstoolbar.disableLinuxFix", type: "bool" },
-	{ id: "extensions.roomybookmarkstoolbar.folderArrow", type: "bool" },
 	{ id: "extensions.roomybookmarkstoolbar.height", type: "int" },
 	{ id: "extensions.roomybookmarkstoolbar.showBookmarksNames", type: "bool" },
 	{ id: "extensions.roomybookmarkstoolbar.DBcreated", type: "bool" },

@@ -54,8 +54,6 @@
 	pref("extensions.roomybookmarkstoolbar.bookmarksAboveTab", false);
 	pref("extensions.roomybookmarkstoolbar.overPage", false);
 	pref("extensions.roomybookmarkstoolbar.folderMargin", 0);
-	pref("extensions.roomybookmarkstoolbar.disableLinuxFix", false);
-	pref("extensions.roomybookmarkstoolbar.folderArrow", true);
 	pref("extensions.roomybookmarkstoolbar.height", 0);
 	pref("extensions.roomybookmarkstoolbar.showBookmarksNames", false);
 	pref("extensions.roomybookmarkstoolbar.DBcreated", false);

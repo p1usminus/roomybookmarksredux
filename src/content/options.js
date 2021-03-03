@@ -97,17 +97,6 @@
 		}
 	},
 
-	OSFix: function() {
-		if (Components.classes['@mozilla.org/xre/app-info;1'].getService(Components.interfaces.nsIXULRuntime).OS == 'Linux') {
-			document.getElementById('disableLinuxFixPerf').disabled = false;
-			document.getElementById('folderArrowPerf').disabled = false;
-		};
-		if (Components.classes['@mozilla.org/xre/app-info;1'].getService(Components.interfaces.nsIXULRuntime).OS == 'Darwin') {
-			document.getElementById('disableLinuxFixPerf').disabled = false;
-			document.getElementById('folderArrowPerf').disabled = false;
-		};
-	},
-
 	onLoad: function() {
 		var thisPrefs = Components.classes['@mozilla.org/preferences-service;1'].getService(Components.interfaces.nsIPrefService);
 		this.branch = thisPrefs.getBranch('extensions.roomybookmarkstoolbar.');
@@ -117,7 +106,6 @@
 		this.topOnPage();
 		this.userWidth();
 		this.autoHideZone();
-		this.OSFix();
 		this.location();
 		Preferences.forceEnableInstantApply()
 	},
