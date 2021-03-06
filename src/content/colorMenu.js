@@ -1,8 +1,8 @@
 ﻿var roomybookmarkstoolbarColor = {
 	branch: null,
 	onLoad: function() {
-		document.getElementById("colorText").value = document.getElementById("colorTextButton").color;
-		document.getElementById("colorBac").value = document.getElementById("colorBacButton").color;
+		document.getElementById("colorText").value = document.getElementById("colorTextButton").value;
+		document.getElementById("colorBac").value = document.getElementById("colorBacButton").value;
 
 
 		document.getElementById("title").value = window.arguments[0].inn.title;
@@ -11,38 +11,38 @@
 		var rbtdatas = {id:window.arguments[0].inn.id,}
 		this.db(rbtdatas, 'getGata',  function (data) {
 			if(data[0]) {document.getElementById("colorText").value = data[0];}
-			if(data[0]) {document.getElementById("colorTextButton").color = data[0];}
+			if(data[0]) {document.getElementById("colorTextButton").value = data[0];}
 			if(data[1]) {document.getElementById("colorBac").value = data[1];}
-			if(data[1]) {document.getElementById("colorBacButton").color = data[1];}
+			if(data[1]) {document.getElementById("colorBacButton").value = data[1];}
 		});
 
 	},
 
 	colorChanged: function(event, object) {
-		if(event.target.value) {
+		if(event.target.type=="text") {
 			if(object == 'text') {
-				document.getElementById("colorTextButton").color = event.target.value;
+				document.getElementById("colorTextButton").value = event.target.value;
 				if(event.target.value == '') {
 					document.getElementById("colorText").value = '#000000'
-					document.getElementById("colorTextButton").color = '#000000'
+					document.getElementById("colorTextButton").value = '#000000'
 				}
 			}
-			if(object == 'background') {document.getElementById("colorBacButton").color = event.target.value;}
+			if(object == 'background') {document.getElementById("colorBacButton").value = event.target.value;}
 				if(validateColor(event.target.value) == false) {
 					alert('Please enter a valid HEX color')
 					if(object == 'text') {document.getElementById("colorText").value = '#000000'}
 					if(object == 'background') {document.getElementById("colorBac").value = ''}
-							document.getElementById("colorTextButton").color = document.getElementById("colorText").value;
-							document.getElementById("colorBacButton").color = document.getElementById("colorBac").value;
+							document.getElementById("colorTextButton").value = document.getElementById("colorText").value;
+							document.getElementById("colorBacButton").value = document.getElementById("colorBac").value;
 
 				}
 		}
 		function validateColor(colorStr) {
 			return colorStr.match(/^#[a-f0-9]{6}$/i) !== null;
 		}
-		if(event.target.color) {
-			if(object == 'text') {document.getElementById("colorText").value = event.target.color;}
-			if(object == 'background') {document.getElementById("colorBac").value = event.target.color;}
+		if(event.target.type=="color") {
+			if(object == 'text') {document.getElementById("colorText").value = event.target.value;}
+			if(object == 'background') {document.getElementById("colorBac").value = event.target.value;}
 		}
 
 	},
@@ -66,7 +66,7 @@
 		let file = FileUtils.getFile("ProfD", ["roomybookmarkstoolbar.sqlite"]);
 		let dbConn = Services.storage.openDatabase(file);
 		thisPrefs.getBranch('extensions.roomybookmarkstoolbar.').setBoolPref('DBcreated', true);
-		dbConn.executeSimpleSQL("create table if not exists colors (id INTEGER NOT NULL PRIMARY KEY, textcolor TEXT, backgroundcolor TEXT)");
+		dbConn.executeSimpleSQL("create table if not exists colors (id TEXT NOT NULL PRIMARY KEY, textcolor TEXT, backgroundcolor TEXT)");
 
 		if (DBevent == 'saveData') {
 			var list = new Array();
@@ -78,6 +78,7 @@
 									list.push(row.getResultByName("id"))
 								}
 							}
+							this.handleCompletion();
 					},
 					handleCompletion: function(aReason) {
 						if (list[0]) {
@@ -101,7 +102,7 @@
 								}   
 							});
 						}
-						dbConn.asyncClose();
+						try { dbConn.asyncClose();} catch(e) {} 
 					}   
 				});
 		}
