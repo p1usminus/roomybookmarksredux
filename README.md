@@ -1,4 +1,5 @@
 # Roomy Bookmarks Toolbar redux #
+Now color setting is working.
 
 Roomy Bookmarks Toolbar for Waterfox G3 & Firefox Developer Edition (with [userChromeJS](https://github.com/xiaoxiaoflood/firefox-scripts) or [bootstrapLoader](https://github.com/xiaoxiaoflood/firefox-scripts/tree/master/extensions/bootstrapLoader)) - __[download here!](https://github.com/p1usminus/roomybookmarksredux/releases/latest)__
 
@@ -18,9 +19,6 @@ Most of the features work, but it is slightly buggy. Please read the tips.
 - - - -
 
 ## Not working
-* Colour menu
-  * I don't think this method works at all any more so I have commented out virtually everything related to it.
-  * There is an alternative of sorts, see [issue #3](https://github.com/p1usminus/roomybookmarksredux/issues/3)
 * Hide default icons - I can make them invisible but that's about it...
 * 'Hide bookmark names with no favicon'
 

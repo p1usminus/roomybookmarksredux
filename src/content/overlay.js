@@ -535,118 +535,122 @@ var roomybookmarkstoolbar = {
 				this.BBonNewTab();
 			}
 
-			setTimeout(function() {roomybookmarkstoolbar.setColor();}, 1000);
+			roomybookmarkstoolbar.setColor();
 
 			//After customisation colors are wiped
-			window.addEventListener("aftercustomization", function() {setTimeout(function() {roomybookmarkstoolbar.setColor();}, 1000)}, false);
+			const PlacesToolbar = document.getElementById('PlacesToolbar');
+			PlacesToolbar.addEventListener("contextmenu", (event) => { if(event.target.classList.contains("bookmark-item")) roomybookmarkstoolbar.id = event.target._placesNode; }, false);
+
+			for (const node of document.querySelectorAll("#PlacesToolbar toolbarbutton.bookmark-item")){
+				node._placesNode ? node.setAttribute('rbtid', node._placesNode.bookmarkGuid) : '';
+			}
+
+			const config = {childList: true, subtree: true};
+			const callback = function(mutationList) {
+			  for (const mutation of mutationList) {
+			    for (const node of mutation.addedNodes){
+					if (node.classList.contains("bookmark-item") && node.tagName == "toolbarbutton"){
+						node._placesNode ? node.setAttribute('rbtid', node._placesNode.bookmarkGuid) : '';
+					}
+				}
+			  }
+			};
+			const observer = new MutationObserver(callback);
+			observer.observe(PlacesToolbar, config);
 		}
 	},
 
-	//I don't think this method works any more
-	setColor: function(data, DBevent, callback) {
-		var bookmarkItem = document.getElementsByClassName("bookmark-item");
-		//Set context menu id listener
-
-		function handler(event) {
-			roomybookmarkstoolbar.id = event.target._placesNode;
+	setColor: function() {
+		if (this.colorCSS) {
+			this.styleService('string', this.colorCSS, true);
 		}
-
-		for (var i=0; i<bookmarkItem.length; i++) {
-			try { bookmarkItem[i].removeEventListener("contextmenu", handler, false); } catch (e) { }
-			bookmarkItem[i].addEventListener("contextmenu", handler, false);
-		}
-
 		//If user not set colors, or delete db - stop
 		if (!this.branch.getBoolPref('DBcreated')) {
-			if (this.colorCSS) {
-				this.styleService('string', this.colorCSS, true);
-			}
 			let file = FileUtils.getFile("ProfD", ["roomybookmarkstoolbar.sqlite"]);
-			try {file.remove(false);} catch(e) {} 
+			try {file.remove(false);} catch(e) {console.log(e)} 
 			return;
 		}
 
 		Components.utils.import("resource://gre/modules/Services.jsm");
 		Components.utils.import("resource://gre/modules/FileUtils.jsm");
-		// this.colorCSS = '@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);'+'\n'+'\n';
+		this.colorCSS = '';
 		this.colorCSS += '@-moz-document url(chrome://browser/content/browser.xhtml) {'+'\n';
-		var firstBookmarksId=0;
+
 		var macOS = false;
 
 		if (Components.classes['@mozilla.org/xre/app-info;1'].getService(Components.interfaces.nsIXULRuntime).OS == 'Darwin') {
 			macOS = true;
 		}
 
-		let dbFile = FileUtils.getFile("ProfD", ["roomybookmarkstoolbar.sqlite"]);
-		let dbConn = Services.storage.openDatabase(dbFile);
+		var dbFile = FileUtils.getFile("ProfD", ["roomybookmarkstoolbar.sqlite"]);
+		var dbConn = Services.storage.openDatabase(dbFile);
 		dbConn.executeSimpleSQL("create table if not exists colors (id TEXT NOT NULL PRIMARY KEY, textcolor TEXT, backgroundcolor TEXT)");
 
 		try {
+			let promise = new Promise(resolve => {
+				canClose = () => {
+					resolve();
+				};
+			});
 			var statement = dbConn.createStatement("SELECT * FROM colors");
 			statement.executeAsync({
-					handleResult: function(aResultSet) {
-							for (var row = aResultSet.getNextRow(); row; row = aResultSet.getNextRow()) {
-								setColor(row.getResultByName("id"), row.getResultByName("textcolor"), row.getResultByName("backgroundcolor"));
-							}
-						this.handleCompletion();
+					handleResult: async function(aResultSet) {
+						for (var row = aResultSet.getNextRow(); row; row = aResultSet.getNextRow()) {
+							await setColor(row.getResultByName("id"), row.getResultByName("textcolor"), row.getResultByName("backgroundcolor"));
+						}
+						canClose();
 					},
-					handleCompletion: function(aResultSet) {
+					handleCompletion: async function(aResultSet) {
+						await promise;
 						if (macOS) {
 							roomybookmarkstoolbar.colorCSS += '#personal-bookmarks toolbarbutton.bookmark-item:hover > .toolbarbutton-text {color: #000000;}'
 							roomybookmarkstoolbar.colorCSS += '#personal-bookmarks toolbarbutton.bookmark-item:hover {background-color:transparent !important;}#personal-bookmarks toolbarbutton.bookmark-item > .toolbarbutton-text {text-shadow: none !important;}';
 						}
 						roomybookmarkstoolbar.colorCSS += '}'
 						roomybookmarkstoolbar.styleService('string', roomybookmarkstoolbar.colorCSS);
-						try { dbConn.asyncClose();} catch(e) {} 
+						try { dbConn.asyncClose();} catch(e) {console.log(e)} 
 					}
 			});
 			
 		} finally {
 		}
-			
-		function getBookmrksBarId() {				//Get id for root bookmarks folder. Different in systems\ versions
-			if(bookmarkItem[firstBookmarksId]) {
-				var target = bookmarkItem[firstBookmarksId];
-	
-				while(target) {
-					if(target.id == 'PersonalToolbar') {
-						return firstBookmarksId;
-					}
-					target = target.parentNode;
-					if (!target) {
-						firstBookmarksId=firstBookmarksId+1;
-						target = bookmarkItem[firstBookmarksId]
-					}
-				}
-			}
-		}
 		
 		async function setColor(id, texColor, bacColor) {
 			var bookmarksid = await PlacesUtils.bookmarks.fetch(id).then(r=>{
-				 if (r?.parentGuid == "toolbar_____") return r?.index;
-				 try { if (!r) dbConn.executeSimpleSQL(`DELETE FROM colors WHERE id = "${id}"`);} catch(e) {} 
-				}
-			);
+				if (r?.parentGuid == "toolbar_____") return r?.index;
+				try { 
+					if (!r) {
+						dbConn.executeSimpleSQL(`DELETE FROM colors WHERE id = "${id}"`);
+					}
+				} catch(e) {console.log(e)} 
+			});
 			const placesToolbarItems = document.getElementById("PlacesToolbarItems").children;
 
 			if (placesToolbarItems[bookmarksid]) {
-				placesToolbarItems[bookmarksid].style.color = texColor; 	//Set text color
-				placesToolbarItems[bookmarksid].style.background = bacColor;
-				placesToolbarItems[bookmarksid].style.borderRadius = '6px';
-				placesToolbarItems[bookmarksid].setAttribute('rbtid', id);	//Set id(for css selection)
-				if (bacColor == '') {bacColor = 'transparent';}
 				if (macOS) {		//Mac need gray background fix
-					roomybookmarkstoolbar.colorCSS += '#personal-bookmarks toolbarbutton.bookmark-item[rbtid="'+id+'"] > .toolbarbutton-text {background-color:'+bacColor+'; border-radius: 6px;}#personal-bookmarks toolbarbutton.bookmark-item:hover[rbtid="'+id+'"] > .toolbarbutton-text {color: '+texColor+';}';
+					roomybookmarkstoolbar.colorCSS += 
+						'#personal-bookmarks toolbarbutton.bookmark-item[rbtid="'+id+'"] > .toolbarbutton-text {'+'\n';
+						if (bacColor != '') roomybookmarkstoolbar.colorCSS += ' background-color:'+bacColor+';'+'\n';
+						roomybookmarkstoolbar.colorCSS += ' border-radius: 6px;'+'\n'+'}'+'\n'+
+						'#personal-bookmarks toolbarbutton.bookmark-item:hover[rbtid="'+id+'"] > .toolbarbutton-text {'+'\n';
+						if (texColor != '') roomybookmarkstoolbar.colorCSS += ' color: '+texColor+';'+'\n'+'}'+'\n';
 				} else {
-					roomybookmarkstoolbar.colorCSS += '#personal-bookmarks toolbarbutton.bookmark-item[rbtid="'+id+'"] > .toolbarbutton-text {background-color:'+bacColor+'; border-radius: 6px;}';
+					roomybookmarkstoolbar.colorCSS += '#personal-bookmarks toolbarbutton.bookmark-item[rbtid="'+id+'"] > .toolbarbutton-text {'+'\n';
+					if (texColor != '') roomybookmarkstoolbar.colorCSS += ' color: '+texColor+';'+'\n';
+					if (bacColor != '') roomybookmarkstoolbar.colorCSS += ' background-color:'+bacColor+';'+'\n';
+					roomybookmarkstoolbar.colorCSS += ' border-radius: 6px;'+'\n'+'}'+'\n';;
 				}
+				roomybookmarkstoolbar.colorCSS += '#personal-bookmarks toolbarbutton.bookmark-item[rbtid="'+id+'"] {'+'\n';
+				if (texColor != '') roomybookmarkstoolbar.colorCSS += ' color: '+texColor+';'+'\n';
+				if (bacColor != '') roomybookmarkstoolbar.colorCSS += ' background-color:'+bacColor+';'+'\n';
+				roomybookmarkstoolbar.colorCSS += ' border-radius: 6px;'+'\n'+'}'+'\n';
 			}
 		}
 	},
 
 	openColorMenu: function() {
 		var elementURL;
-		if (PlacesUtils.nodeIsBookmark(roomybookmarkstoolbar.id) == true) { //If bookmarksvar URIObject = PlacesUtils.bookmarks.getBookmarkURI(roomybookmarkstoolbar.id);
+		if (PlacesUtils.nodeIsBookmark(roomybookmarkstoolbar.id) == true) { //If bookmarks
 			elementURL = roomybookmarkstoolbar.id.uri;
 		}
 		if (PlacesUtils.nodeIsFolder(roomybookmarkstoolbar.id) == true) {	//If folder

@@ -10,10 +10,14 @@
 
 		var rbtdatas = {id:window.arguments[0].inn.id,}
 		this.db(rbtdatas, 'getGata',  function (data) {
-			if(data[0]) {document.getElementById("colorText").value = data[0];}
-			if(data[0]) {document.getElementById("colorTextButton").value = data[0];}
-			if(data[1]) {document.getElementById("colorBac").value = data[1];}
-			if(data[1]) {document.getElementById("colorBacButton").value = data[1];}
+			if(data[0]) {
+				document.getElementById("colorText").value = data[0];
+				document.getElementById("colorTextButton").value = data[0];
+			}
+			if(data[1]) {
+				document.getElementById("colorBac").value = data[1];
+				document.getElementById("colorBacButton").value = data[1];
+			}
 		});
 
 	},
@@ -22,33 +26,37 @@
 		if(event.target.type=="text") {
 			if(object == 'text') {
 				document.getElementById("colorTextButton").value = event.target.value;
-				if(event.target.value == '') {
-					document.getElementById("colorText").value = '#000000'
-					document.getElementById("colorTextButton").value = '#000000'
-				}
 			}
 			if(object == 'background') {document.getElementById("colorBacButton").value = event.target.value;}
-				if(validateColor(event.target.value) == false) {
-					alert('Please enter a valid HEX color')
-					if(object == 'text') {document.getElementById("colorText").value = '#000000'}
-					if(object == 'background') {document.getElementById("colorBac").value = ''}
-							document.getElementById("colorTextButton").value = document.getElementById("colorText").value;
-							document.getElementById("colorBacButton").value = document.getElementById("colorBac").value;
-
-				}
-		}
+			if(!validateColor(event.target.value)) {
+				alert('Please enter a valid HEX color')
+				if(object == 'text') {document.getElementById("colorText").value = ''}
+				if(object == 'background') {document.getElementById("colorBac").value = ''}
+						document.getElementById("colorTextButton").value = document.getElementById("colorText").value;
+						document.getElementById("colorBacButton").value = document.getElementById("colorBac").value;
+			}
+	}
 		function validateColor(colorStr) {
-			return colorStr.match(/^#[a-f0-9]{6}$/i) !== null;
+		return colorStr.match(/^#[a-f0-9]{6}$/i) !== null || colorStr == '';
 		}
 		if(event.target.type=="color") {
 			if(object == 'text') {document.getElementById("colorText").value = event.target.value;}
 			if(object == 'background') {document.getElementById("colorBac").value = event.target.value;}
 		}
+	},
 
+	clearColor: function() {
+		document.getElementById("colorText").value = '';
+		document.getElementById("colorBac").value = '';
 	},
 
 	onOk: function() {
 		var rbtdata = {id:window.arguments[0].inn.id, textcolor:document.getElementById("colorText").value, backgroundcolor:document.getElementById("colorBac").value};
+		if ((!rbtdata.textcolor && !rbtdata.backgroundcolor) || (rbtdata.textcolor == '' && rbtdata.backgroundcolor == '')) {
+			this.db(rbtdata, 'clearColor');
+			window.close();
+			return;
+		}
 		this.db(rbtdata, 'saveData',  function () {window.close();});
 	},
 
@@ -70,7 +78,7 @@
 
 		if (DBevent == 'saveData') {
 			var list = new Array();
-				var statement = dbConn.createStatement("SELECT * FROM colors");
+				let statement = dbConn.createStatement("SELECT * FROM colors");
 				statement.executeAsync({
 					handleResult: function(aResultSet) {
 								for (var row = aResultSet.getNextRow(); row; row = aResultSet.getNextRow()) {
@@ -78,11 +86,10 @@
 									list.push(row.getResultByName("id"))
 								}
 							}
-							this.handleCompletion();
 					},
 					handleCompletion: function(aReason) {
 						if (list[0]) {
-							var statement = dbConn.createStatement("UPDATE colors set textcolor = :textcolor, backgroundcolor = :backgroundcolor where id = :id");
+							let statement = dbConn.createStatement("UPDATE colors set textcolor = :textcolor, backgroundcolor = :backgroundcolor where id = :id");
 							statement.params.id = data.id;
 							statement.params.textcolor = data.textcolor;
 							statement.params.backgroundcolor = data.backgroundcolor;
@@ -92,7 +99,7 @@
 								}   
 							});
 						} else {
-							var statement = dbConn.createStatement("INSERT INTO colors VALUES(:id, :textcolor, :backgroundcolor)");
+							let statement = dbConn.createStatement("INSERT INTO colors VALUES(:id, :textcolor, :backgroundcolor)");
 							statement.params.id = data.id;
 							statement.params.textcolor = data.textcolor;
 							statement.params.backgroundcolor = data.backgroundcolor;
@@ -109,7 +116,7 @@
 
 		if (DBevent == 'getGata') {
 			var list = new Array();
-			var statement = dbConn.createStatement("SELECT * FROM colors");
+			let statement = dbConn.createStatement("SELECT * FROM colors");
 			statement.executeAsync({
 				handleResult: function(aResultSet) {
 					var newHistoryString = "";
@@ -126,6 +133,11 @@
 				}   
 			});
 		}
+
+		if (DBevent == 'clearColor') {
+			dbConn.executeSimpleSQL(`DELETE FROM colors WHERE id = "${data.id}"`);
+		}
+
 		if (DBevent == 'deleteDB') {	
 				Components.utils.import("resource://gre/modules/FileUtils.jsm");
 				var thisPrefs = Components.classes['@mozilla.org/preferences-service;1'].getService(Components.interfaces.nsIPrefService);

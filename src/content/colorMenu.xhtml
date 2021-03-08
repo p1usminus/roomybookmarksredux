@@ -14,15 +14,16 @@
 		<label value="Select color of text(HEX):"/>
 			<hbox align="center">
 		<html:input type="text" id="colorText" value="" onchange="roomybookmarkstoolbarColor.colorChanged(event, 'text')" style='width:165px'/>
-		<html:input type="color" id="colorTextButton" color="#000000" onchange="roomybookmarkstoolbarColor.colorChanged(event, 'text')" style='width:165px'/>
+		<html:input type="color" id="colorTextButton" value="#ffffff" onchange="roomybookmarkstoolbarColor.colorChanged(event, 'text')" style='width:165px'/>
 			</hbox>
 		<label value="Select color of background (empty = no background)(HEX):"/>
 			<hbox align="center">
 		<html:input type="text" id="colorBac" value="" onchange="roomybookmarkstoolbarColor.colorChanged(event, 'background')" style='width:165px'/>
-		<html:input type="color" id="colorBacButton" color="" onchange="roomybookmarkstoolbarColor.colorChanged(event, 'background')" style='width:165px'/>
+		<html:input type="color" id="colorBacButton" value="#ffffff" onchange="roomybookmarkstoolbarColor.colorChanged(event, 'background')" style='width:165px'/>
 			</hbox>
 		 <label href="https://addons.mozilla.org/ru/firefox/addon/roomy-bookmarks-toolbar/developers" class="text-link" value="Help development by making contribution(addons.mozila.org)" style='font-size:9pt'/>
 	</vbox>
-	<button  id="saveButton"  label="Save" oncommand="roomybookmarkstoolbarColor.onOk();"/>
-	<button  id="saveButton"  label="Delete all change" oncommand="roomybookmarkstoolbarColor.deleteDB();"/>
+	<button label="Save" oncommand="roomybookmarkstoolbarColor.onOk();"/>
+	<button label="Clear" oncommand="roomybookmarkstoolbarColor.clearColor();"/>
+	<button label="Delete all change" oncommand="roomybookmarkstoolbarColor.deleteDB();"/>
 </dialog>
