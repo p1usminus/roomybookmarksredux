@@ -537,6 +537,14 @@ var roomybookmarkstoolbar = {
 
 			roomybookmarkstoolbar.setColor();
 
+			
+			var defaultFavicon = (await fetchIconForSpec(PlacesUtils.favicons.defaultFavicon.spec))?.data;
+			for (const node of document.querySelectorAll("#PlacesToolbar toolbarbutton.bookmark-item")){
+				if (node.image && 
+					(await fetchIconForSpec(node.image))?.data == defaultFavicon) node.setAttribute('rbtdf','');
+			}
+			
+
 			//After customisation colors are wiped
 			const PlacesToolbar = document.getElementById('PlacesToolbar');
 			PlacesToolbar.addEventListener("contextmenu", (event) => { if(event.target.classList.contains("bookmark-item")) roomybookmarkstoolbar.id = event.target._placesNode; }, false);
@@ -545,19 +553,51 @@ var roomybookmarkstoolbar = {
 				node._placesNode ? node.setAttribute('rbtid', node._placesNode.bookmarkGuid) : '';
 			}
 
-			const config = {childList: true, subtree: true};
-			const callback = function(mutationList) {
-			  for (const mutation of mutationList) {
-			    for (const node of mutation.addedNodes){
-					if (node.classList.contains("bookmark-item") && node.tagName == "toolbarbutton"){
-						node._placesNode ? node.setAttribute('rbtid', node._placesNode.bookmarkGuid) : '';
+			const config = {childList: true, subtree: true, attributes: true, attributeFilter: [ "image" ]};
+			const callback = async function(mutationList) {
+				for (const mutation of mutationList) {
+					for (const node of mutation.addedNodes){
+						if (node.classList.contains("bookmark-item") && node.tagName == "toolbarbutton"){
+							node._placesNode ? node.setAttribute('rbtid', node._placesNode.bookmarkGuid) : '';
+							if (node.image && (await fetchIconForSpec(node.image))?.data == defaultFavicon) node.setAttribute('rbtdf','');
+						}
 					}
-				}
+					if (mutation.type === 'attributes') {
+						if (mutation.target.image && (await fetchIconForSpec(mutation.target.image))?.data == defaultFavicon) mutation.target.setAttribute('rbtdf','');
+						else mutation.target.removeAttribute('rbtdf');
+					}	
 			  }
 			};
 			const observer = new MutationObserver(callback);
 			observer.observe(PlacesToolbar, config);
 		}
+
+		function fetchIconForSpec(spec) {
+			return new Promise((resolve, reject) => {
+			  NetUtil.asyncFetch(
+				{
+				  uri: NetUtil.newURI(spec),
+				  loadUsingSystemPrincipal: true,
+				  contentPolicyType: Ci.nsIContentPolicy.TYPE_INTERNAL_IMAGE_FAVICON,
+				},
+				(input, status, request) => {
+				  if (!Components.isSuccessCode(status)) {
+					reject(new Error("unable to load icon"));
+					return;
+				  }
+		  
+				  try {
+					let data = NetUtil.readInputStreamToString(input, input.available());
+					let contentType = request.QueryInterface(Ci.nsIChannel).contentType;
+					input.close();
+					resolve({ data, contentType });
+				  } catch (ex) {
+					reject(ex);
+				  }
+				}
+			  );
+			});
+		  }
 	},
 
 	setColor: function() {

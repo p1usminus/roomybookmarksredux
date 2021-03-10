@@ -1,5 +1,6 @@
 # Roomy Bookmarks Toolbar redux #
 Now color setting is working.
+Now no favicon hide are working.(need mannually update)
 
 Roomy Bookmarks Toolbar for Waterfox G3 & Firefox Developer Edition (with [userChromeJS](https://github.com/xiaoxiaoflood/firefox-scripts) or [bootstrapLoader](https://github.com/xiaoxiaoflood/firefox-scripts/tree/master/extensions/bootstrapLoader)) - __[download here!](https://github.com/p1usminus/roomybookmarksredux/releases/latest)__
 
@@ -19,8 +20,7 @@ Most of the features work, but it is slightly buggy. Please read the tips.
 - - - -
 
 ## Not working
-* Hide default icons - I can make them invisible but that's about it...
-* 'Hide bookmark names with no favicon'
+
 
 ## Other notes ##
 * :question: I would like to know if users prefer having the option to scroll when using the multirow option. It can be avoided using a combination of the multirow and margin options as above.
