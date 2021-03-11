@@ -1,6 +1,7 @@
 # Roomy Bookmarks Toolbar redux #
 Now color setting is working.
-Now no favicon hide are working.(need mannually update)
+
+Now no favicon hide are working.
 
 Roomy Bookmarks Toolbar for Waterfox G3 & Firefox Developer Edition (with [userChromeJS](https://github.com/xiaoxiaoflood/firefox-scripts) or [bootstrapLoader](https://github.com/xiaoxiaoflood/firefox-scripts/tree/master/extensions/bootstrapLoader)) - __[download here!](https://github.com/p1usminus/roomybookmarksredux/releases/latest)__
 
