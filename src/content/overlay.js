@@ -514,10 +514,13 @@ var roomybookmarkstoolbar = {
 	},
 
 	startUpMainCheck: async function () {
+		if(typeof PlacesToolbarHelper == 'undefined') return;
 		await PlacesToolbarHelper.init(); // wait until bookmarks bar has loaded
 		var PersonalToolbar = document.getElementById('PersonalToolbar');
 		var bookmarkItem = document.getElementsByClassName("bookmark-item");
 		if (PersonalToolbar && bookmarkItem.length >= 0) {
+
+			
 			this.PersonalToolbar = document.getElementById('PersonalToolbar');
 			this.userStyle();
 			if (this.branch.getBoolPref('multirowBar')) {
