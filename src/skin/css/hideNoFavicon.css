@@ -1,7 +1,7 @@
 ﻿@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
 
 @-moz-document url(chrome://browser/content/browser.xhtml) {
-	#personal-bookmarks .bookmark-item[rbtdf]:not([container]) .toolbarbutton-icon {
+	#personal-bookmarks .bookmark-item[rbtdf]:not(:hover):not([container]) .toolbarbutton-icon {
 		display: none !important;
 	}
 }

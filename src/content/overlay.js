@@ -537,7 +537,7 @@ var roomybookmarkstoolbar = {
 
 			roomybookmarkstoolbar.setColor();
 
-			
+			//favicon 
 			var defaultFavicon = (await fetchIconForSpec(PlacesUtils.favicons.defaultFavicon.spec))?.data;
 			for (const node of document.querySelectorAll("#PlacesToolbar toolbarbutton.bookmark-item")){
 				if (node.image && 
@@ -562,9 +562,9 @@ var roomybookmarkstoolbar = {
 							if (node.image && (await fetchIconForSpec(node.image))?.data == defaultFavicon) node.setAttribute('rbtdf','');
 						}
 					}
-					if (mutation.type === 'attributes') {
+					if (mutation.type === 'attributes') { //firefox update favicon by remove then re-set 'image'
 						if (mutation.target.image && (await fetchIconForSpec(mutation.target.image))?.data == defaultFavicon) mutation.target.setAttribute('rbtdf','');
-						else mutation.target.removeAttribute('rbtdf');
+						else if (mutation.target.hasAttribute('rbtdf')) mutation.target.removeAttribute('rbtdf');
 					}	
 			  }
 			};
@@ -572,7 +572,7 @@ var roomybookmarkstoolbar = {
 			observer.observe(PlacesToolbar, config);
 		}
 
-		function fetchIconForSpec(spec) {
+		function fetchIconForSpec(spec) { //took from mozilla's test file
 			return new Promise((resolve, reject) => {
 			  NetUtil.asyncFetch(
 				{
