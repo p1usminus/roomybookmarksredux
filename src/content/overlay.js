@@ -141,12 +141,12 @@ var roomybookmarkstoolbar = {
 		roomybookmarkstoolbar.lastY = y;
 	},
 
-	onPopupshown: function(e){
+	onPopupshown: function (e) {
 		roomybookmarkstoolbar.popup = true;
 		roomybookmarkstoolbar.hideHandler();
 	},
 
-	onPopuphidden: function(e){
+	onPopuphidden: function (e) {
 		roomybookmarkstoolbar.popup = false;
 		roomybookmarkstoolbar.hideHandler();
 	},
@@ -160,13 +160,13 @@ var roomybookmarkstoolbar = {
 	// 	roomybookmarkstoolbar.hideHandler(false, true);
 	// },
 
-	mouseMoveListenerhandler: function(on){
+	mouseMoveListenerhandler: function (on) {
 		var toolbox = document.getElementById("navigator-toolbox");
-		
-		if(on && !roomybookmarkstoolbar.moveListener){
+
+		if (on && !roomybookmarkstoolbar.moveListener) {
 			toolbox.addEventListener("mousemove", roomybookmarkstoolbar.onMouseMove, false);
 			roomybookmarkstoolbar.moveListener = true;
-		}else if(!on){
+		} else if (!on) {
 			toolbox.removeEventListener("mousemove", roomybookmarkstoolbar.onMouseMove, false);
 			roomybookmarkstoolbar.moveListener = false;
 		}
@@ -252,7 +252,7 @@ var roomybookmarkstoolbar = {
 		var autoHideBar = this.branch.getBoolPref('autoHideBar');
 		var BBonNewTab = this.branch.getBoolPref('BBonNewTab');
 
-		if (this.PersonalToolbar) {			
+		if (this.PersonalToolbar) {
 			if (autoHideBar && !BBonNewTab) {
 				roomybookmarkstoolbar.autohide = true;
 				roomybookmarkstoolbar.popup = false;
@@ -342,7 +342,7 @@ var roomybookmarkstoolbar = {
 
 			PlacesToolbar.style.maxHeight = height + 'px';
 			this.PersonalToolbar.style.maxHeight = height + 'px';
-			
+
 			if (fixedHeight) {
 				PlacesToolbar.style.minHeight = height + 'px';
 			} else {
@@ -352,7 +352,7 @@ var roomybookmarkstoolbar = {
 			window.addEventListener("beforecustomization", function () { roomybookmarkstoolbar.styleService('file', 'multirowBar', true); }, false);
 			window.addEventListener("aftercustomization", function () { roomybookmarkstoolbar.styleService('file', 'multirowBar'); }, false);
 		}
-		
+
 		if (change && !multirowBar) {
 			PlacesToolbar.style.minHeight = heightOrig + 'px';
 			this.styleService('file', 'multirowBar', true);
@@ -514,13 +514,13 @@ var roomybookmarkstoolbar = {
 	},
 
 	startUpMainCheck: async function () {
-		if(typeof PlacesToolbarHelper == 'undefined') return;
+		if (typeof PlacesToolbarHelper == 'undefined') return;
 		await PlacesToolbarHelper.init(); // wait until bookmarks bar has loaded
 		var PersonalToolbar = document.getElementById('PersonalToolbar');
 		var bookmarkItem = document.getElementsByClassName("bookmark-item");
 		if (PersonalToolbar && bookmarkItem.length >= 0) {
 
-			
+
 			this.PersonalToolbar = document.getElementById('PersonalToolbar');
 			this.userStyle();
 			if (this.branch.getBoolPref('multirowBar')) {
@@ -538,38 +538,38 @@ var roomybookmarkstoolbar = {
 				this.BBonNewTab();
 			}
 
-			roomybookmarkstoolbar.setColor();
+			if (!roomybookmarkstoolbarGlobals.colorCSS) this.setColor();
 
 			//favicon 
 			var defaultFavicon = (await fetchIconForSpec(PlacesUtils.favicons.defaultFavicon.spec))?.data;
-			for (const node of document.querySelectorAll("#PlacesToolbar toolbarbutton.bookmark-item")){
-				if (node.image && 
-					(await fetchIconForSpec(node.image))?.data == defaultFavicon) node.setAttribute('rbtdf','');
+			for (const node of document.querySelectorAll("#PlacesToolbar toolbarbutton.bookmark-item")) {
+				if (node.image &&
+					(await fetchIconForSpec(node.image))?.data == defaultFavicon) node.setAttribute('rbtdf', '');
 			}
-			
+
 
 			//After customisation colors are wiped
 			const PlacesToolbar = document.getElementById('PlacesToolbar');
-			PlacesToolbar.addEventListener("contextmenu", (event) => { if(event.target.classList.contains("bookmark-item")) roomybookmarkstoolbar.id = event.target._placesNode; }, false);
+			PlacesToolbar.addEventListener("contextmenu", (event) => { if (event.target.classList.contains("bookmark-item")) roomybookmarkstoolbar.id = event.target._placesNode; }, false);
 
-			for (const node of document.querySelectorAll("#PlacesToolbar toolbarbutton.bookmark-item")){
+			for (const node of document.querySelectorAll("#PlacesToolbar toolbarbutton.bookmark-item")) {
 				node._placesNode ? node.setAttribute('rbtid', node._placesNode.bookmarkGuid) : '';
 			}
 
-			const config = {childList: true, subtree: true, attributes: true, attributeFilter: [ "image" ]};
-			const callback = async function(mutationList) {
+			const config = { childList: true, subtree: true, attributes: true, attributeFilter: ["image"] };
+			const callback = async function (mutationList) {
 				for (const mutation of mutationList) {
-					for (const node of mutation.addedNodes){
-						if (node.classList.contains("bookmark-item") && node.tagName == "toolbarbutton"){
+					for (const node of mutation.addedNodes) {
+						if (node.classList.contains("bookmark-item") && node.tagName == "toolbarbutton") {
 							node._placesNode ? node.setAttribute('rbtid', node._placesNode.bookmarkGuid) : '';
-							if (node.image && (await fetchIconForSpec(node.image))?.data == defaultFavicon) node.setAttribute('rbtdf','');
+							if (node.image && (await fetchIconForSpec(node.image))?.data == defaultFavicon) node.setAttribute('rbtdf', '');
 						}
 					}
 					if (mutation.type === 'attributes') { //firefox update favicon by remove then re-set 'image'
-						if (mutation.target.image && (await fetchIconForSpec(mutation.target.image))?.data == defaultFavicon) mutation.target.setAttribute('rbtdf','');
+						if (mutation.target.image && (await fetchIconForSpec(mutation.target.image))?.data == defaultFavicon) mutation.target.setAttribute('rbtdf', '');
 						else if (mutation.target.hasAttribute('rbtdf')) mutation.target.removeAttribute('rbtdf');
-					}	
-			  }
+					}
+				}
 			};
 			const observer = new MutationObserver(callback);
 			observer.observe(PlacesToolbar, config);
@@ -577,47 +577,47 @@ var roomybookmarkstoolbar = {
 
 		function fetchIconForSpec(spec) { //took from mozilla's test file
 			return new Promise((resolve, reject) => {
-			  NetUtil.asyncFetch(
-				{
-				  uri: NetUtil.newURI(spec),
-				  loadUsingSystemPrincipal: true,
-				  contentPolicyType: Ci.nsIContentPolicy.TYPE_INTERNAL_IMAGE_FAVICON,
-				},
-				(input, status, request) => {
-				  if (!Components.isSuccessCode(status)) {
-					reject(new Error("unable to load icon"));
-					return;
-				  }
-		  
-				  try {
-					let data = NetUtil.readInputStreamToString(input, input.available());
-					let contentType = request.QueryInterface(Ci.nsIChannel).contentType;
-					input.close();
-					resolve({ data, contentType });
-				  } catch (ex) {
-					reject(ex);
-				  }
-				}
-			  );
+				NetUtil.asyncFetch(
+					{
+						uri: NetUtil.newURI(spec),
+						loadUsingSystemPrincipal: true,
+						contentPolicyType: Ci.nsIContentPolicy.TYPE_INTERNAL_IMAGE_FAVICON,
+					},
+					(input, status, request) => {
+						if (!Components.isSuccessCode(status)) {
+							reject(new Error("unable to load icon"));
+							return;
+						}
+
+						try {
+							let data = NetUtil.readInputStreamToString(input, input.available());
+							let contentType = request.QueryInterface(Ci.nsIChannel).contentType;
+							input.close();
+							resolve({ data, contentType });
+						} catch (ex) {
+							reject(ex);
+						}
+					}
+				);
 			});
-		  }
+		}
 	},
 
-	setColor: function() {
-		if (this.colorCSS) {
-			this.styleService('string', this.colorCSS, true);
+	setColor: function () {
+		if (roomybookmarkstoolbarGlobals.colorCSS) {
+			this.styleService('string', roomybookmarkstoolbarGlobals.colorCSS, true);
 		}
 		//If user not set colors, or delete db - stop
 		if (!this.branch.getBoolPref('DBcreated')) {
 			let file = FileUtils.getFile("ProfD", ["roomybookmarkstoolbar.sqlite"]);
-			try {file.remove(false);} catch(e) {console.log(e)} 
+			try { file.remove(false); } catch (e) { console.log(e) }
 			return;
 		}
 
 		Components.utils.import("resource://gre/modules/Services.jsm");
 		Components.utils.import("resource://gre/modules/FileUtils.jsm");
-		this.colorCSS = '';
-		this.colorCSS += '@-moz-document url(chrome://browser/content/browser.xhtml) {'+'\n';
+		roomybookmarkstoolbarGlobals.colorCSS = '';
+		roomybookmarkstoolbarGlobals.colorCSS += '@-moz-document url(chrome://browser/content/browser.xhtml) {' + '\n';
 
 		var macOS = false;
 
@@ -637,61 +637,65 @@ var roomybookmarkstoolbar = {
 			});
 			var statement = dbConn.createStatement("SELECT * FROM colors");
 			statement.executeAsync({
-					handleResult: async function(aResultSet) {
-						for (var row = aResultSet.getNextRow(); row; row = aResultSet.getNextRow()) {
-							await setColor(row.getResultByName("id"), row.getResultByName("textcolor"), row.getResultByName("backgroundcolor"));
-						}
-						canClose();
-					},
-					handleCompletion: async function(aResultSet) {
-						await promise;
-						if (macOS) {
-							roomybookmarkstoolbar.colorCSS += '#personal-bookmarks toolbarbutton.bookmark-item:hover > .toolbarbutton-text {color: #000000;}'
-							roomybookmarkstoolbar.colorCSS += '#personal-bookmarks toolbarbutton.bookmark-item:hover {background-color:transparent !important;}#personal-bookmarks toolbarbutton.bookmark-item > .toolbarbutton-text {text-shadow: none !important;}';
-						}
-						roomybookmarkstoolbar.colorCSS += '}'
-						roomybookmarkstoolbar.styleService('string', roomybookmarkstoolbar.colorCSS);
-						try { dbConn.asyncClose();} catch(e) {console.log(e)} 
+				handleResult: async function (aResultSet) {
+					let p = [];
+					for (var row = aResultSet.getNextRow(); row; row = aResultSet.getNextRow()) {
+						p.push(setColor(row.getResultByName("id"), row.getResultByName("textcolor"), row.getResultByName("backgroundcolor")));
 					}
+					Promise.allSettled(p).then(
+						_ => {
+							canClose()
+						});
+				},
+				handleCompletion: async function (aResultSet) {
+					await promise;
+					if (macOS) {
+						roomybookmarkstoolbarGlobals.colorCSS += '#personal-bookmarks toolbarbutton.bookmark-item:hover > .toolbarbutton-text {color: #000000;}';
+						roomybookmarkstoolbarGlobals.colorCSS += '#personal-bookmarks toolbarbutton.bookmark-item:hover {background-color:transparent !important;}#personal-bookmarks toolbarbutton.bookmark-item > .toolbarbutton-text {text-shadow: none !important;}';
+					}
+					roomybookmarkstoolbarGlobals.colorCSS += '}';
+					roomybookmarkstoolbar.styleService('string', roomybookmarkstoolbarGlobals.colorCSS);
+					try { dbConn.asyncClose(); } catch (e) { console.log(e) }
+				}
 			});
-			
+
 		} finally {
 		}
-		
+
 		async function setColor(id, texColor, bacColor) {
-			var bookmarksid = await PlacesUtils.bookmarks.fetch(id).then(r=>{
-				if (r?.parentGuid == "toolbar_____") return r?.index;
-				try { 
+			if (await PlacesUtils.bookmarks.fetch(id).then(r => {
+				if (r?.parentGuid == "toolbar_____") return true;
+				try {
 					if (!r) {
 						dbConn.executeSimpleSQL(`DELETE FROM colors WHERE id = "${id}"`);
 					}
-				} catch(e) {console.log(e)} 
-			});
-			const placesToolbarItems = document.getElementById("PlacesToolbarItems").children;
-
-			if (placesToolbarItems[bookmarksid]) {
+				} catch (e) { console.log(e) }
+				return false;
+			})) {
+				let colorCSS = '';
 				if (macOS) {		//Mac need gray background fix
-					roomybookmarkstoolbar.colorCSS += 
-						'#personal-bookmarks toolbarbutton.bookmark-item[rbtid="'+id+'"] > .toolbarbutton-text {'+'\n';
-						if (bacColor != '') roomybookmarkstoolbar.colorCSS += ' background-color:'+bacColor+';'+'\n';
-						roomybookmarkstoolbar.colorCSS += ' border-radius: 6px;'+'\n'+'}'+'\n'+
-						'#personal-bookmarks toolbarbutton.bookmark-item:hover[rbtid="'+id+'"] > .toolbarbutton-text {'+'\n';
-						if (texColor != '') roomybookmarkstoolbar.colorCSS += ' color: '+texColor+';'+'\n'+'}'+'\n';
+					colorCSS +=
+						'#personal-bookmarks toolbarbutton.bookmark-item[rbtid="' + id + '"] > .toolbarbutton-text {' + '\n';
+					if (bacColor != '') colorCSS += ' background-color:' + bacColor + ';' + '\n';
+					colorCSS += ' border-radius: 6px;' + '\n' + '}' + '\n' +
+						'#personal-bookmarks toolbarbutton.bookmark-item:hover[rbtid="' + id + '"] > .toolbarbutton-text {' + '\n';
+					if (texColor != '') colorCSS += ' color: ' + texColor + ';' + '\n' + '}' + '\n';
 				} else {
-					roomybookmarkstoolbar.colorCSS += '#personal-bookmarks toolbarbutton.bookmark-item[rbtid="'+id+'"] > .toolbarbutton-text {'+'\n';
-					if (texColor != '') roomybookmarkstoolbar.colorCSS += ' color: '+texColor+';'+'\n';
-					if (bacColor != '') roomybookmarkstoolbar.colorCSS += ' background-color:'+bacColor+';'+'\n';
-					roomybookmarkstoolbar.colorCSS += ' border-radius: 6px;'+'\n'+'}'+'\n';;
+					colorCSS += '#personal-bookmarks toolbarbutton.bookmark-item[rbtid="' + id + '"] > .toolbarbutton-text {' + '\n';
+					if (texColor != '') colorCSS += ' color: ' + texColor + ';' + '\n';
+					if (bacColor != '') colorCSS += ' background-color:' + bacColor + ';' + '\n';
+					colorCSS += ' border-radius: 6px;' + '\n' + '}' + '\n';;
 				}
-				roomybookmarkstoolbar.colorCSS += '#personal-bookmarks toolbarbutton.bookmark-item[rbtid="'+id+'"] {'+'\n';
-				if (texColor != '') roomybookmarkstoolbar.colorCSS += ' color: '+texColor+';'+'\n';
-				if (bacColor != '') roomybookmarkstoolbar.colorCSS += ' background-color:'+bacColor+';'+'\n';
-				roomybookmarkstoolbar.colorCSS += ' border-radius: 6px;'+'\n'+'}'+'\n';
+				colorCSS += '#personal-bookmarks toolbarbutton.bookmark-item[rbtid="' + id + '"] {' + '\n';
+				if (texColor != '') colorCSS += ' color: ' + texColor + ';' + '\n';
+				if (bacColor != '') colorCSS += ' background-color:' + bacColor + ';' + '\n';
+				colorCSS += ' border-radius: 6px;' + '\n' + '}' + '\n';
+				roomybookmarkstoolbarGlobals.colorCSS += colorCSS;
 			}
 		}
 	},
 
-	openColorMenu: function() {
+	openColorMenu: function () {
 		var elementURL;
 		if (PlacesUtils.nodeIsBookmark(roomybookmarkstoolbar.id) == true) { //If bookmarks
 			elementURL = roomybookmarkstoolbar.id.uri;
@@ -699,8 +703,8 @@ var roomybookmarkstoolbar = {
 		if (PlacesUtils.nodeIsFolder(roomybookmarkstoolbar.id) == true) {	//If folder
 			elementURL = 'Folder'
 		}
-		var bookmarkData = {inn:{id:roomybookmarkstoolbar.id.bookmarkGuid, url:elementURL, title:roomybookmarkstoolbar.id.title}, out:null};
-		openDialog("chrome://roomybookmarkstoolbar/content/colorMenu.xhtml","dlg","chrome, dialog, modal, centerscreen",bookmarkData).focus();
+		var bookmarkData = { inn: { id: roomybookmarkstoolbar.id.bookmarkGuid, url: elementURL, title: roomybookmarkstoolbar.id.title }, out: null };
+		openDialog("chrome://roomybookmarkstoolbar/content/colorMenu.xhtml", "dlg", "chrome, dialog, modal, centerscreen", bookmarkData).focus();
 		this.setColor();	//After dialog close - set colors
 	},
 }

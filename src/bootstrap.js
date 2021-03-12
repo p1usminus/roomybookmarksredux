@@ -1,5 +1,7 @@
 Components.utils.import("resource://gre/modules/Services.jsm");
 
+var Globals = {};
+
 let appinfo = Services.appinfo;
 
 let options = {
@@ -121,6 +123,7 @@ function startup(data, reason) {
         let chromeManifest = new ChromeManifest(function () { return man; }, options);
         await chromeManifest.parse();
         if (win.document.createXULElement) {
+          win.document.ownerGlobal.roomybookmarkstoolbarGlobals = Globals;
           Overlays.load(chromeManifest, win.document.defaultView);
         }
       })(win);
@@ -134,6 +137,7 @@ function startup(data, reason) {
     let documentObserver = {
       observe(document) {
         if (document.createXULElement) {
+          document.ownerGlobal.roomybookmarkstoolbarGlobals = Globals;
           Overlays.load(chromeManifest, document.defaultView);
         }
       }
