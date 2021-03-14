@@ -1,3 +1,15 @@
+if (!document.getElementById('placesContext')) throw 'overlay.js not in place';
+document.getElementById('placesContext').insertBefore(
+MozXULElement.parseXULToFragment(`
+	<menuseparator id="rbtSeparator"
+		insertafter="placesContext_delete"/>
+	<menuitem id="rbtChangeColor"
+		label="&roomybookmarkstoolbar.overlay.rbtChangeColor.label;"
+		oncommand="roomybookmarkstoolbar.openColorMenu()"
+		insertafter="rbtSeparator"/>
+`,["chrome://roomybookmarkstoolbar/locale/overlay.dtd"]),
+document.getElementById('placesContext_delete').nextSibling);
+
 var roomybookmarkstoolbar = {
 	branch: null,				//Perf system
 	cssStr: null,				//CSS string for user style
