@@ -76,7 +76,6 @@ function startup(data, reason) {
 
   Components.utils.import("resource:///modules/CustomizableUI.jsm");
 
-  // Create toolbar icon here
   CustomizableUI.createWidget({
     id: 'rbtlibbutton',
     defaultArea: CustomizableUI.AREA_NAVBAR,
@@ -89,7 +88,6 @@ function startup(data, reason) {
 
   const window = Services.wm.getMostRecentWindow('navigator:browser');
 
-  // This may be relevant if colorMenu is used
   if (reason === ADDON_UPGRADE || reason === ADDON_DOWNGRADE) {
     showRestartNotifcation("upgraded", window);
     return;
