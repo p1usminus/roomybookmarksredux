@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0"?>
 <?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
 
-<dialog id="roomybookmarkstoolbarGetSupport" title="Bookmarks color Roomy Bookmarks Toolbar"
+<dialog id="roomybookmarkstoolbarGetSupport" title="Roomy Bookmarks Toolbar: Bookmark item colors"
         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 		xmlns:html="http://www.w3.org/1999/xhtml"
 		onload="roomybookmarkstoolbarColor.onLoad()"
@@ -10,20 +10,21 @@
 	<vbox>
 		<hbox align="center" ><label value="Title: "/><html:input type="text" id="title" readonly="true" size="55"/></hbox>
 		<hbox align="center" ><label value="URL:  "/><html:input type="text" id="url" readonly="true" size="55"/></hbox>
-		<hbox pack="center"><label href="http://www.w3schools.com/tags/ref_colorpicker.asp" class="text-link" value="Get more HEX colors(w3schools.com)" /></hbox>
-		<label value="Select color of text(HEX):"/>
+		<html:fieldset>
+		<html:legend>Select color (HEX)</html:legend>
+		<label value="Text:"/>
 			<hbox align="center">
-		<html:input type="text" id="colorText" value="" onchange="roomybookmarkstoolbarColor.colorChanged(event, 'text')" style='width:165px'/>
+		<html:input type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" id="colorText" value="" onchange="roomybookmarkstoolbarColor.colorChanged(event, 'text')" style='width:165px'/>
 		<html:input type="color" id="colorTextButton" value="#ffffff" onchange="roomybookmarkstoolbarColor.colorChanged(event, 'text')" style='width:165px'/>
 			</hbox>
-		<label value="Select color of background (empty = no background)(HEX):"/>
+		<label value="Background (empty = no background):"/>
 			<hbox align="center">
-		<html:input type="text" id="colorBac" value="" onchange="roomybookmarkstoolbarColor.colorChanged(event, 'background')" style='width:165px'/>
+		<html:input type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" id="colorBac" value="" onchange="roomybookmarkstoolbarColor.colorChanged(event, 'background')" style='width:165px'/>
 		<html:input type="color" id="colorBacButton" value="#ffffff" onchange="roomybookmarkstoolbarColor.colorChanged(event, 'background')" style='width:165px'/>
 			</hbox>
-		 <label href="https://addons.mozilla.org/ru/firefox/addon/roomy-bookmarks-toolbar/developers" class="text-link" value="Help development by making contribution(addons.mozila.org)" style='font-size:9pt'/>
+		</html:fieldset>
 	</vbox>
 	<button label="Save" oncommand="roomybookmarkstoolbarColor.onOk();"/>
 	<button label="Clear" oncommand="roomybookmarkstoolbarColor.clearColor();"/>
-	<button label="Delete all change" oncommand="roomybookmarkstoolbarColor.deleteDB();"/>
+	<button label="Delete all changes" oncommand="roomybookmarkstoolbarColor.deleteDB();"/>
 </dialog>

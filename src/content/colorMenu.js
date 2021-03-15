@@ -61,7 +61,7 @@
 	},
 
 	deleteDB: function() {
-		if (confirm('Do you wank delete all change?')) {
+		if (confirm('Do you want to delete all changes?')) {
 			this.db('', 'deleteDB');
 		}
 	},
@@ -146,7 +146,7 @@
 				var statement = dbConn.createStatement("DELETE FROM colors");
 				statement.executeAsync({
 					handleCompletion: function(aReason) {
-						alert('Please restart your browser to reset styles');
+						//alert('Please restart your browser to reset styles');
 						dbConn.asyncClose();
 						window.close();
 					}}

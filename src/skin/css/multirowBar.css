@@ -16,8 +16,8 @@
 	#PlacesToolbarItems {
 		display: flex;
 		flex-wrap: wrap;
-		overflow-x: hidden !important;
-		overflow-y: visible !important;
+		overflow-x: hidden;
+		overflow-y: visible;
 		scrollbar-color: var(--lwt-accent-color) var(--toolbar-bgcolor);
   		scrollbar-width: thin;
 	}
