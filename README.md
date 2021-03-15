@@ -7,7 +7,7 @@ Originally created by [Someone free](https://web.archive.org/web/20191029180906/
 Please read the tips.
 
 ## Tips ##
-* :warning: If using Waterfox and/or bootstrapLoader the browser __must__ be restarted after installation, (and then install the extension again?)
+* :warning: If using Waterfox and/or bootstrapLoader the browser __must__ be restarted after installation!
   * (If using userChromeJS the startup cache may need to be cleared between updates.)
 * The fixed height option should be used when the multirow option is selected, otherwise the toolbar will try to stay at single row height.
 * The toolbar behaves strangely when using the multirow option with a non-standard favicon size. Solution: Use the option to fix incorrect height __with__ a non-zero margin size (see 2nd option tab). I wish this was less complicated.
