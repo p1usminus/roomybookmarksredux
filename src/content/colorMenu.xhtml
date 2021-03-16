@@ -14,12 +14,12 @@
 		<html:legend>Select color (HEX)</html:legend>
 		<label value="Text:"/>
 			<hbox align="center">
-		<html:input type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" id="colorText" value="" onchange="roomybookmarkstoolbarColor.colorChanged(event, 'text')" style='width:165px'/>
+		<html:input type="text" id="colorText" value="" onchange="roomybookmarkstoolbarColor.colorChanged(event, 'text')" style='width:165px'/>
 		<html:input type="color" id="colorTextButton" value="#ffffff" onchange="roomybookmarkstoolbarColor.colorChanged(event, 'text')" style='width:165px'/>
 			</hbox>
 		<label value="Background (empty = no background):"/>
 			<hbox align="center">
-		<html:input type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" id="colorBac" value="" onchange="roomybookmarkstoolbarColor.colorChanged(event, 'background')" style='width:165px'/>
+		<html:input type="text" id="colorBac" value="" onchange="roomybookmarkstoolbarColor.colorChanged(event, 'background')" style='width:165px'/>
 		<html:input type="color" id="colorBacButton" value="#ffffff" onchange="roomybookmarkstoolbarColor.colorChanged(event, 'background')" style='width:165px'/>
 			</hbox>
 		</html:fieldset>
