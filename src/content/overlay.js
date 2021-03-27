@@ -72,14 +72,14 @@ var roomybookmarkstoolbar = {
 		const hovered = roomybookmarkstoolbar.hovered;
 		const popup = roomybookmarkstoolbar.popup;
 
-		if (roomybookmarkstoolbar.timeOutHide) {
-			clearTimeout(roomybookmarkstoolbar.timeOutHide);
+		if (this.timeOutHide) {
+			clearTimeout(this.timeOutHide);
 		}
-		roomybookmarkstoolbar.timeOutHide = null;
+		this.timeOutHide = null;
 
 		if (!roomybookmarkstoolbar.PersonalToolbar.collapsed && !hovered && !popup) {
 			roomybookmarkstoolbar.visible = false;
-			roomybookmarkstoolbar.timeOutHide = setTimeout(roomybookmarkstoolbar.setVisibly, roomybookmarkstoolbar.hideBarTime);
+			this.timeOutHide = setTimeout(roomybookmarkstoolbar.setVisibly, roomybookmarkstoolbar.hideBarTime);
 		} else {
 			if (hovered) {
 				roomybookmarkstoolbar.visible = true;
@@ -260,6 +260,7 @@ var roomybookmarkstoolbar = {
 	},
 
 	autoHideBookmarksBar: function (change) {
+		// var bookmarkItem = document.getElementsByClassName("bookmark-item");
 		var autoHideBar = this.branch.getBoolPref('autoHideBar');
 		var BBonNewTab = this.branch.getBoolPref('BBonNewTab');
 
