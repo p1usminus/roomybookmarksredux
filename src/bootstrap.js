@@ -106,6 +106,7 @@ function startup(data, reason) {
           if (win.location.origin + win.location.pathname == "chrome://browser/content/browser.xhtml") {
             win.document.ownerGlobal.roomybookmarkstoolbarGlobals = Globals;
             Services.scriptloader.loadSubScript("chrome://roomybookmarkstoolbar/content/overlay.js", win.document.defaultView);
+            win.gBrowser.tabs.filter(x=>x.linkedBrowser.currentURI.spec == 'about:addons' && x.linkedBrowser.contentWindow).forEach(x=>Services.scriptloader.loadSubScript("chrome://roomybookmarkstoolbar/content/aboutaddons.js", x.linkedBrowser.contentWindow));
           }
         }
       })(win);
@@ -119,6 +120,9 @@ function startup(data, reason) {
           if (document.defaultView.location.origin + document.defaultView.location.pathname == "chrome://browser/content/browser.xhtml") {
             document.ownerGlobal.roomybookmarkstoolbarGlobals = Globals;
             Services.scriptloader.loadSubScript("chrome://roomybookmarkstoolbar/content/overlay.js", document.defaultView);
+          }
+          if (document.defaultView.location.href == "about:addons"){
+            Services.scriptloader.loadSubScript("chrome://roomybookmarkstoolbar/content/aboutaddons.js", document.defaultView);
           }
         }
       }
