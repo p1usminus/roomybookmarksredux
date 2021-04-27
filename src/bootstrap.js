@@ -1,4 +1,5 @@
 Components.utils.import("resource://gre/modules/Services.jsm");
+Components.utils.import("resource://gre/modules/AddonManager.jsm");
 
 var Globals = {};
 
@@ -61,9 +62,10 @@ function showRestartNotifcation(verb, window) {
   );
 }
 
-function install(data, reason) {
+async function install(data, reason) {
   const window = Services.wm.getMostRecentWindow('navigator:browser');
   showRestartNotifcation("installed", window);
+  (await AddonManager.getAddonByID(`${data.id}`)).__AddonInternal__.signedState = AddonManager.SIGNEDSTATE_NOT_REQUIRED;
   return;
 }
 

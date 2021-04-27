@@ -8,10 +8,6 @@
     const addonCard = window.docShell.chromeEventHandler.contentDocument
       .querySelector(`addon-card[addon-id="${ID}"]`);
     if (addonCard) {
-      const messageBox = addonCard.querySelector(".addon-card-message");
-      if (messageBox.getAttribute("type") === "warning") {
-        messageBox.style.display = "none";
-      }
       const optionsButton = addonCard.querySelector(`panel-item[action="preferences"]`).button;
       optionsButton.removeAttribute("action");
       if (!optionsButton._option_command_installed) {
