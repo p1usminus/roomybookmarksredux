@@ -19,7 +19,7 @@
         optionsButton.addEventListener("click", event => {
           event.stopPropagation();
           try {
-            windowRoot.ownerGlobal.openDialog(addonCard.addon.optionsURL, '&prefwindow.title;', 'chrome,centerscreen,toolbar');
+            windowRoot.ownerGlobal.openDialog(addonCard.addon.optionsURL, '&roomybookmarkstoolbar.options.window.title;', 'chrome,centerscreen,toolbar');
           } catch (ex) {
             windowRoot.ownerGlobal.console.log(ex);
           }
