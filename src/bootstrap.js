@@ -62,31 +62,32 @@ function showRestartNotifcation(verb, window) {
   );
 }
 
-async function install(data, reason) {
+function install(data, reason) {
   const window = Services.wm.getMostRecentWindow('navigator:browser');
   showRestartNotifcation("installed", window);
-  (await AddonManager.getAddonByID(`${data.id}`)).__AddonInternal__.signedState = AddonManager.SIGNEDSTATE_NOT_REQUIRED;
   return;
 }
 
 function uninstall() { }
 
-function startup(data, reason) {
+async function startup(data, reason) {
   var temp = {};
   Services.scriptloader.loadSubScript("chrome://roomybookmarkstoolbar/content/prefs.js", temp, 'UTF-8');
   delete temp;
 
   Components.utils.import("resource:///modules/CustomizableUI.jsm");
 
-  CustomizableUI.createWidget({
-    id: 'rbtlibbutton',
-    defaultArea: CustomizableUI.AREA_NAVBAR,
-    label: 'Show bookmarks toolbar',
-    tooltiptext: 'Show bookmarks toolbar',
-    onCreated: function (toolbaritem) {
-      toolbaritem.setAttribute('image', 'chrome://roomybookmarkstoolbar/skin/button32.png');
-    }
-  });
+  try {
+    CustomizableUI.createWidget({
+      id: 'rbtlibbutton',
+      defaultArea: CustomizableUI.AREA_NAVBAR,
+      label: 'Show bookmarks toolbar',
+      tooltiptext: 'Show bookmarks toolbar',
+      onCreated: function (toolbaritem) {
+        toolbaritem.setAttribute('image', 'chrome://roomybookmarkstoolbar/skin/button32.png');
+      }
+    });
+  } catch (error) { }
 
   const window = Services.wm.getMostRecentWindow('navigator:browser');
 
@@ -108,7 +109,6 @@ function startup(data, reason) {
           if (win.location.origin + win.location.pathname == "chrome://browser/content/browser.xhtml") {
             win.document.ownerGlobal.roomybookmarkstoolbarGlobals = Globals;
             Services.scriptloader.loadSubScript("chrome://roomybookmarkstoolbar/content/overlay.js", win.document.defaultView);
-            win.gBrowser.tabs.filter(x=>x.linkedBrowser.currentURI.spec == 'about:addons' && x.linkedBrowser.contentWindow).forEach(x=>Services.scriptloader.loadSubScript("chrome://roomybookmarkstoolbar/content/aboutaddons.js", x.linkedBrowser.contentWindow));
           }
         }
       })(win);
@@ -123,15 +123,19 @@ function startup(data, reason) {
             document.ownerGlobal.roomybookmarkstoolbarGlobals = Globals;
             Services.scriptloader.loadSubScript("chrome://roomybookmarkstoolbar/content/overlay.js", document.defaultView);
           }
-          if (document.defaultView.location.href == "about:addons"){
-            Services.scriptloader.loadSubScript("chrome://roomybookmarkstoolbar/content/aboutaddons.js", document.defaultView);
-          }
         }
       }
     };
     Services.obs.addObserver(documentObserver, "chrome-document-loaded");
   })();
 
+  (async function () {
+    try {
+      Services.prefs.getBoolPref("extensions.roomybookmarkstoolbar.hide_warring") ?
+        (await AddonManager.getAddonByID(`${data.id}`)).__AddonInternal__.signedState = AddonManager.SIGNEDSTATE_NOT_REQUIRED
+        : (await AddonManager.getAddonByID(`${data.id}`)).__AddonInternal__.signedState === AddonManager.SIGNEDSTATE_NOT_REQUIRED ? (await AddonManager.getAddonByID(`${data.id}`)).__AddonInternal__.signedState = AddonManager.SIGNEDSTATE_MISSING : '';
+    } catch (error) { }
+  })();
 }
 
 function shutdown(data, reason) {
