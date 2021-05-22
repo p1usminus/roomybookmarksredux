@@ -36,6 +36,7 @@ Preferences.addAll([
 	{ id: "extensions.roomybookmarkstoolbar.showBookmarksNames", type: "bool" },
 	{ id: "extensions.roomybookmarkstoolbar.DBcreated", type: "bool" },
 	{ id: "extensions.roomybookmarkstoolbar.textSize", type: "int" },
+	{ id: "extensions.roomybookmarkstoolbar.hide_warning", type: "bool" },
 ]);
 
 	
