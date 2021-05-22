@@ -29,7 +29,7 @@
 		<em:homepageURL>https://github.com/p1usminus/roomybookmarksredux</em:homepageURL>
 		<em:updateURL>https://raw.githubusercontent.com/p1usminus/roomybookmarksredux/master/update.json</em:updateURL>
 		<em:optionsURL>chrome://roomybookmarkstoolbar/content/options.xhtml</em:optionsURL>
-		<em:optionsType>3</em:optionsType>
+		<em:optionsType>1</em:optionsType>
 		<em:iconURL>chrome://roomybookmarkstoolbar/skin/icon.png</em:iconURL>
 		
 		<em:targetApplication>

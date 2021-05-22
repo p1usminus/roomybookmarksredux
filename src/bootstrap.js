@@ -1,4 +1,5 @@
 Components.utils.import("resource://gre/modules/Services.jsm");
+Components.utils.import("resource://gre/modules/AddonManager.jsm");
 
 var Globals = {};
 
@@ -69,22 +70,24 @@ function install(data, reason) {
 
 function uninstall() { }
 
-function startup(data, reason) {
+async function startup(data, reason) {
   var temp = {};
   Services.scriptloader.loadSubScript("chrome://roomybookmarkstoolbar/content/prefs.js", temp, 'UTF-8');
   delete temp;
 
   Components.utils.import("resource:///modules/CustomizableUI.jsm");
 
-  CustomizableUI.createWidget({
-    id: 'rbtlibbutton',
-    defaultArea: CustomizableUI.AREA_NAVBAR,
-    label: 'Show bookmarks toolbar',
-    tooltiptext: 'Show bookmarks toolbar',
-    onCreated: function (toolbaritem) {
-      toolbaritem.setAttribute('image', 'chrome://roomybookmarkstoolbar/skin/button32.png');
-    }
-  });
+  try {
+    CustomizableUI.createWidget({
+      id: 'rbtlibbutton',
+      defaultArea: CustomizableUI.AREA_NAVBAR,
+      label: 'Show bookmarks toolbar',
+      tooltiptext: 'Show bookmarks toolbar',
+      onCreated: function (toolbaritem) {
+        toolbaritem.setAttribute('image', 'chrome://roomybookmarkstoolbar/skin/button32.png');
+      }
+    });
+  } catch (error) { }
 
   const window = Services.wm.getMostRecentWindow('navigator:browser');
 
@@ -126,6 +129,13 @@ function startup(data, reason) {
     Services.obs.addObserver(documentObserver, "chrome-document-loaded");
   })();
 
+  (async function () {
+    try {
+      Services.prefs.getBoolPref("extensions.roomybookmarkstoolbar.hide_warring") ?
+        (await AddonManager.getAddonByID(`${data.id}`)).__AddonInternal__.signedState = AddonManager.SIGNEDSTATE_NOT_REQUIRED
+        : (await AddonManager.getAddonByID(`${data.id}`)).__AddonInternal__.signedState === AddonManager.SIGNEDSTATE_NOT_REQUIRED ? (await AddonManager.getAddonByID(`${data.id}`)).__AddonInternal__.signedState = AddonManager.SIGNEDSTATE_MISSING : '';
+    } catch (error) { }
+  })();
 }
 
 function shutdown(data, reason) {
