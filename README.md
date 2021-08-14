@@ -11,9 +11,6 @@ Please read the tips.
   * (If using userChromeJS the startup cache may need to be cleared between updates.)
 * The fixed height option should be used when the multirow option is selected, otherwise the toolbar will try to stay at single row height.
 * The toolbar behaves strangely when using the multirow option with a non-standard favicon size. Solution: Use the option to fix incorrect height __with__ a non-zero margin size (see 2nd option tab). I wish this was less complicated.
-* Firefox: Set `browser.toolbars.bookmarks.2h2020` to false otherwise the extension will misbehave.
-* :star2: New pref: `extensions.roomybookmarkstoolbar.hide_warning` can be set to false (to show) or true (to hide) the unsigned addon warning in about:addons - restart required!
-  * It is set to true by default.
 * Sometimes the toolbar simply breaks - such as when disabling the multirow option (while using the auto-hide feature).
   * Re-enabling the bookmarks toolbar from the customise menu (or restarting the browser) should fix this.
   
