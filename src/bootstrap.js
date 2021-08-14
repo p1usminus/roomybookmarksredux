@@ -63,6 +63,8 @@ function showRestartNotifcation(verb, window) {
 }
 
 function install(data, reason) {
+  Services.prefs.setBoolPref("browser.toolbars.bookmarks.2h2020", false);
+  
   const window = Services.wm.getMostRecentWindow('navigator:browser');
   showRestartNotifcation("installed", window);
   return;
