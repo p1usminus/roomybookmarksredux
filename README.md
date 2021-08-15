@@ -9,6 +9,12 @@ Please read the tips.
 ## Tips ##
 * :warning: If using Waterfox and/or bootstrapLoader the browser __must__ be restarted after installation!
   * (If using userChromeJS the startup cache may need to be cleared between updates.)
+* Browser & version compatibility
+  * Firefox 78+: [latest version](https://github.com/p1usminus/roomybookmarksredux/releases/latest)
+  * Waterfox G3: [v1.7.0.1](https://github.com/p1usminus/roomybookmarksredux/releases/tag/v1.7.0.1)
+  * Waterfox Current: [v1.5.5.1](https://github.com/p1usminus/roomybookmarksredux/releases/tag/v1.5.5.1)
+  * Waterfox Classic: [v1.4.17/original](https://web.archive.org/web/20191029180906/https://legacycollector.org/firefox-addons/210846/roomy-bookmarks-toolbar-1.4.17.xpi) (pls update)
+  * Pale Moon: Try [Cozy Bookmarks Toolbar](https://addons.palemoon.org/addon/cozy-bookmarks-toolbar/)
 * The fixed height option should be used when the multirow option is selected, otherwise the toolbar will try to stay at single row height.
 * The toolbar behaves strangely when using the multirow option with a non-standard favicon size. Solution: Use the option to fix incorrect height __with__ a non-zero margin size (see 2nd option tab). I wish this was less complicated.
 * Sometimes the toolbar simply breaks - such as when disabling the multirow option (while using the auto-hide feature).
