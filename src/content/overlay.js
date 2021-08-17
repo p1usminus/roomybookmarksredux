@@ -65,6 +65,7 @@ var roomybookmarkstoolbar = {
 
 	setVisibly: function () {
 		roomybookmarkstoolbar.PersonalToolbar.collapsed = !roomybookmarkstoolbar.visible;
+		PlacesToolbarHelper._resetView();
 	},
 
 	hideHandler: function () {
@@ -283,7 +284,7 @@ var roomybookmarkstoolbar = {
 				this.eventListenerhandler(false, true);
 				this.eventListenerhandler(false, false);
 				roomybookmarkstoolbar.autohide = false;
-				this.PersonalToolbar.collapsed = false;
+				this.hideBookmarksBar(false);
 			}
 		}
 	},
@@ -424,7 +425,7 @@ var roomybookmarkstoolbar = {
 		if (this.branch.getBoolPref('hideByDefault')) {
 			this.PersonalToolbar.collapsed = true;
 		} else {
-			if (!this.branch.getBoolPref('autoHideBar') && !this.branch.getBoolPref('BBonNewTab')) { this.PersonalToolbar.collapsed = false; }
+			if (!this.branch.getBoolPref('autoHideBar') && !this.branch.getBoolPref('BBonNewTab')) { this.hideBookmarksBar(false); }
 		}
 	},
 
@@ -435,7 +436,7 @@ var roomybookmarkstoolbar = {
 			if (roomybookmarkstoolbar.branch.getBoolPref('BBonNewTab')) {
 				var tabUrl = gBrowser.currentURI.scheme;
 				if (tabUrl == 'about' || tabUrl == 'chrome') {
-					roomybookmarkstoolbar.PersonalToolbar.collapsed = false;
+					roomybookmarkstoolbar.hideBookmarksBar(false);
 				} else {
 					roomybookmarkstoolbar.PersonalToolbar.collapsed = true;
 				}
@@ -450,12 +451,13 @@ var roomybookmarkstoolbar = {
 		} else {
 			tabContainer.removeEventListener("TabSelect", hideBBonPage, false);
 			tabContainer.removeEventListener("TabAttrModified", hideBBonPage, false);
-			if (!this.branch.getBoolPref('autoHideBar') && !this.branch.getBoolPref('hideByDefault')) { this.PersonalToolbar.collapsed = false; }
+			if (!this.branch.getBoolPref('autoHideBar') && !this.branch.getBoolPref('hideByDefault')) { this.hideBookmarksBar(false); }
 		}
 	},
 
-	hideBookmarksBar: function () {
-		this.PersonalToolbar.collapsed = !this.PersonalToolbar.collapsed;
+	hideBookmarksBar: function (arg = !this.PersonalToolbar.collapsed) {
+		this.PersonalToolbar.collapsed = arg;
+		PlacesToolbarHelper._resetView();
 	},
 
 	optionsHandler: function () {
