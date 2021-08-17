@@ -64,8 +64,7 @@ var roomybookmarkstoolbar = {
 	},
 
 	setVisibly: function () {
-		roomybookmarkstoolbar.PersonalToolbar.collapsed = !roomybookmarkstoolbar.visible;
-		PlacesToolbarHelper._resetView();
+		roomybookmarkstoolbar.hideBookmarksBar(!roomybookmarkstoolbar.visible);
 	},
 
 	hideHandler: function () {
