@@ -456,7 +456,7 @@ var roomybookmarkstoolbar = {
 
 	hideBookmarksBar: function (arg = !this.PersonalToolbar.collapsed) {
 		this.PersonalToolbar.collapsed = arg;
-		PlacesToolbarHelper._resetView();
+		PlacesToolbarHelper.init();
 	},
 
 	optionsHandler: function () {
