@@ -17,8 +17,6 @@ Please read the tips.
   * Pale Moon: Try [Cozy Bookmarks Toolbar](https://addons.palemoon.org/addon/cozy-bookmarks-toolbar/)
 * The fixed height option should be used when the multirow option is selected, otherwise the toolbar will try to stay at single row height.
 * The toolbar behaves strangely when using the multirow option with a non-standard favicon size. Solution: Use the option to fix incorrect height __with__ a non-zero margin size (see 2nd option tab). I wish this was less complicated.
-* Sometimes the toolbar simply breaks - such as when disabling the multirow option (while using the auto-hide feature).
-  * Re-enabling the bookmarks toolbar from the customise menu (or restarting the browser) should fix this.
   
 - - - -
 
