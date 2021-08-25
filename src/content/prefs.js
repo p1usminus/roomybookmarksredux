@@ -55,7 +55,6 @@
 	pref("extensions.roomybookmarkstoolbar.overPage", false);
 	pref("extensions.roomybookmarkstoolbar.folderMargin", 0);
 	pref("extensions.roomybookmarkstoolbar.height", 0);
-	pref("extensions.roomybookmarkstoolbar.showBookmarksNames", false);
 	pref("extensions.roomybookmarkstoolbar.DBcreated", false);
 	pref("extensions.roomybookmarkstoolbar.textSize", 100);
 	pref("extensions.roomybookmarkstoolbar.hide_warning", true);

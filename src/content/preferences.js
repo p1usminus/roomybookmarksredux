@@ -33,7 +33,6 @@ Preferences.addAll([
 	{ id: "extensions.roomybookmarkstoolbar.overPage", type: "bool" },
 	{ id: "extensions.roomybookmarkstoolbar.folderMargin", type: "int" },
 	{ id: "extensions.roomybookmarkstoolbar.height", type: "int" },
-	{ id: "extensions.roomybookmarkstoolbar.showBookmarksNames", type: "bool" },
 	{ id: "extensions.roomybookmarkstoolbar.DBcreated", type: "bool" },
 	{ id: "extensions.roomybookmarkstoolbar.textSize", type: "int" },
 	{ id: "extensions.roomybookmarkstoolbar.hide_warning", type: "bool" },

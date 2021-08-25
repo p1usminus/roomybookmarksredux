@@ -16,7 +16,7 @@ Please read the tips.
   * Waterfox Classic: [v1.4.17/original](https://web.archive.org/web/20191029180906/https://legacycollector.org/firefox-addons/210846/roomy-bookmarks-toolbar-1.4.17.xpi) (pls update)
   * Pale Moon: Try [Cozy Bookmarks Toolbar](https://addons.palemoon.org/addon/cozy-bookmarks-toolbar/)
 * The fixed height option should be used when the multirow option is selected, otherwise the toolbar will try to stay at single row height.
-* The toolbar behaves strangely when using the multirow option with a non-standard favicon size. Solution: Use the option to fix incorrect height __with__ a non-zero margin size (see 2nd option tab). I wish this was less complicated.
+* The toolbar behaves strangely when using the multirow option with a non-standard favicon size. Solution: Use the option to fix incorrect height ~~__with__ a non-zero margin size (see 2nd option tab). I wish this was less complicated.~~
   
 - - - -
 

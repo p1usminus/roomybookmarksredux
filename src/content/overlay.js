@@ -461,7 +461,6 @@ var roomybookmarkstoolbar = {
 
 	optionsHandler: function () {
 		if (this.PersonalToolbar) {
-			if (this.branch.getBoolPref('hideBookmarksName')) { this.branch.setBoolPref('showBookmarksNames', false) }		//We change old options to new
 			roomybookmarkstoolbar.userStyle();
 			roomybookmarkstoolbar.unRegisterCss();
 			roomybookmarkstoolbar.registerCss();
@@ -503,11 +502,6 @@ var roomybookmarkstoolbar = {
 		var hideBookmarksName = this.branch.getBoolPref('hideBookmarksName');
 		var hideBookmarksIcons = this.branch.getBoolPref('hideBookmarksIcons');
 		var location = this.branch.getIntPref('location');
-
-		//If was enabled showBookmarksNames - need disable hiding
-		if (this.branch.getBoolPref('showBookmarksNames')) {
-			this.branch.setBoolPref('hideBookmarksName', false);
-		}
 
 		this.styleService('file', 'main');
 
@@ -573,7 +567,7 @@ var roomybookmarkstoolbar = {
 			const callback = async function (mutationList) {
 				for (const mutation of mutationList) {
 					for (const node of mutation.addedNodes) {
-						if (node.classList.contains("bookmark-item") && node.tagName == "toolbarbutton") {
+						if (node.classList?.contains("bookmark-item") && node.tagName == "toolbarbutton") {
 							node._placesNode ? node.setAttribute('rbtid', node._placesNode.bookmarkGuid) : '';
 							if (node.image && (await fetchIconForSpec(node.image))?.data == defaultFavicon) node.setAttribute('rbtdf', '');
 						}

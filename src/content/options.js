@@ -22,15 +22,16 @@
 		//If multirow is On, location don't work so:
 		if (document.getElementById('multirowBarPerf').checked) {
 			document.getElementById('locationPerf').disabled = true;
-			this.branch.setIntPref('location', 0);
+			this.branch.setIntPref('location', 0);	
 		} else {
 			document.getElementById('locationPerf').disabled = false;
 		}
 		document.getElementById('rowsPerf').disabled = !document.getElementById('multirowBarPerf').checked;
 		document.getElementById('fixedHeightPerf').disabled = document.getElementById('rowsPerf').disabled;
 		document.getElementById('heightFixPerf').disabled = !document.getElementById('multirowBarPerf').checked;
-		//Set fixedHeight on 'false' - is this needed?
-		if (document.getElementById('fixedHeightPerf').disabled) {document.getElementById('fixedHeightPerf').checked = false; }
+		//Reset fixed height (& incorrect height fix) boxes
+		//if (document.getElementById('fixedHeightPerf').disabled) { document.getElementById('fixedHeightPerf').checked = false; }
+		//if (document.getElementById('heightFixPerf').disabled) { document.getElementById('heightFixPerf').checked = false; }
 	},
 
 	autoHideBar: function() {
