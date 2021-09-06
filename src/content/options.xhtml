@@ -13,46 +13,6 @@
 		<stringbundle id="roomybookmarkstoolbar-strings" src="chrome://roomybookmarkstoolbar/locale/roomybookmarkstoolbar.properties" />
 	</stringbundleset>
 	
-	<script type="text/javascript">
-	  <![CDATA[
-		// avoid opening prefs in tab, workaround to bug 1414406
-		var {
-		  classes: Cc,
-		  interfaces: Ci,
-		  utils: Cu
-		} = Components;
-		var chromewin = window.docShell.rootTreeItem.domWindow;
-		if (chromewin.location.href !== 'chrome://roomybookmarkstoolbar/content/options.xhtml') {
-			var gBrowser = chromewin.gBrowser;
-      		let kcTab = gBrowser.selectedTab;
-      		let previousTab;
-      		let lastAccessed  = 0;
-      		for (let tab of gBrowser.tabs) {
-      		  if (!tab._notselectedsinceload && !tab.getAttribute('pending') && tab._lastAccessed > lastAccessed && tab != kcTab) {
-      		    lastAccessed = tab._lastAccessed;
-      		    previousTab = tab;
-      		  }
-      		}
-      		gBrowser.selectedTab = previousTab;
-		  
-      		chromewin.setTimeout(() => {		  
-				chromewin.openDialog('chrome://roomybookmarkstoolbar/content/options.xhtml', '&roomybookmarkstoolbar.options.window.title;', 'chrome,centerscreen,toolbar');
-			}, 0);
-
-			gBrowser.removeTab(kcTab);
-		} else {
-		  setTimeout(function () {
-			var navwin = Cc['@mozilla.org/appshell/window-mediator;1']
-							 .getService(Ci.nsIWindowMediator).getMostRecentWindow('navigator:browser');
-			var {SessionStoreInternal} = Cu.import('resource:///modules/sessionstore/SessionStore.jsm', navwin);
-			var data = SessionStoreInternal._windows[navwin.__SSi];
-			if (data._closedTabs && data._closedTabs.length && data._closedTabs[0].state.entries[0].url === 'chrome://roomybookmarkstoolbar/content/options.xhtml')
-			  data._closedTabs.shift();
-		  }, 0);
-		}
-	  ]]>
-	</script>
-	
 	<tabbox id="roomybookmarkstoolbarTabBox">
 		<tabs id="roomybookmarkstoolbar.options.tabs">
 			<tab id="roomybookmarkstoolbar.options.tab1" label="&roomybookmarkstoolbar.options.tab1.label;" />
