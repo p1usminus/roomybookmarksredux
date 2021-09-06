@@ -391,7 +391,7 @@ var roomybookmarkstoolbar = {
 				this.styleService('string', this.cssStr, true)
 			}
 
-			//this.cssStr = '@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);';
+			this.cssStr = '@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);';
 
 			this.cssStr += '@-moz-document url(chrome://browser/content/browser.xhtml) {';
 
@@ -404,7 +404,7 @@ var roomybookmarkstoolbar = {
 			if (userWidthEnabled) {
 				this.cssStr += '.bookmark-item{max-width: ' + userWidth + 'px !important}';
 			}
-			if (folderMargin != 0) { //repurposed
+			if (folderMargin != 0) {
 				this.cssStr += '#personal-bookmarks #PlacesToolbar toolbarbutton.bookmark-item{margin-top: ' + folderMargin + 'px !important;margin-bottom: ' + folderMargin + 'px !important}'
 			}
 			if (textSize != 100) {
