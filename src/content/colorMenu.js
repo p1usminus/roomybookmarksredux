@@ -146,7 +146,6 @@
 				var statement = dbConn.createStatement("DELETE FROM colors");
 				statement.executeAsync({
 					handleCompletion: function(aReason) {
-						//alert('Please restart your browser to reset styles');
 						dbConn.asyncClose();
 						window.close();
 					}}
