@@ -153,57 +153,30 @@
 	<html:fieldset>
 	<html:legend>&roomybookmarkstoolbar.options.BookmarksLabelGroup.label;</html:legend>
 	<vbox>
+		<checkbox preference="extensions.roomybookmarkstoolbar.mousehover" id="mousehoverPerf" label="&roomybookmarkstoolbar.options.onHover.label;" disabled="false" oncommand="roomybookmarkstoolbarOptions.showName();" />
 		<checkbox preference="extensions.roomybookmarkstoolbar.hideBookmarksName" id="hideBookmarksNamePerf" label="&roomybookmarkstoolbar.options.hideBookmarksName.label;" oncommand="roomybookmarkstoolbarOptions.showName()" />
 		<checkbox preference="extensions.roomybookmarkstoolbar.hideFoldersNames" id="hideFoldersNamesPerf" label="&roomybookmarkstoolbar.options.hideFoldersNames.label;" disabled="false" oncommand="roomybookmarkstoolbarOptions.showName();" />
 		<checkbox preference="extensions.roomybookmarkstoolbar.hideNoFaviconNames" id="hideNoFaviconNamesPerf" label="&roomybookmarkstoolbar.options.hideNoFaviconNames.label;" disabled="false" oncommand="roomybookmarkstoolbarOptions.showName();" />
 	</vbox>
-	</html:fieldset>
-	<vbox>
-		<checkbox preference="extensions.roomybookmarkstoolbar.mousehover" id="mousehoverPerf" label="&roomybookmarkstoolbar.options.onHover.label;" disabled="false" oncommand="roomybookmarkstoolbarOptions.showName();" />
-	</vbox>
-	<vbox>
-		<vbox>
-			<checkbox preference="extensions.roomybookmarkstoolbar.userWidthEnabled" id="userWidthEnabledPerf" label="&roomybookmarkstoolbar.options.userWidthEnabled.label;" oncommand="roomybookmarkstoolbarOptions.userWidth()"/>
-		</vbox>
-		<vbox>
-			<html:span>&roomybookmarkstoolbar.options.userWidthMaxWidth.label; </html:span>
-			<html:input type="number" preference="extensions.roomybookmarkstoolbar.userWidth" id="userWidthPerf" size="5"  disabled="false" />
-			<html:span> &roomybookmarkstoolbar.options.pixels.label;</html:span>
-		</vbox>
-		
-	</vbox>
-	<spacer style="height: 10px"/>
-	<html:fieldset>
-	<vbox>
-	<vbox>
-		<html:span style="width: 300px;display: inline-block;">Enable translucent bar, different bookmarks max width, or set favicon size to value other than 16 px for these to work</html:span>
-	</vbox>
-	<spacer style="height: 10px"/>
 	<vbox>
 		<html:span>&roomybookmarkstoolbar.options.textSize.label; </html:span>
 		<html:input type="number" preference="extensions.roomybookmarkstoolbar.textSize" id="textSizePerf" size="5" />
 		<html:span> %</html:span>
 	</vbox>
-	<spacer style="height: 10px"/>
 	<vbox>
-		<hbox>
-			<html:span>Bookmarks toolbar item top/bottom margin: </html:span>
-			<html:input type="number" preference="extensions.roomybookmarkstoolbar.folderMargin" id="folderMarginPerf" size="4" />
-			<html:span> &roomybookmarkstoolbar.options.pixels.label;</html:span>
-		</hbox>
+		<html:span>Bookmarks toolbar item top/bottom margin: </html:span>
+		<html:input type="number" preference="extensions.roomybookmarkstoolbar.folderMargin" id="folderMarginPerf" size="4" />
+		<html:span> &roomybookmarkstoolbar.options.pixels.label;</html:span>
 	</vbox>
+	<vbox>
+		<checkbox preference="extensions.roomybookmarkstoolbar.userWidthEnabled" id="userWidthEnabledPerf" label="&roomybookmarkstoolbar.options.userWidthEnabled.label;" oncommand="roomybookmarkstoolbarOptions.userWidth()"/>
+	</vbox>
+	<vbox>
+		<html:span>&roomybookmarkstoolbar.options.userWidthMaxWidth.label; </html:span>
+		<html:input type="number" preference="extensions.roomybookmarkstoolbar.userWidth" id="userWidthPerf" size="5"  disabled="false" />
+		<html:span> &roomybookmarkstoolbar.options.pixels.label;</html:span>
 	</vbox>
 	</html:fieldset>
-	</tabpanel>
-	
-	<tabpanel id="roomybookmarkstoolbar.options.tab3" orient="vertical">
-	<vbox>
-		<hbox>
-			<html:span>&roomybookmarkstoolbar.options.sizeGroup.label; </html:span>
-			<html:input type="number" preference="extensions.roomybookmarkstoolbar.iconSize" min="1" size="4" />
-			<html:span> &roomybookmarkstoolbar.options.pixels.label;</html:span>
-		</hbox>
-	</vbox>
 	<html:fieldset>
 	<html:legend>&roomybookmarkstoolbar.options.spacingGroup.label;</html:legend>
 	<vbox>
@@ -217,6 +190,14 @@
 			</radiogroup>		
 		</hbox>
 	</vbox>
+	</html:fieldset>
+	</tabpanel>
+	
+	<tabpanel id="roomybookmarkstoolbar.options.tab3" orient="vertical">
+	<html:fieldset>
+	<html:legend>&roomybookmarkstoolbar.options.sizeGroup.label;</html:legend>
+		<html:input type="number" preference="extensions.roomybookmarkstoolbar.iconSize" min="1" size="4" />
+		<html:span> &roomybookmarkstoolbar.options.pixels.label;</html:span>
 	</html:fieldset>
 	<html:fieldset>
 	<html:legend>&roomybookmarkstoolbar.options.hideGroup.label;</html:legend>
