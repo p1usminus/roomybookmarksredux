@@ -381,7 +381,7 @@ var roomybookmarkstoolbar = {
 		var folderMargin = this.branch.getIntPref('folderMargin');
 		var textSize = this.branch.getIntPref('textSize');
 
-		if (opacity || iconSize != 16 || userWidthEnabled) {
+		if (opacity || iconSize != 16 || userWidthEnabled || folderMargin != 0 || textSize != 100) {
 			var opacityTime = this.branch.getIntPref('opacityTime');
 			var opacityTimeLong = this.branch.getIntPref('opacityTimeLong');
 			var userWidth = this.branch.getIntPref('userWidth');
@@ -391,7 +391,7 @@ var roomybookmarkstoolbar = {
 				this.styleService('string', this.cssStr, true)
 			}
 
-			this.cssStr = '@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);';
+			//this.cssStr = '@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);';
 
 			this.cssStr += '@-moz-document url(chrome://browser/content/browser.xhtml) {';
 
