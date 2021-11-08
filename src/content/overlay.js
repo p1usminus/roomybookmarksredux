@@ -10,6 +10,20 @@ MozXULElement.parseXULToFragment(`
 `,["chrome://roomybookmarkstoolbar/locale/overlay.dtd"]),
 document.getElementById('placesContext_delete').nextSibling);
 
+const sameDoc = Ci.nsIWebProgressListener.LOCATION_CHANGE_SAME_DOCUMENT;
+
+var progressListener = {
+	QueryInterface: ChromeUtils.generateQI([Ci.nsIWebProgressListener]),
+	
+	onLocationChange: function (aWebProgress, aRequest, aLocation, aFlags) {
+			if (roomybookmarkstoolbar.autohide && !roomybookmarkstoolbar.hovered && !roomybookmarkstoolbar.PersonalToolbar.collapsed) {
+				if (!(aFlags && sameDoc)) {
+					roomybookmarkstoolbar.hideBookmarksBar();
+			}
+		}
+	}
+};
+
 var roomybookmarkstoolbar = {
 	branch: null,				//Perf system
 	cssStr: null,				//CSS string for user style
@@ -260,7 +274,6 @@ var roomybookmarkstoolbar = {
 	},
 
 	autoHideBookmarksBar: function (change) {
-		// var bookmarkItem = document.getElementsByClassName("bookmark-item");
 		var autoHideBar = this.branch.getBoolPref('autoHideBar');
 		var BBonNewTab = this.branch.getBoolPref('BBonNewTab');
 
@@ -527,7 +540,7 @@ var roomybookmarkstoolbar = {
 		var bookmarkItem = document.getElementsByClassName("bookmark-item");
 		if (PersonalToolbar && bookmarkItem.length >= 0) {
 
-
+			gBrowser.addProgressListener(progressListener);
 			this.PersonalToolbar = document.getElementById('PersonalToolbar');
 			this.userStyle();
 			if (this.branch.getBoolPref('multirowBar')) {
