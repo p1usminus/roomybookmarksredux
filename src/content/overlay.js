@@ -12,13 +12,20 @@ document.getElementById('placesContext_delete').nextSibling);
 
 const sameDoc = Ci.nsIWebProgressListener.LOCATION_CHANGE_SAME_DOCUMENT;
 
+let toolbarVisible; // Save visibility of toolbar before any location changes
+
 var progressListener = {
 	QueryInterface: ChromeUtils.generateQI([Ci.nsIWebProgressListener]),
 	
-	onLocationChange: function (aWebProgress, aRequest, aLocation, aFlags) {
-		if (roomybookmarkstoolbar.autohide && !roomybookmarkstoolbar.hovered && !roomybookmarkstoolbar.PersonalToolbar.collapsed) {
-			if (!(aFlags && sameDoc)) {
-				roomybookmarkstoolbar.hideBookmarksBar();
+	onLocationChange: function (aWebProgress, aRequest, aLocationURI, aFlags) {
+		if (roomybookmarkstoolbar.autohide) {
+			// This is like a secondary autoHideBookmarksBar function, just for tab switching
+			if (!(aFlags & sameDoc)) {
+				if (toolbarVisible) {
+					roomybookmarkstoolbar.hideBookmarksBar(false);
+				} else {
+					roomybookmarkstoolbar.hideBookmarksBar();
+				}
 			}
 		}
 	}
@@ -477,6 +484,7 @@ var roomybookmarkstoolbar = {
 
 	hideBookmarksBar: function (arg = !this.PersonalToolbar.collapsed) {
 		this.PersonalToolbar.collapsed = arg;
+		toolbarVisible = !arg;
 		PlacesToolbarHelper.init();
 	},
 
@@ -544,11 +552,11 @@ var roomybookmarkstoolbar = {
 	startUpMainCheck: async function () {
 		if (typeof PlacesToolbarHelper == 'undefined') return;
 		await PlacesToolbarHelper.init(); // wait until bookmarks bar has loaded
+		try { gBrowser.addProgressListener(progressListener); } catch(e) { };
 		var PersonalToolbar = document.getElementById('PersonalToolbar');
 		var bookmarkItem = document.getElementsByClassName("bookmark-item");
 		if (PersonalToolbar && bookmarkItem.length >= 0) {
 
-			gBrowser.addProgressListener(progressListener);
 			this.PersonalToolbar = document.getElementById('PersonalToolbar');
 			this.userStyle();
 			if (this.branch.getBoolPref('multirowBar')) {
