@@ -21,11 +21,7 @@ var progressListener = {
 		if (roomybookmarkstoolbar.autohide) {
 			// This is like a secondary autoHideBookmarksBar function, just for tab switching
 			if (!(aFlags & sameDoc)) {
-				if (toolbarVisible) {
-					roomybookmarkstoolbar.hideBookmarksBar(false);
-				} else {
-					roomybookmarkstoolbar.hideBookmarksBar();
-				}
+				roomybookmarkstoolbar.hideBookmarksBar(!toolbarVisible);
 			}
 		}
 	}
