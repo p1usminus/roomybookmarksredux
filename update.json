@@ -102,7 +102,7 @@
           "browser_specific_settings": {
             "gecko": { "strict_min_version": "78" }
           }
-        },
+        }
       ]
     }
   }
