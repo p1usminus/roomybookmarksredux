@@ -1,6 +1,6 @@
 # Roomy Bookmarks Toolbar redux #
 
-Roomy Bookmarks Toolbar for Waterfox G3 & Firefox Developer Edition (with [userChromeJS](https://github.com/xiaoxiaoflood/firefox-scripts) or [bootstrapLoader](https://github.com/xiaoxiaoflood/firefox-scripts/tree/master/extensions/bootstrapLoader)) - __[download here!](https://github.com/p1usminus/roomybookmarksredux/releases/latest)__
+Roomy Bookmarks Toolbar for Waterfox G3/4 & Firefox Developer Edition (with [userChromeJS](https://github.com/xiaoxiaoflood/firefox-scripts) or [bootstrapLoader](https://github.com/xiaoxiaoflood/firefox-scripts/tree/master/extensions/bootstrapLoader)) - __[download here!](https://github.com/p1usminus/roomybookmarksredux/releases/latest)__
 
 Originally created by [Someone free](https://web.archive.org/web/20191029180906/https://legacycollector.org/firefox-addons/210846/index.html)
 
@@ -10,7 +10,7 @@ Please read the tips.
 * :warning: If using Waterfox and/or bootstrapLoader the browser __must__ be restarted after installation!
   * (If using userChromeJS the startup cache may need to be cleared between updates.)
 * Browser & version compatibility
-  * Firefox 78+: [latest version](https://github.com/p1usminus/roomybookmarksredux/releases/latest)
+  * Firefox 78+ and Waterfox G4.0.3.1+: [latest version](https://github.com/p1usminus/roomybookmarksredux/releases/latest)
   * Waterfox G3: [v1.7.0.1](https://github.com/p1usminus/roomybookmarksredux/releases/tag/v1.7.0.1)
   * Waterfox Current: [v1.5.5.1](https://github.com/p1usminus/roomybookmarksredux/releases/tag/v1.5.5.1)
   * Waterfox Classic: [v1.4.17/original](https://web.archive.org/web/20191029180906/https://legacycollector.org/firefox-addons/210846/roomy-bookmarks-toolbar-1.4.17.xpi) (pls update)
@@ -21,6 +21,7 @@ Please read the tips.
 - - - -
 
 ## Other notes ##
+* Looking for multiple tab rows? Check out [Paxmod](https://github.com/numirias/paxmod)
 * :question: I would like to know if users prefer having the option to scroll when using the multirow option. It can be avoided using a combination of the multirow and margin options as above.
   * The single row multirow toolbar is neat.
 * I repurposed one of the prefs to change the top & bottom margin of bookmark items. Adding new prefs looks like it could be annoying, but there may be a couple of other ones that could be re-used.
