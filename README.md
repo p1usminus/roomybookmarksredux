@@ -1,14 +1,12 @@
 # Roomy Bookmarks Toolbar redux #
 
-Roomy Bookmarks Toolbar for Waterfox G3/4 & Firefox Developer Edition (with [userChromeJS](https://github.com/xiaoxiaoflood/firefox-scripts) or [bootstrapLoader](https://github.com/xiaoxiaoflood/firefox-scripts/tree/master/extensions/bootstrapLoader)) - __[download here!](https://github.com/p1usminus/roomybookmarksredux/releases/latest)__
+Roomy Bookmarks Toolbar for Waterfox G3/4 & Firefox Developer Edition (with [userChromeJS](https://github.com/xiaoxiaoflood/firefox-scripts) or [bootstrapLoader](https://github.com/xiaoxiaoflood/firefox-scripts/tree/master/extensions/bootstrapLoader)) - __[download here!](https://github.com/p1usminus/roomybookmarksredux/releases)__
 
 Originally created by [Someone free](https://web.archive.org/web/20191029180906/https://legacycollector.org/firefox-addons/210846/index.html)
 
 Please read the tips.
 
 ## Tips ##
-* :warning: If using Waterfox and/or bootstrapLoader the browser __must__ be restarted after installation!
-  * (If using userChromeJS the startup cache may need to be cleared between updates.)
 * Browser & version compatibility
   * Firefox 78+ and Waterfox G4.0.3.1+: [latest version](https://github.com/p1usminus/roomybookmarksredux/releases/latest)
   * Waterfox G3: [v1.7.0.1](https://github.com/p1usminus/roomybookmarksredux/releases/tag/v1.7.0.1)
