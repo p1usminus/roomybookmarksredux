@@ -10,8 +10,6 @@ MozXULElement.parseXULToFragment(`
 `,["chrome://roomybookmarkstoolbar/locale/overlay.dtd"]),
 document.getElementById('placesContext_delete').nextSibling);
 
-const sameDoc = Ci.nsIWebProgressListener.LOCATION_CHANGE_SAME_DOCUMENT;
-
 let toolbarVisible; // Save visibility of toolbar before any location changes
 
 var progressListener = {
@@ -20,7 +18,7 @@ var progressListener = {
 	onLocationChange: function (aWebProgress, aRequest, aLocationURI, aFlags) {
 		if (roomybookmarkstoolbar.autohide) {
 			// This is like a secondary autoHideBookmarksBar function, just for tab switching
-			if (!(aFlags & sameDoc)) {
+			if (!(aFlags & Ci.nsIWebProgressListener.LOCATION_CHANGE_SAME_DOCUMENT)) {
 				roomybookmarkstoolbar.hideBookmarksBar(!toolbarVisible);
 			}
 		}
