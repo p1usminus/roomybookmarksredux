@@ -58,5 +58,6 @@
 	pref("extensions.roomybookmarkstoolbar.DBcreated", false);
 	pref("extensions.roomybookmarkstoolbar.textSize", 100);
 	pref("extensions.roomybookmarkstoolbar.hide_warning", true);
+	pref("browser.preferences.instantApply", true);
  
 })()
