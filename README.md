@@ -1,6 +1,6 @@
 # Roomy Bookmarks Toolbar redux #
 
-Roomy Bookmarks Toolbar for Waterfox G3/4 & Firefox Developer Edition (with [userChromeJS](https://github.com/xiaoxiaoflood/firefox-scripts) or [bootstrapLoader](https://github.com/xiaoxiaoflood/firefox-scripts/tree/master/extensions/bootstrapLoader)) - __[download here!](https://github.com/p1usminus/roomybookmarksredux/releases)__
+Roomy Bookmarks Toolbar for Waterfox & Firefox Developer Edition (with [userChromeJS](https://github.com/xiaoxiaoflood/firefox-scripts) or [bootstrapLoader](https://github.com/xiaoxiaoflood/firefox-scripts/tree/master/extensions/bootstrapLoader)) - __[download here!](https://github.com/p1usminus/roomybookmarksredux/releases)__
 
 Originally created by [Someone free](https://web.archive.org/web/20191029180906/https://legacycollector.org/firefox-addons/210846/index.html)
 
@@ -8,9 +8,10 @@ Please read the tips.
 
 ## Tips ##
 * Browser & version compatibility
-  * Firefox 78+ and Waterfox G4.0.3.1+: [latest version](https://github.com/p1usminus/roomybookmarksredux/releases/latest)
+  * Firefox 108+: [latest version](https://github.com/p1usminus/roomybookmarksredux/releases/latest)
+  * Firefox 78-107 and Waterfox G4.0.3.1+: [v1.7.5.3](hhttps://github.com/p1usminus/roomybookmarksredux/releases/tag/v1.7.5.3)
   * Waterfox G3: [v1.7.0.1](https://github.com/p1usminus/roomybookmarksredux/releases/tag/v1.7.0.1)
-  * Waterfox Current: [v1.5.5.1](https://github.com/p1usminus/roomybookmarksredux/releases/tag/v1.5.5.1)
+  * Waterfox Current (based on Firefox 68): [v1.5.5.1](https://github.com/p1usminus/roomybookmarksredux/releases/tag/v1.5.5.1)
   * Waterfox Classic: [v1.4.17/original](https://web.archive.org/web/20191029180906/https://legacycollector.org/firefox-addons/210846/roomy-bookmarks-toolbar-1.4.17.xpi) (pls update)
   * Pale Moon: Try [Cozy Bookmarks Toolbar](https://addons.palemoon.org/addon/cozy-bookmarks-toolbar/)
 * The fixed height option should be used when the multirow option is selected, otherwise the toolbar will try to stay at single row height.
