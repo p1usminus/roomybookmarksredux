@@ -8,7 +8,7 @@
 		<em:multiprocessCompatible>true</em:multiprocessCompatible>
 		<em:name>Roomy Bookmarks Toolbar redux</em:name>
 		<em:description>Make your bookmarks bar better. Customise your bookmarks bar using one add-on.</em:description>
-		<em:version>1.7.5.3</em:version>
+		<em:version>1.7.5.4</em:version>
 		<em:creator>Someone free, 117649, p1usminus</em:creator>
 		<em:contributor>Users, contributors and testers</em:contributor>
 		<em:contributor>Grzglo</em:contributor>
@@ -35,7 +35,7 @@
 		<em:targetApplication>
 			<Description>
 				<em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id> <!-- firefox -->
-				<em:minVersion>78.0</em:minVersion>
+				<em:minVersion>108.0</em:minVersion>
 				<em:maxVersion>*</em:maxVersion>
 			</Description>
 		</em:targetApplication>
