@@ -1,17 +1,22 @@
 @namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
 
 @-moz-document url(chrome://browser/content/browser.xhtml) {
+	#navigator-toolbox {
+		position: relative;
+	}
+
 	#PersonalToolbar {
-		position: fixed !important;
+		position: absolute;
+		top: 100%;
 		width: 100% !important;
 		padding: 3px 0px 3px 3px !important;
 		z-index: 2;
-		display: -webkit-box !important;
 		border-bottom-color: inherit;
 		border-bottom-left-radius: inherit;
 		border-bottom-right-radius: inherit;
 		border-bottom-style: inherit;
 		border-bottom-width: inherit;
 		border-collapse: inherit;
+		margin-bottom: var(--overpage-margin-bottom);
 	}
 }
