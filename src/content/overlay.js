@@ -476,6 +476,15 @@ var roomybookmarkstoolbar = {
 		}
 	},
 
+	overPage: function () {
+		if (this.branch.getBoolPref('overPage')) {
+			PersonalToolbar.style.marginTop = document.getElementById('navigator-toolbox').getBoundingClientRect().height - 1 + 'px';
+			// the -1 is to remove a gap visible in some themes
+		} else {
+			PersonalToolbar.style.marginTop = 0 + 'px';
+		}
+	},
+
 	hideBookmarksBar: function (arg = !this.PersonalToolbar.collapsed) {
 		this.PersonalToolbar.collapsed = arg;
 		toolbarVisible = !arg;
@@ -491,6 +500,7 @@ var roomybookmarkstoolbar = {
 			roomybookmarkstoolbar.multirow(true);
 			roomybookmarkstoolbar.hideByDefault();
 			roomybookmarkstoolbar.BBonNewTab();
+			roomybookmarkstoolbar.overPage();
 		}
 	},
 
@@ -566,6 +576,9 @@ var roomybookmarkstoolbar = {
 			}
 			if (this.branch.getBoolPref('BBonNewTab')) {
 				this.BBonNewTab();
+			}
+			if (this.branch.getBoolPref('overPage')) {
+				this.overPage();
 			}
 
 			if (!roomybookmarkstoolbarGlobals.colorCSS) this.setColor();
