@@ -118,7 +118,7 @@
           }
         },
         {
-          "version": "1.7.5.4",
+          "version": "1.7.6",
           "update_link": "https://github.com/p1usminus/roomybookmarksredux/releases/download/v1.7.5.4/ALone-live@ya.ru.xpi",
           "browser_specific_settings": {
             "gecko": { "strict_min_version": "108" }
