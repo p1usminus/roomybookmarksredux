@@ -9,10 +9,6 @@
 		max-height: none !important;
 	}
 	  
-	#PlacesToolbar > hbox { 
-		display: block;
-	}
-	  
 	#PlacesToolbarItems {
 		display: flex;
 		flex-wrap: wrap;
