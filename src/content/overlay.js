@@ -480,6 +480,7 @@ var roomybookmarkstoolbar = {
 		this.PersonalToolbar.collapsed = arg;
 		toolbarVisible = !arg;
 		PlacesToolbarHelper.init();
+		PlacesToolbarHelper._viewElt._placesView._updateNodesVisibilityTimerCallback();
 	},
 
 	optionsHandler: function () {
