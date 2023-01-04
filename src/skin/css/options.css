@@ -1,0 +1,29 @@
+input[type="number"] {
+    width: 7ch;
+    padding: 2px;
+    margin-right: 0.5ch;
+}
+
+hbox checkbox {
+    vertical-align: middle;
+    margin-right: 0.5ch;
+}
+
+span {
+    line-height: 2em;
+    vertical-align: middle;
+    margin-right: 0.5ch;
+}
+
+span.edge {
+    margin-right: 2ch;
+}
+
+legend {
+    font-weight: bold;
+}
+
+fieldset {
+    border: 1px solid var(--in-content-box-border-color);
+    margin: 3px;
+}
