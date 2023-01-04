@@ -1,7 +1,7 @@
 @namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
 
 /* https://github.com/MrOtherGuy/firefox-csshacks/blob/master/chrome/multi-row_bookmarks.css */
-/* https://github.com/Aris-t2/CustomCSSforFx/blob/master/classic/css/toolbars/bookmarks_toolbar_multiple_lines_fx74.css */
+/* https://github.com/Aris-t2/CustomCSSforFx/blob/master/current/css/toolbars/bookmarks_toolbar_multiple_lines.css */
 
 @-moz-document url(chrome://browser/content/browser.xhtml) {
 	#PersonalToolbar {
@@ -12,10 +12,8 @@
 	#PlacesToolbarItems {
 		display: flex;
 		flex-wrap: wrap;
-		overflow-x: hidden;
-		overflow-y: visible;
-		scrollbar-color: var(--lwt-accent-color) var(--toolbar-bgcolor);
-  		scrollbar-width: thin;
+		overflow-x: visible;
+		overflow-y: auto;
 	}
 
 	#personal-bookmarks #PlacesToolbar {
@@ -25,10 +23,10 @@
 		overflow-y: auto;
 	}
 
-	#personal-bookmarks #PlacesToolbar > hbox > hbox {
-		overflow-x: hidden;
-		overflow-y: hidden;
+	#PlacesToolbar > hbox:not(#PlacesToolbarDropIndicatorHolder) {
+		display: block;
+		width: 100vw;
 	}
 
-	#PlacesChevron { display: none }	
+	#PlacesChevron { display: none }
 }
