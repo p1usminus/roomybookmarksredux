@@ -1,5 +1,8 @@
 ﻿@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 
 @-moz-document url(chrome://browser/content/browser.xhtml) {
-	#PlacesToolbarItems {-moz-box-pack: center}
+	#PlacesToolbarItems {
+		-moz-box-pack: center;
+		justify-content: center;
+	}
 }
