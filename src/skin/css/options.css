@@ -27,15 +27,6 @@ checkbox, span {
     white-space: nowrap;
 }
 
-/* tabpanels {
-    width: 36rem;
-    width: calc(100% - 30px) !important;
-} */
-
-/* #roomybookmarkstoolbarPreferences {
-    width: 36rem;
-} */
-
-fieldset fieldset {
+fieldset {
     border: 1px solid var(--in-content-box-border-color);
 }
