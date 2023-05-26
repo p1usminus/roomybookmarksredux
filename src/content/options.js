@@ -98,6 +98,16 @@
 		}
 	},
 
+	resizeOptions: function() {
+		let options = document.getElementById("roomybookmarkstoolbarPreferences");		
+		options.addEventListener("dialogextra1", function(event) {
+			window.resizeBy(20,0);
+			console.log("Window width: "+window.outerWidth);
+			//console.log("Tabpanel width: "+options.width);
+			console.log("Dialog width: "+options.clientWidth);
+		});
+	},
+
 	onLoad: function() {
 		var thisPrefs = Components.classes['@mozilla.org/preferences-service;1'].getService(Components.interfaces.nsIPrefService);
 		this.branch = thisPrefs.getBranch('extensions.roomybookmarkstoolbar.');
@@ -108,6 +118,13 @@
 		this.userWidth();
 		this.autoHideZone();
 		this.location();
-		Preferences.forceEnableInstantApply()
+		this.resizeOptions();
+		Preferences.forceEnableInstantApply();
+		console.log(window);
+		console.log(window.outerWidth);
+		window.sizeToContent();
+		/* window.requestAnimationFrame(() => {
+			window.sizeToContent();
+		  }); */
 	},
 };
