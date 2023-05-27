@@ -11,6 +11,7 @@
 		buttonlabelextra1="Resize"
 		resizable="yes"
 		flex="1"
+		style="padding-left:50px; padding-right:50px"
 		xmlns:html="http://www.w3.org/1999/xhtml"
 		xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 	
@@ -29,7 +30,7 @@
 	<tabpanel id="roomybookmarkstoolbar.options.tab1" orient="vertical">
 	<html:fieldset>
 	<html:legend>&roomybookmarkstoolbar.options.multirowBarGroup.label;</html:legend>
-	<vbox flex="1">
+	<vbox>
 		<hbox>
 			<checkbox preference="extensions.roomybookmarkstoolbar.multirowBar" id="multirowBarPerf" label="&roomybookmarkstoolbar.options.multirowEnable.label;" oncommand="roomybookmarkstoolbarOptions.location()"/>
 			<html:span>&roomybookmarkstoolbar.options.opacityIn.label; </html:span>
@@ -45,7 +46,7 @@
 	
 	<html:fieldset>
 	<html:legend>&roomybookmarkstoolbar.options.timeGroup.label;</html:legend>
-	<vbox flex="1">
+	<vbox>
 		<hbox><html:span id="autoHideBarDisabled"></html:span></hbox>
 		<hbox>
 			<checkbox preference="extensions.roomybookmarkstoolbar.autoHideBar" id="autoHideBarPerf" label="&roomybookmarkstoolbar.options.autohideBar.label;" oncommand="roomybookmarkstoolbarOptions.autoHideBar(); roomybookmarkstoolbarOptions.autoHideZone();" />
@@ -88,14 +89,14 @@
 	</html:fieldset>
 	<html:fieldset>
 	<html:legend>&roomybookmarkstoolbar.options.location.label;</html:legend>
-	<vbox flex="1">
+	<vbox>
 		<checkbox preference="extensions.roomybookmarkstoolbar.bookmarksAboveTab" id="bookmarksAboveTabPerf" label="&roomybookmarkstoolbar.options.bookmarksAboveTab.label;" disabled="false" oncommand="roomybookmarkstoolbarOptions.topOnPage()" />
 		<checkbox preference="extensions.roomybookmarkstoolbar.overPage" id="overPagePerf" label="&roomybookmarkstoolbar.options.overPage.label;" disabled="false" oncommand="roomybookmarkstoolbarOptions.topOnPage()" />
 	</vbox>
 	</html:fieldset>
 	<html:fieldset>
 	<html:legend>&roomybookmarkstoolbar.options.alignment.label;</html:legend>
-	<vbox flex="1">
+	<vbox>
 		<hbox>
 			<radiogroup preference="extensions.roomybookmarkstoolbar.location" id="locationPerf" orient="horizontal" disabled="false">
 				<radio id="location0" value="0" label="&roomybookmarkstoolbar.options.alignment0.label;" />
@@ -107,7 +108,7 @@
 	</html:fieldset>
 	<html:fieldset>
 	<html:legend>Misc - restart required</html:legend>
-	<vbox flex="1">
+	<vbox>
 		<checkbox preference="extensions.roomybookmarkstoolbar.hide_warning" id="hideWarning" label="Hide unsigned addon warning in about:addons" />
 	</vbox>
 	</html:fieldset>

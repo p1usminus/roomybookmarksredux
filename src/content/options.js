@@ -99,10 +99,20 @@
 	},
 
 	resizeOptions: function() {
-		let options = document.getElementById("roomybookmarkstoolbarPreferences");		
+		let options = document.getElementById("roomybookmarkstoolbarPreferences");
+		let pl = parseInt(getComputedStyle(options).getPropertyValue("-moz-padding-start"), 10);
+		let pr = parseInt(getComputedStyle(options).getPropertyValue("-moz-padding-end"), 10);
+		window.requestAnimationFrame(() => {
+			window.resizeTo(document.getElementById("roomybookmarkstoolbarTabBox").scrollWidth+pl+pr, window.outerHeight); // this works!
+		  });
 		options.addEventListener("dialogextra1", function(event) {
-			window.resizeBy(20,0);
+			//window.resizeBy(20,0);
+			//window.resizeTo(options.clientWidth+50, window.outerHeight); //document.getElementById("roomybookmarkstoolbarPreferences").clientHeight
+			window.resizeTo(document.getElementById("roomybookmarkstoolbarTabBox").scrollWidth+pl+pr, window.outerHeight);
+			//window.resizeTo(options.clientWidth+pl+pr, window.outerHeight); // works but dialog box grows with every button click ???
+			//window.resizeTo(options.scrollWidth, window.outerHeight); //scrollWidth almost works
 			console.log("Window width: "+window.outerWidth);
+			//console.log(getComputedStyle(options));
 			//console.log("Tabpanel width: "+options.width);
 			console.log("Dialog width: "+options.clientWidth);
 		});
@@ -120,9 +130,14 @@
 		this.location();
 		this.resizeOptions();
 		Preferences.forceEnableInstantApply();
-		console.log(window);
-		console.log(window.outerWidth);
-		window.sizeToContent();
+		//console.log(window); // too much information
+		//console.log(window.outerWidth); // = 1
+		//console.log(window.clientWidth); // = undefined
+		//console.log(document.getElementById("roomybookmarkstoolbarPreferences")); // initially clientWidth = scrollWidth = 0, but when opened again, clientWidth = 518, scrollWidth = 526
+		// console.log(document.getElementById("roomybookmarkstoolbarTabBox")); // clientWidth = 500, scrollWidth = 518
+		// I think 18 pixel difference between dialog and TabBox = 10px padding-left, 8px padding-right or paddingInlineStart/End
+		//console.log(document.getElementById("roomybookmarkstoolbar.options.tab1")); // clientWidth = scrollWidth = 150, the width of the actual tab at the top, cannot use this
+		//window.sizeToContent();
 		/* window.requestAnimationFrame(() => {
 			window.sizeToContent();
 		  }); */
