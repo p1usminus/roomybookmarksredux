@@ -139,7 +139,7 @@
 		}
 
 		if (DBevent == 'deleteDB') {	
-				Components.utils.import("resource://gre/modules/FileUtils.jsm");
+				ChromeUtils.importESModule("resource://gre/modules/FileUtils.sys.mjs");
 				var thisPrefs = Components.classes['@mozilla.org/preferences-service;1'].getService(Components.interfaces.nsIPrefService);
 				thisPrefs.getBranch('extensions.roomybookmarkstoolbar.').setBoolPref('DBcreated', false);
 
