@@ -99,11 +99,12 @@
 	},
 
 	resizeOptions: function() {
-		let options = document.getElementById("roomybookmarkstoolbarPreferences");
-		let pl = parseInt(getComputedStyle(options).getPropertyValue("-moz-padding-start"), 10);
-		let pr = parseInt(getComputedStyle(options).getPropertyValue("-moz-padding-end"), 10);
+		//let options = document.getElementById("roomybookmarkstoolbarPreferences");
+		//let pl = parseInt(getComputedStyle(options).getPropertyValue("-moz-padding-start"), 10);
+		//let pr = parseInt(getComputedStyle(options).getPropertyValue("-moz-padding-end"), 10);
 		window.requestAnimationFrame(() => {
-			window.resizeTo(document.getElementById("roomybookmarkstoolbarTabBox").scrollWidth+pl+pr, window.outerHeight);
+			//window.resizeTo(document.getElementsByTagName("tabpanel")[0].scrollWidth+pl+pr, window.outerHeight); // Not working for me on W10
+			window.sizeToContent();
 		  });
 	},
 
