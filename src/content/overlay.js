@@ -645,7 +645,6 @@ var roomybookmarkstoolbar = {
 			return;
 		}
 
-		Components.utils.import("resource://gre/modules/Services.jsm");
 		ChromeUtils.importESModule("resource://gre/modules/FileUtils.sys.mjs");
 		roomybookmarkstoolbarGlobals.colorCSS = '';
 		roomybookmarkstoolbarGlobals.colorCSS += '@-moz-document url(chrome://browser/content/browser.xhtml) {' + '\n';

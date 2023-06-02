@@ -68,7 +68,6 @@
 
 	db: function(data, DBevent, callback) {
 		var thisPrefs = Components.classes['@mozilla.org/preferences-service;1'].getService(Components.interfaces.nsIPrefService);
-		Components.utils.import("resource://gre/modules/Services.jsm");
 		Components.utils.import("resource://gre/modules/FileUtils.jsm");
 
 		let file = FileUtils.getFile("ProfD", ["roomybookmarkstoolbar.sqlite"]);
