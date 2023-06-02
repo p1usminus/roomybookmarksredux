@@ -67,12 +67,11 @@
 	},
 
 	db: function(data, DBevent, callback) {
-		var thisPrefs = Components.classes['@mozilla.org/preferences-service;1'].getService(Components.interfaces.nsIPrefService);
 		Components.utils.import("resource://gre/modules/FileUtils.jsm");
 
 		let file = FileUtils.getFile("ProfD", ["roomybookmarkstoolbar.sqlite"]);
 		let dbConn = Services.storage.openDatabase(file);
-		thisPrefs.getBranch('extensions.roomybookmarkstoolbar.').setBoolPref('DBcreated', true);
+		Services.prefs.setBoolPref("extensions.roomybookmarkstoolbar.DBcreated", true);
 		dbConn.executeSimpleSQL("create table if not exists colors (id TEXT NOT NULL PRIMARY KEY, textcolor TEXT, backgroundcolor TEXT)");
 
 		if (DBevent == 'saveData') {
@@ -138,9 +137,7 @@
 		}
 
 		if (DBevent == 'deleteDB') {	
-				ChromeUtils.importESModule("resource://gre/modules/FileUtils.sys.mjs");
-				var thisPrefs = Components.classes['@mozilla.org/preferences-service;1'].getService(Components.interfaces.nsIPrefService);
-				thisPrefs.getBranch('extensions.roomybookmarkstoolbar.').setBoolPref('DBcreated', false);
+				Services.prefs.setBoolPref("extensions.roomybookmarkstoolbar.DBcreated", false);
 
 				var statement = dbConn.createStatement("DELETE FROM colors");
 				statement.executeAsync({

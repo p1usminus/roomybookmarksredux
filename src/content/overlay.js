@@ -651,9 +651,10 @@ var roomybookmarkstoolbar = {
 
 		var macOS = false;
 
-		if (Components.classes['@mozilla.org/xre/app-info;1'].getService(Components.interfaces.nsIXULRuntime).OS == 'Darwin') {
+		/* if (Components.classes['@mozilla.org/xre/app-info;1'].getService(Components.interfaces.nsIXULRuntime).OS == 'Darwin') {
 			macOS = true;
-		}
+		} */
+		if (AppConstants.platform == "macosx") { macOS = true; }
 
 		var dbFile = FileUtils.getFile("ProfD", ["roomybookmarkstoolbar.sqlite"]);
 		var dbConn = Services.storage.openDatabase(dbFile);
