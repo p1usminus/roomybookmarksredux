@@ -67,7 +67,7 @@
 	},
 
 	db: function(data, DBevent, callback) {
-		Components.utils.import("resource://gre/modules/FileUtils.jsm");
+		const { FileUtils } = ChromeUtils.importESModule("resource://gre/modules/FileUtils.sys.mjs");
 
 		let file = FileUtils.getFile("ProfD", ["roomybookmarkstoolbar.sqlite"]);
 		let dbConn = Services.storage.openDatabase(file);

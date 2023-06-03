@@ -635,6 +635,8 @@ var roomybookmarkstoolbar = {
 	},
 
 	setColor: function () {
+		const { FileUtils } = ChromeUtils.importESModule("resource://gre/modules/FileUtils.sys.mjs");
+		
 		if (roomybookmarkstoolbarGlobals.colorCSS) {
 			this.styleService('string', roomybookmarkstoolbarGlobals.colorCSS, true);
 		}
@@ -644,8 +646,7 @@ var roomybookmarkstoolbar = {
 			try { file.remove(false); } catch (e) { console.log(e) }
 			return;
 		}
-
-		ChromeUtils.importESModule("resource://gre/modules/FileUtils.sys.mjs");
+		
 		roomybookmarkstoolbarGlobals.colorCSS = '';
 		roomybookmarkstoolbarGlobals.colorCSS += '@-moz-document url(chrome://browser/content/browser.xhtml) {' + '\n';
 
