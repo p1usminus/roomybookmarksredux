@@ -477,8 +477,9 @@ var roomybookmarkstoolbar = {
 	hideBookmarksBar: function (arg = !this.PersonalToolbar.collapsed) {
 		this.PersonalToolbar.collapsed = arg;
 		toolbarVisible = !arg;
-		PlacesToolbarHelper.init();
-		PlacesToolbarHelper._viewElt._placesView._updateNodesVisibilityTimerCallback();
+		if (toolbarVisible) {
+			try { document.getElementById("PlacesToolbar")._placesView._updateNodesVisibilityTimerCallback(); } catch (e) { };
+		}
 	},
 
 	optionsHandler: function () {
