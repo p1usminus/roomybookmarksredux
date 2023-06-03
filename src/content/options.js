@@ -109,8 +109,7 @@
 	},
 
 	onLoad: function() {
-		var thisPrefs = Components.classes['@mozilla.org/preferences-service;1'].getService(Components.interfaces.nsIPrefService);
-		this.branch = thisPrefs.getBranch('extensions.roomybookmarkstoolbar.');
+		this.branch = Services.prefs.getBranch("extensions.roomybookmarkstoolbar.");
 		this.showName();
 		this.location();
 		this.autoHideBar();

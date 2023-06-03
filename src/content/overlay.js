@@ -38,11 +38,10 @@ var roomybookmarkstoolbar = {
 	PersonalToolbar: null,			//PersonalToolbar CSS id?
 
 	register: function () {
-		var thisPrefs = Components.classes['@mozilla.org/preferences-service;1'].getService(Components.interfaces.nsIPrefService)
-		this.branch = thisPrefs.getBranch('extensions.roomybookmarkstoolbar.');
-		if (!("addObserver" in this.branch)) {
+		this.branch = Services.prefs.getBranch("extensions.roomybookmarkstoolbar.");
+		/* if (!("addObserver" in this.branch)) {
 			this.branch.QueryInterface(Components.interfaces.nsIPrefBranch2);
-		}
+		} */
 		this.branch.addObserver("", this, false);
 	},
 
@@ -63,13 +62,12 @@ var roomybookmarkstoolbar = {
 
 	styleService: function (type, object, unregister) {
 		var styleSheet = Components.classes['@mozilla.org/content/style-sheet-service;1'].getService(Components.interfaces.nsIStyleSheetService);
-		var styleIO = Components.classes['@mozilla.org/network/io-service;1'].getService(Components.interfaces.nsIIOService);
 		var styleURI;
 		if (type == 'file') {
-			styleURI = styleIO.newURI('chrome://roomybookmarkstoolbar/skin/css/' + object + '.css', null, null);
+			styleURI = Services.io.newURI('chrome://roomybookmarkstoolbar/skin/css/' + object + '.css', null, null);
 		}
 		if (type == 'string') {
-			styleURI = styleIO.newURI("data:text/css," + encodeURIComponent(object), null, null);
+			styleURI = Services.io.newURI("data:text/css," + encodeURIComponent(object), null, null);
 		}
 		if (unregister === true) {
 			if (styleSheet.sheetRegistered(styleURI, styleSheet.USER_SHEET)) { styleSheet.unregisterSheet(styleURI, styleSheet.USER_SHEET); }
