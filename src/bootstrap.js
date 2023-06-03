@@ -64,8 +64,6 @@ function showRestartNotifcation(verb, window) {
 function install(data, reason) {
   if (reason === ADDON_INSTALL) {
     Services.prefs.setBoolPref("extensions.roomybookmarkstoolbar.hide_warning", true);
-  } else if (reason === ADDON_UPGRADE) {
-    Services.prefs.clearUserPref("browser.toolbars.bookmarks.2h2020");
   }
   
   const window = Services.wm.getMostRecentWindow('navigator:browser');
