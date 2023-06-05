@@ -80,7 +80,7 @@ var roomybookmarkstoolbar = {
 		roomybookmarkstoolbar.hideBookmarksBar(!roomybookmarkstoolbar.visible);
 	},
 
-	hideHandler: function () {
+	hideHandler: async function () {
 		// var visible = roomybookmarkstoolbar.visible;
 		const hovered = roomybookmarkstoolbar.hovered;
 		const popup = roomybookmarkstoolbar.popup;
@@ -97,6 +97,12 @@ var roomybookmarkstoolbar = {
 			if (hovered) {
 				roomybookmarkstoolbar.visible = true;
 				roomybookmarkstoolbar.setVisibly();
+
+				if (typeof document.getElementById('PlacesToolbar')._placesView == 'undefined') {
+					await PlacesToolbarHelper._resetView();
+				}
+				//document.getElementById('PlacesToolbar')._placesView._updateNodesVisibilityTimerCallback();
+				document.getElementById('PlacesToolbar')._placesView.updateNodesVisibility();
 			}
 		}
 	},
@@ -477,9 +483,6 @@ var roomybookmarkstoolbar = {
 	hideBookmarksBar: function (arg = !this.PersonalToolbar.collapsed) {
 		this.PersonalToolbar.collapsed = arg;
 		toolbarVisible = !arg;
-		if (toolbarVisible) {
-			try { document.getElementById("PlacesToolbar")._placesView._updateNodesVisibilityTimerCallback(); } catch (e) { };
-		}
 	},
 
 	optionsHandler: function () {
