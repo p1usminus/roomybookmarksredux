@@ -2,7 +2,7 @@
   function pref(name, value) {
     let branch = Services.prefs.getBranch("");
     let defaultBranch = Services.prefs.getDefaultBranch("");
-    if (defaultBranch.getPrefType(name) == Components.interfaces.nsIPrefBranch.PREF_INVALID) {
+    if (defaultBranch.getPrefType(name) == Services.prefs.PREF_INVALID) {
       // Only use the default branch if it doesn't already have the pref set.
       // If there is already a pref with this value on the default branch, the
       // extension wants to override a built-in value.

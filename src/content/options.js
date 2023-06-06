@@ -98,9 +98,18 @@
 		}
 	},
 
+	resizeOptions: function() {
+		//let options = document.getElementById("roomybookmarkstoolbarPreferences");
+		//let pl = parseInt(getComputedStyle(options).getPropertyValue("-moz-padding-start"), 10);
+		//let pr = parseInt(getComputedStyle(options).getPropertyValue("-moz-padding-end"), 10);
+		window.requestAnimationFrame(() => {
+			//window.resizeTo(document.getElementsByTagName("tabpanel")[0].scrollWidth+pl+pr, window.outerHeight); // Not working for me on W10
+			window.sizeToContent();
+		  });
+	},
+
 	onLoad: function() {
-		var thisPrefs = Components.classes['@mozilla.org/preferences-service;1'].getService(Components.interfaces.nsIPrefService);
-		this.branch = thisPrefs.getBranch('extensions.roomybookmarkstoolbar.');
+		this.branch = Services.prefs.getBranch("extensions.roomybookmarkstoolbar.");
 		this.showName();
 		this.location();
 		this.autoHideBar();
@@ -108,6 +117,7 @@
 		this.userWidth();
 		this.autoHideZone();
 		this.location();
-		Preferences.forceEnableInstantApply()
+		this.resizeOptions();
+		Preferences.forceEnableInstantApply();
 	},
 };

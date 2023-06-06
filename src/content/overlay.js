@@ -38,11 +38,10 @@ var roomybookmarkstoolbar = {
 	PersonalToolbar: null,			//PersonalToolbar CSS id?
 
 	register: function () {
-		var thisPrefs = Components.classes['@mozilla.org/preferences-service;1'].getService(Components.interfaces.nsIPrefService)
-		this.branch = thisPrefs.getBranch('extensions.roomybookmarkstoolbar.');
-		if (!("addObserver" in this.branch)) {
+		this.branch = Services.prefs.getBranch("extensions.roomybookmarkstoolbar.");
+		/* if (!("addObserver" in this.branch)) {
 			this.branch.QueryInterface(Components.interfaces.nsIPrefBranch2);
-		}
+		} */
 		this.branch.addObserver("", this, false);
 	},
 
@@ -63,13 +62,12 @@ var roomybookmarkstoolbar = {
 
 	styleService: function (type, object, unregister) {
 		var styleSheet = Components.classes['@mozilla.org/content/style-sheet-service;1'].getService(Components.interfaces.nsIStyleSheetService);
-		var styleIO = Components.classes['@mozilla.org/network/io-service;1'].getService(Components.interfaces.nsIIOService);
 		var styleURI;
 		if (type == 'file') {
-			styleURI = styleIO.newURI('chrome://roomybookmarkstoolbar/skin/css/' + object + '.css', null, null);
+			styleURI = Services.io.newURI('chrome://roomybookmarkstoolbar/skin/css/' + object + '.css', null, null);
 		}
 		if (type == 'string') {
-			styleURI = styleIO.newURI("data:text/css," + encodeURIComponent(object), null, null);
+			styleURI = Services.io.newURI("data:text/css," + encodeURIComponent(object), null, null);
 		}
 		if (unregister === true) {
 			if (styleSheet.sheetRegistered(styleURI, styleSheet.USER_SHEET)) { styleSheet.unregisterSheet(styleURI, styleSheet.USER_SHEET); }
@@ -82,7 +80,7 @@ var roomybookmarkstoolbar = {
 		roomybookmarkstoolbar.hideBookmarksBar(!roomybookmarkstoolbar.visible);
 	},
 
-	hideHandler: function () {
+	hideHandler: async function () {
 		// var visible = roomybookmarkstoolbar.visible;
 		const hovered = roomybookmarkstoolbar.hovered;
 		const popup = roomybookmarkstoolbar.popup;
@@ -99,6 +97,12 @@ var roomybookmarkstoolbar = {
 			if (hovered) {
 				roomybookmarkstoolbar.visible = true;
 				roomybookmarkstoolbar.setVisibly();
+
+				if (typeof document.getElementById('PlacesToolbar')._placesView == 'undefined') {
+					await PlacesToolbarHelper._resetView();
+				}
+				//document.getElementById('PlacesToolbar')._placesView._updateNodesVisibilityTimerCallback();
+				document.getElementById('PlacesToolbar')._placesView.updateNodesVisibility();
 			}
 		}
 	},
@@ -479,7 +483,6 @@ var roomybookmarkstoolbar = {
 	hideBookmarksBar: function (arg = !this.PersonalToolbar.collapsed) {
 		this.PersonalToolbar.collapsed = arg;
 		toolbarVisible = !arg;
-		PlacesToolbarHelper.init();
 	},
 
 	optionsHandler: function () {
@@ -634,6 +637,8 @@ var roomybookmarkstoolbar = {
 	},
 
 	setColor: function () {
+		const { FileUtils } = ChromeUtils.importESModule("resource://gre/modules/FileUtils.sys.mjs");
+		
 		if (roomybookmarkstoolbarGlobals.colorCSS) {
 			this.styleService('string', roomybookmarkstoolbarGlobals.colorCSS, true);
 		}
@@ -643,17 +648,16 @@ var roomybookmarkstoolbar = {
 			try { file.remove(false); } catch (e) { console.log(e) }
 			return;
 		}
-
-		Components.utils.import("resource://gre/modules/Services.jsm");
-		Components.utils.import("resource://gre/modules/FileUtils.jsm");
+		
 		roomybookmarkstoolbarGlobals.colorCSS = '';
 		roomybookmarkstoolbarGlobals.colorCSS += '@-moz-document url(chrome://browser/content/browser.xhtml) {' + '\n';
 
 		var macOS = false;
 
-		if (Components.classes['@mozilla.org/xre/app-info;1'].getService(Components.interfaces.nsIXULRuntime).OS == 'Darwin') {
+		/* if (Components.classes['@mozilla.org/xre/app-info;1'].getService(Components.interfaces.nsIXULRuntime).OS == 'Darwin') {
 			macOS = true;
-		}
+		} */
+		if (AppConstants.platform == "macosx") { macOS = true; }
 
 		var dbFile = FileUtils.getFile("ProfD", ["roomybookmarkstoolbar.sqlite"]);
 		var dbConn = Services.storage.openDatabase(dbFile);

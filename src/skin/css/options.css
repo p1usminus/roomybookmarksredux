@@ -23,7 +23,10 @@ legend {
     font-weight: bold;
 }
 
+checkbox, span {
+    white-space: nowrap;
+}
+
 fieldset {
     border: 1px solid var(--in-content-box-border-color);
-    margin: 3px;
 }
