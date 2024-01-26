@@ -69,7 +69,7 @@
 	db: function(data, DBevent, callback) {
 		const { FileUtils } = ChromeUtils.importESModule("resource://gre/modules/FileUtils.sys.mjs");
 
-		let file = FileUtils.getFile("ProfD", ["roomybookmarkstoolbar.sqlite"]);
+		let file = new FileUtils.File(PathUtils.join(PathUtils.profileDir, "roomybookmarkstoolbar.sqlite"));
 		let dbConn = Services.storage.openDatabase(file);
 		Services.prefs.setBoolPref("extensions.roomybookmarkstoolbar.DBcreated", true);
 		dbConn.executeSimpleSQL("create table if not exists colors (id TEXT NOT NULL PRIMARY KEY, textcolor TEXT, backgroundcolor TEXT)");

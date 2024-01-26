@@ -644,7 +644,7 @@ var roomybookmarkstoolbar = {
 		}
 		//If user not set colors, or delete db - stop
 		if (!this.branch.getBoolPref('DBcreated')) {
-			let file = FileUtils.getFile("ProfD", ["roomybookmarkstoolbar.sqlite"]);
+			let file = new FileUtils.File(PathUtils.join(PathUtils.profileDir, "roomybookmarkstoolbar.sqlite"));
 			try { file.remove(false); } catch (e) { console.log(e) }
 			return;
 		}
@@ -659,7 +659,7 @@ var roomybookmarkstoolbar = {
 		} */
 		if (AppConstants.platform == "macosx") { macOS = true; }
 
-		var dbFile = FileUtils.getFile("ProfD", ["roomybookmarkstoolbar.sqlite"]);
+		var dbFile = new FileUtils.File(PathUtils.join(PathUtils.profileDir, "roomybookmarkstoolbar.sqlite"));
 		var dbConn = Services.storage.openDatabase(dbFile);
 		dbConn.executeSimpleSQL("create table if not exists colors (id TEXT NOT NULL PRIMARY KEY, textcolor TEXT, backgroundcolor TEXT)");
 
