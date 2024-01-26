@@ -90,7 +90,7 @@ var roomybookmarkstoolbar = {
 		}
 		this.timeOutHide = null;
 
-		if (!roomybookmarkstoolbar.PersonalToolbar.collapsed && !hovered && !popup) {
+		if (roomybookmarkstoolbar.PersonalToolbar.style.minHeight != "0px" && !hovered && !popup) {
 			roomybookmarkstoolbar.visible = false;
 			this.timeOutHide = setTimeout(roomybookmarkstoolbar.setVisibly, roomybookmarkstoolbar.hideBarTime);
 		} else {
@@ -147,7 +147,7 @@ var roomybookmarkstoolbar = {
 		if (e.target == document.getElementById("PanelUI-button")) return;
 		// var toolbox = document.getElementById("navigator-toolbox");
 
-		if (roomybookmarkstoolbar.PersonalToolbar.collapsed || !roomybookmarkstoolbar.autohide) {
+		if (roomybookmarkstoolbar.PersonalToolbar.style.minHeight == "0px" || !roomybookmarkstoolbar.autohide) {
 			// try { toolbox.removeEventListener("mousemove", roomybookmarkstoolbar.onMouseMove, false); } catch (e) { }
 			roomybookmarkstoolbar.mouseMoveListenerhandler(false);
 			roomybookmarkstoolbar.lastY = null;
@@ -286,7 +286,7 @@ var roomybookmarkstoolbar = {
 			if (autoHideBar && !BBonNewTab) {
 				roomybookmarkstoolbar.autohide = true;
 				roomybookmarkstoolbar.popup = false;
-				setTimeout(function () { roomybookmarkstoolbar.PersonalToolbar.collapsed = true; }, 1000);
+				setTimeout(function () { roomybookmarkstoolbar.hideBookmarksBar(true); }, 1000);
 				roomybookmarkstoolbar.visible = false;
 				roomybookmarkstoolbar.toolboxOver = false;
 				roomybookmarkstoolbar.moveListener = false;
@@ -440,7 +440,7 @@ var roomybookmarkstoolbar = {
 
 	hideByDefault: function () {
 		if (this.branch.getBoolPref('hideByDefault')) {
-			this.PersonalToolbar.collapsed = true;
+			hideBookmarksBar(true);
 			Services.prefs.setCharPref("browser.toolbars.bookmarks.visibility", "never");
 		} else {
 			if (!this.branch.getBoolPref('autoHideBar') && !this.branch.getBoolPref('BBonNewTab')) {
@@ -481,7 +481,7 @@ var roomybookmarkstoolbar = {
 	},
 
 	hideBookmarksBar: function (arg = !this.PersonalToolbar.collapsed) {
-		this.PersonalToolbar.collapsed = arg;
+		this.PersonalToolbar.style.height = this.PersonalToolbar.style.minHeight = arg ? 0 : '';
 		toolbarVisible = !arg;
 	},
 
