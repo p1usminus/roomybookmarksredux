@@ -18,9 +18,9 @@
 		padding-left: 4px !important;
 	}	
 
-	@supports -moz-bool-pref('extensions.roomybookmarkstoolbar.autoHideBar'){
-		#PersonalToolbar[collapsed="true"] #personal-bookmarks{
-			visibility: hidden;
+	@media (-moz-bool-pref: 'extensions.roomybookmarkstoolbar.autoHideBar'){
+		#PersonalToolbar[collapsed="true"] {
+			visibility: hidden !important;
 		}
 	}
 }
