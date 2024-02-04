@@ -707,7 +707,7 @@ var roomybookmarkstoolbar = {
 				return false;
 			})) {
 				let colorCSS = '';
-				if (macOS) {		//Mac need gray background fix
+				/* if (macOS) {		//Mac need gray background fix
 					colorCSS +=
 						'#personal-bookmarks toolbarbutton.bookmark-item[rbtid="' + id + '"] > .toolbarbutton-text {' + '\n';
 					if (bacColor != '') colorCSS += ' background-color:' + bacColor + ';' + '\n';
@@ -719,7 +719,7 @@ var roomybookmarkstoolbar = {
 					if (texColor != '') colorCSS += ' color: ' + texColor + ';' + '\n';
 					if (bacColor != '') colorCSS += ' background-color:' + bacColor + ';' + '\n';
 					colorCSS += ' border-radius: 6px;' + '\n' + '}' + '\n';;
-				}
+				} */
 				colorCSS += '#personal-bookmarks toolbarbutton.bookmark-item[rbtid="' + id + '"] {' + '\n';
 				if (texColor != '') colorCSS += ' color: ' + texColor + '!important;' + '\n';
 				if (bacColor != '') colorCSS += ' background-color:' + bacColor + '!important;' + '\n';
