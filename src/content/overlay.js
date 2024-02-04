@@ -721,8 +721,8 @@ var roomybookmarkstoolbar = {
 					colorCSS += ' border-radius: 6px;' + '\n' + '}' + '\n';;
 				}
 				colorCSS += '#personal-bookmarks toolbarbutton.bookmark-item[rbtid="' + id + '"] {' + '\n';
-				if (texColor != '') colorCSS += ' color: ' + texColor + ';' + '\n';
-				if (bacColor != '') colorCSS += ' background-color:' + bacColor + ';' + '\n';
+				if (texColor != '') colorCSS += ' color: ' + texColor + '!important;' + '\n';
+				if (bacColor != '') colorCSS += ' background-color:' + bacColor + '!important;' + '\n';
 				colorCSS += ' border-radius: 6px;' + '\n' + '}' + '\n';
 				roomybookmarkstoolbarGlobals.colorCSS += colorCSS;
 			}
