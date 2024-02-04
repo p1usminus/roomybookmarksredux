@@ -1,4 +1,4 @@
-Components.utils.import("resource://gre/modules/AddonManager.jsm");
+const { CustomizableUI } = ChromeUtils.importESModule("resource:///modules/CustomizableUI.sys.mjs");
 
 var Globals = {};
 
@@ -78,7 +78,7 @@ async function startup(data, reason) {
   Services.scriptloader.loadSubScript("chrome://roomybookmarkstoolbar/content/prefs.js", temp, 'UTF-8');
   delete temp;
 
-  Components.utils.import("resource:///modules/CustomizableUI.jsm");
+  const { CustomizableUI } = ChromeUtils.importESModule("resource:///modules/CustomizableUI.sys.mjs");
 
   try {
     CustomizableUI.createWidget({
