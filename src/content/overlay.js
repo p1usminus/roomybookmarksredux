@@ -19,7 +19,8 @@ var progressListener = {
 		if (roomybookmarkstoolbar.autohide) {
 			// This is like a secondary autoHideBookmarksBar function, just for tab switching
 			if (!(aFlags & Ci.nsIWebProgressListener.LOCATION_CHANGE_SAME_DOCUMENT)) {
-				roomybookmarkstoolbar.hideBookmarksBar(!toolbarVisible);
+				// roomybookmarkstoolbar.hideBookmarksBar(!toolbarVisible);
+				roomybookmarkstoolbar.setVisibly();
 			}
 		}
 	}
@@ -77,11 +78,10 @@ var roomybookmarkstoolbar = {
 	},
 
 	setVisibly: function () {
-		roomybookmarkstoolbar.hideBookmarksBar(!roomybookmarkstoolbar.visible);
+		roomybookmarkstoolbar.hideBookmarksBar(!toolbarVisible);
 	},
 
 	hideHandler: async function () {
-		// var visible = roomybookmarkstoolbar.visible;
 		const hovered = roomybookmarkstoolbar.hovered;
 		const popup = roomybookmarkstoolbar.popup;
 
@@ -91,11 +91,11 @@ var roomybookmarkstoolbar = {
 		this.timeOutHide = null;
 
 		if (!roomybookmarkstoolbar.PersonalToolbar.collapsed && !hovered && !popup) {
-			roomybookmarkstoolbar.visible = false;
+			toolbarVisible = false;
 			this.timeOutHide = setTimeout(roomybookmarkstoolbar.setVisibly, roomybookmarkstoolbar.hideBarTime);
 		} else {
 			if (hovered) {
-				roomybookmarkstoolbar.visible = true;
+				toolbarVisible = true;
 				roomybookmarkstoolbar.setVisibly();
 
 				if (typeof document.getElementById('PlacesToolbar')._placesView == 'undefined') {
@@ -287,7 +287,7 @@ var roomybookmarkstoolbar = {
 				roomybookmarkstoolbar.autohide = true;
 				roomybookmarkstoolbar.popup = false;
 				setTimeout(function () { roomybookmarkstoolbar.PersonalToolbar.collapsed = true; }, 1000);
-				roomybookmarkstoolbar.visible = false;
+				toolbarVisible = false;
 				roomybookmarkstoolbar.toolboxOver = false;
 				roomybookmarkstoolbar.moveListener = false;
 				roomybookmarkstoolbar.hideBarTime = this.branch.getIntPref('autoHideBarTime') * 1000 + 250;
