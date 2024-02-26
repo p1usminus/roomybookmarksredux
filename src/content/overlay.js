@@ -306,22 +306,6 @@ var roomybookmarkstoolbar = {
 		}
 	},
 
-	// currently unused - browser handles this now
-	// separatorAdded: function (heightSep) {
-	// 	var heightOrig = heightSep;
-	// 	var bookmarkService = Components.classes["@mozilla.org/browser/nav-bookmarks-service;1"].getService(Components.interfaces.nsINavBookmarksService);
-	// 	var bookmarkObserver = {
-	// 		onItemAdded: function (aItemId, aFolder, aIndex) {
-	// 			var tseparator = document.getElementsByTagName("toolbarseparator");
-	// 			for (var i = 0; i < tseparator.length; i++) {
-	// 				tseparator[i].style.height = heightOrig + 'px';
-	// 			}
-	// 		},
-	// 		QueryInterface: ChromeUtils.generateQI([Ci.nsINavBookmarkObserver])
-	// 	}
-	// 	bookmarkService.addObserver(bookmarkObserver, false);
-	// },
-
 	multirow: function (change) {
 		var PlacesToolbar = document.getElementById('PlacesToolbar');
 		var multirowBar = this.branch.getBoolPref('multirowBar');
