@@ -1,4 +1,4 @@
-const { CustomizableUI } = ChromeUtils.importESModule("resource:///modules/CustomizableUI.sys.mjs");
+import { AddonManager } from "resource://gre/modules/AddonManager.sys.mjs";
 
 var Globals = {};
 
