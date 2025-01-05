@@ -98,11 +98,18 @@ var roomybookmarkstoolbar = {
 				toolbarVisible = true;
 				roomybookmarkstoolbar.setVisibly();
 
+				document.addEventListener('mousemove',e =>{
+					if(!document.getElementById("navigator-toolbox").contains(e.target)){
+						roomybookmarkstoolbar.hovered = false;
+						roomybookmarkstoolbar.hideHandler();
+						document.removeEventListener('mousemove', arguments.callee);
+					}
+				});
 				if (typeof document.getElementById('PlacesToolbar')._placesView == 'undefined') {
 					await PlacesToolbarHelper._resetView();
 				}
 				//document.getElementById('PlacesToolbar')._placesView._updateNodesVisibilityTimerCallback();
-				document.getElementById('PlacesToolbar')._placesView.updateNodesVisibility();
+				document.getElementById('PlacesToolbar')?._placesView.updateNodesVisibility();
 			}
 		}
 	},
@@ -648,10 +655,9 @@ var roomybookmarkstoolbar = {
 		dbConn.executeSimpleSQL("create table if not exists colors (id TEXT NOT NULL PRIMARY KEY, textcolor TEXT, backgroundcolor TEXT)");
 
 		try {
+			var canClose;
 			let promise = new Promise(resolve => {
-				canClose = () => {
-					resolve();
-				};
+				canClose = resolve;
 			});
 			var statement = dbConn.createStatement("SELECT * FROM colors");
 			statement.executeAsync({
@@ -660,10 +666,7 @@ var roomybookmarkstoolbar = {
 					for (var row = aResultSet.getNextRow(); row; row = aResultSet.getNextRow()) {
 						p.push(setColor(row.getResultByName("id"), row.getResultByName("textcolor"), row.getResultByName("backgroundcolor")));
 					}
-					Promise.allSettled(p).then(
-						_ => {
-							canClose()
-						});
+					Promise.allSettled(p).then(canClose);
 				},
 				handleCompletion: async function (aResultSet) {
 					await promise;
@@ -718,7 +721,7 @@ var roomybookmarkstoolbar = {
 		if (PlacesUtils.nodeIsBookmark(roomybookmarkstoolbar.id) == true) { //If bookmarks
 			elementURL = roomybookmarkstoolbar.id.uri;
 		}
-		if (PlacesUtils.nodeIsFolder(roomybookmarkstoolbar.id) == true) {	//If folder
+		if ((PlacesUtils.nodeIsFolder ?? PlacesUtils.nodeIsFolderOrShortcut)(roomybookmarkstoolbar.id) == true) {	//If folder
 			elementURL = 'Folder'
 		}
 		var bookmarkData = { inn: { id: roomybookmarkstoolbar.id.bookmarkGuid, url: elementURL, title: roomybookmarkstoolbar.id.title }, out: null };
