@@ -3,6 +3,7 @@
 @-moz-document url(chrome://browser/content/browser.xhtml) {
 	#navigator-toolbox {
 		position: relative;
+		--browser-area-z-index-toolbox: 4;
 	}
 
 	#PersonalToolbar {
