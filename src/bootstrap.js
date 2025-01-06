@@ -132,13 +132,15 @@ async function startup(data, reason) {
     Services.obs.addObserver(documentObserver, "chrome-document-loaded");
   })();
 
-  (async function () {
-    try {
-      Services.prefs.getBoolPref("extensions.roomybookmarkstoolbar.hide_warning") ?
-        (await AddonManager.getAddonByID(`${data.id}`)).__AddonInternal__.signedState = AddonManager.SIGNEDSTATE_NOT_REQUIRED
-        : (await AddonManager.getAddonByID(`${data.id}`)).__AddonInternal__.signedState === AddonManager.SIGNEDSTATE_NOT_REQUIRED ? (await AddonManager.getAddonByID(`${data.id}`)).__AddonInternal__.signedState = AddonManager.SIGNEDSTATE_MISSING : '';
-    } catch (error) { }
-  })();
+  const addon = await AddonManager.getAddonByID(data.id);
+  // Previously used `${data.id}`
+
+  AddonManager.getAddonByID(data.id).then(addon => {
+    Services.prefs.getBoolPref("extensions.roomybookmarkstoolbar.hide_warning") ?
+        addon.__AddonInternal__.signedState = AddonManager.SIGNEDSTATE_NOT_REQUIRED
+        : addon.__AddonInternal__.signedState = AddonManager.SIGNEDSTATE_MISSING;
+    }
+  );
 }
 
 function shutdown(data, reason) {
