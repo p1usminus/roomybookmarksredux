@@ -22,8 +22,7 @@ Please read the tips.
 - - - -
 
 ## Other notes ##
-* Looking for multiple tab rows? Check out [Paxmod](https://github.com/numirias/paxmod) or [MerciChao's userChrome script
-(https://github.com/Merci-chao/userChrome.js/blob/main/MultiTabRows%40Merci.chao.uc.js)
+* Looking for multiple tab rows? Check out [Paxmod](https://github.com/numirias/paxmod) or [Merci chao's userChrome script](https://github.com/Merci-chao/userChrome.js/blob/main/MultiTabRows%40Merci.chao.uc.js)
 * :question: I would like to know if users prefer having the option to scroll when using the multirow option. It can be avoided using a combination of the multirow and margin options as above.
   * The single row multirow toolbar is neat.
 * I repurposed one of the prefs to change the top & bottom margin of bookmark items. Adding new prefs looks like it could be annoying, but there may be a couple of other ones that could be re-used.
