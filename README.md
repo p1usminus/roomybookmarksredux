@@ -8,7 +8,8 @@ Please read the tips.
 
 ## Tips ##
 * Browser & version compatibility
-  * Firefox 113+ and Waterfox G6.0+: [latest version](https://github.com/p1usminus/roomybookmarksredux/releases/latest)
+  * Firefox 129+: [latest version](https://github.com/p1usminus/roomybookmarksredux/releases/latest)
+  * Firefox 113-128 and Waterfox G6.0+: [v1.7.7.7](https://github.com/p1usminus/roomybookmarksredux/releases/tag/v1.7.7.7)
   * Firefox 108-112: [v1.7.6.1](https://github.com/p1usminus/roomybookmarksredux/releases/tag/v1.7.6.1)
   * Firefox 78-107 and Waterfox G4.0.3.1+: [v1.7.5.3](https://github.com/p1usminus/roomybookmarksredux/releases/tag/v1.7.5.3)
   * Waterfox G3: [v1.7.0.1](https://github.com/p1usminus/roomybookmarksredux/releases/tag/v1.7.0.1)
@@ -21,7 +22,8 @@ Please read the tips.
 - - - -
 
 ## Other notes ##
-* Looking for multiple tab rows? Check out [Paxmod](https://github.com/numirias/paxmod)
+* Looking for multiple tab rows? Check out [Paxmod](https://github.com/numirias/paxmod) or [MerciChao's userChrome script
+(https://github.com/Merci-chao/userChrome.js/blob/main/MultiTabRows%40Merci.chao.uc.js)
 * :question: I would like to know if users prefer having the option to scroll when using the multirow option. It can be avoided using a combination of the multirow and margin options as above.
   * The single row multirow toolbar is neat.
 * I repurposed one of the prefs to change the top & bottom margin of bookmark items. Adding new prefs looks like it could be annoying, but there may be a couple of other ones that could be re-used.
