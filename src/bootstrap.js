@@ -1,4 +1,4 @@
-import { AddonManager } from "resource://gre/modules/AddonManager.sys.mjs";
+const { AddonManager } = ChromeUtils.importESModule("resource://gre/modules/AddonManager.sys.mjs");
 
 var Globals = {};
 
