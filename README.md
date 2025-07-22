@@ -1,6 +1,6 @@
 # Roomy Bookmarks Toolbar redux #
 
-Roomy Bookmarks Toolbar for Waterfox & Firefox Developer Edition (with [userChromeJS](https://github.com/xiaoxiaoflood/firefox-scripts) or [bootstrapLoader](https://github.com/xiaoxiaoflood/firefox-scripts/tree/master/extensions/bootstrapLoader)) - __[download here!](https://github.com/p1usminus/roomybookmarksredux/releases)__
+Roomy Bookmarks Toolbar for Waterfox & Firefox Developer Edition (with [userChromeJS](https://github.com/xiaoxiaoflood/firefox-scripts) - _latest files [available from TabMixPlus repo](https://github.com/onemen/TabMixPlus/releases/tag/dev-build)_) - __[download here!](https://github.com/p1usminus/roomybookmarksredux/releases)__
 
 Originally created by [Someone free](https://web.archive.org/web/20191029180906/https://legacycollector.org/firefox-addons/210846/index.html)
 
