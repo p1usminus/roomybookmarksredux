@@ -107,7 +107,7 @@ async function startup(data, reason) {
       (async function (win) {
         if (win.document.createXULElement) {
           if (win.location.origin + win.location.pathname == "chrome://browser/content/browser.xhtml") {
-            win.document.ownerGlobal.roomybookmarkstoolbarGlobals = Globals;
+            (win.document.ownerGlobal ? win.document.ownerGlobal : win.document.documentGlobal).roomybookmarkstoolbarGlobals = Globals;
             Services.scriptloader.loadSubScript("chrome://roomybookmarkstoolbar/content/overlay.js", win.document.defaultView);
           }
         }
@@ -120,7 +120,7 @@ async function startup(data, reason) {
       observe(document) {
         if (document.createXULElement) {
           if (document.defaultView.location.origin + document.defaultView.location.pathname == "chrome://browser/content/browser.xhtml") {
-            document.ownerGlobal.roomybookmarkstoolbarGlobals = Globals;
+            (document.ownerGlobal ? document.ownerGlobal : document.documentGlobal).roomybookmarkstoolbarGlobals = Globals;
             Services.scriptloader.loadSubScript("chrome://roomybookmarkstoolbar/content/overlay.js", document.defaultView);
           }
         }
