@@ -150,3 +150,5 @@
 			}
 	},
 };
+
+window.addEventListener('load', _ => { roomybookmarkstoolbarColor.onLoad() });
