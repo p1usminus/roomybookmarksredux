@@ -30,7 +30,7 @@
 		<hbox>
 			<checkbox preference="extensions.roomybookmarkstoolbar.multirowBar" id="multirowBarPerf" label="&roomybookmarkstoolbar.options.multirowEnable.label;" />
 			<html:span>&roomybookmarkstoolbar.options.opacityIn.label; </html:span>
-			<html:input type="number" id="rowsPerf" preference="extensions.roomybookmarkstoolbar.rows" disabled="false" />
+			<html:input type="number" id="rowsPerf" preference="extensions.roomybookmarkstoolbar.rows" min="1" disabled="false" />
 			<html:span> &roomybookmarkstoolbar.options.multirowRows.label;</html:span>
 		</hbox>
 		<hbox>
@@ -46,7 +46,7 @@
 		<hbox><html:span id="autoHideBarDisabled"></html:span></hbox>
 		<hbox>
 			<checkbox preference="extensions.roomybookmarkstoolbar.autoHideBar" id="autoHideBarPerf" label="&roomybookmarkstoolbar.options.autohideBar.label;" />
-			<html:input type="number" preference="extensions.roomybookmarkstoolbar.autoHideBarTime" id="autoHideBarTimePerf" disabled="false" />
+			<html:input type="number" preference="extensions.roomybookmarkstoolbar.autoHideBarTime" id="autoHideBarTimePerf" min="0" disabled="false" />
 			<html:span> &roomybookmarkstoolbar.options.seconds.label;</html:span>
 		</hbox>
 		<html:fieldset>
@@ -74,10 +74,10 @@
 		<vbox>
 			<hbox>
 				<checkbox preference="extensions.roomybookmarkstoolbar.opacity" id="opacityPerf" label="&roomybookmarkstoolbar.options.opacity.label;" />
-				<html:input type="number" preference="extensions.roomybookmarkstoolbar.opacityTime" id="opacityTimePerf" disabled="false" />
+				<html:input type="number" preference="extensions.roomybookmarkstoolbar.opacityTime" id="opacityTimePerf" min="0" disabled="false" />
 				<html:span> &roomybookmarkstoolbar.options.seconds.label;</html:span>
 				<html:span> &roomybookmarkstoolbar.options.opacityIn.label; </html:span>
-				<html:input type="number" preference="extensions.roomybookmarkstoolbar.opacityTimeLong" id="opacityTimeLongPerf" disabled="false" />
+				<html:input type="number" preference="extensions.roomybookmarkstoolbar.opacityTimeLong" id="opacityTimeLongPerf" min="0" disabled="false" />
 				<html:span class="edge"> &roomybookmarkstoolbar.options.seconds.label;</html:span>
 			</hbox>
 		</vbox>
@@ -121,7 +121,7 @@
 	</vbox>
 	<hbox>
 		<html:span>&roomybookmarkstoolbar.options.textSize.label; </html:span>
-		<html:input type="number" preference="extensions.roomybookmarkstoolbar.textSize" id="textSizePerf" />
+		<html:input type="number" preference="extensions.roomybookmarkstoolbar.textSize" id="textSizePerf" min="10" />
 		<html:span> %</html:span>
 	</hbox>
 	<hbox>
@@ -134,7 +134,7 @@
 	</vbox>
 	<hbox>
 		<html:span>&roomybookmarkstoolbar.options.userWidthMaxWidth.label; </html:span>
-		<html:input type="number" preference="extensions.roomybookmarkstoolbar.userWidth" id="userWidthPerf" disabled="false" />
+		<html:input type="number" preference="extensions.roomybookmarkstoolbar.userWidth" id="userWidthPerf" min="10" disabled="false" />
 		<html:span> &roomybookmarkstoolbar.options.pixels.label;</html:span>
 	</hbox>
 	</html:fieldset>
