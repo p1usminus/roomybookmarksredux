@@ -126,23 +126,29 @@ window.addEventListener('load', () => {
 	
 	roomybookmarkstoolbarOptions.onLoad();
 
-	document.getElementById('multirowBarPerf').addEventListener('command', () => { roomybookmarkstoolbarOptions.location() });
-	document.getElementById('fixedHeightPerf').addEventListener('command', () => { roomybookmarkstoolbarOptions.location() });
-	document.getElementById('heightFixPerf').addEventListener('command', () => { roomybookmarkstoolbarOptions.location() });
-	document.getElementById('autoHideBarPerf').addEventListener('command', () => { roomybookmarkstoolbarOptions.autoHideBar(); roomybookmarkstoolbarOptions.autoHideZone() });
-	document.getElementById('autoHideZoneAllPerf').addEventListener('command', () => { roomybookmarkstoolbarOptions.autoHideZone() });
-	document.getElementById('hideByDefaultPerf').addEventListener('command', () => { roomybookmarkstoolbarOptions.autoHideBar() });
-	document.getElementById('BBonNewTabPerf').addEventListener('command', () => { roomybookmarkstoolbarOptions.autoHideBar() });
-	document.getElementById('opacityPerf').addEventListener('command', () => { roomybookmarkstoolbarOptions.autoHideBar() });
-	document.getElementById('bookmarksAboveTabPerf').addEventListener('command', () => { roomybookmarkstoolbarOptions.topOnPage() });
-	document.getElementById('overPagePerf').addEventListener('command', () => { roomybookmarkstoolbarOptions.topOnPage() });
-	document.getElementById('mousehoverPerf').addEventListener('command', () => { roomybookmarkstoolbarOptions.showName() });
-	document.getElementById('hideBookmarksNamePerf').addEventListener('command', () => { roomybookmarkstoolbarOptions.showName() });
-	document.getElementById('hideFoldersNamesPerf').addEventListener('command', () => { roomybookmarkstoolbarOptions.showName() });
-	document.getElementById('hideNoFaviconNamesPerf').addEventListener('command', () => { roomybookmarkstoolbarOptions.showName() });
-	document.getElementById('userWidthEnabledPerf').addEventListener('command', () => { roomybookmarkstoolbarOptions.userWidth() });
-	document.getElementById('hideBookmarksIconsPerf').addEventListener('command', () => { roomybookmarkstoolbarOptions.showName() });
-	document.getElementById('hideFolderIconsPerf').addEventListener('command', () => { roomybookmarkstoolbarOptions.showName() });
-	document.getElementById('hideDefaultIconsPerf').addEventListener('command', () => { roomybookmarkstoolbarOptions.showName() });
+	const optionsMap = [
+		{ id: 'multirowBarPerf', cmd: () => roomybookmarkstoolbarOptions.location() },
+		{ id: 'fixedHeightPerf', cmd: () => roomybookmarkstoolbarOptions.location() },
+		{ id: 'heightFixPerf', cmd: () => roomybookmarkstoolbarOptions.location() },
+		{ id: 'autoHideBarPerf', cmd: () => { roomybookmarkstoolbarOptions.autoHideBar(); roomybookmarkstoolbarOptions.autoHideZone() }},
+		{ id: 'autoHideZoneAllPerf', cmd: () => roomybookmarkstoolbarOptions.autoHideZone() },
+		{ id: 'hideByDefaultPerf', cmd: () => roomybookmarkstoolbarOptions.autoHideBar() },
+		{ id: 'BBonNewTabPerf', cmd: () => roomybookmarkstoolbarOptions.autoHideBar() },
+		{ id: 'opacityPerf', cmd: () => roomybookmarkstoolbarOptions.autoHideBar() },
+		{ id: 'bookmarksAboveTabPerf', cmd: () => roomybookmarkstoolbarOptions.topOnPage() },
+		{ id: 'overPagePerf', cmd: () => roomybookmarkstoolbarOptions.topOnPage() },
+		{ id: 'mousehoverPerf', cmd: () => roomybookmarkstoolbarOptions.showName() },
+		{ id: 'hideBookmarksNamePerf', cmd: () => roomybookmarkstoolbarOptions.showName() },
+		{ id: 'hideFoldersNamesPerf', cmd: () => roomybookmarkstoolbarOptions.showName() },
+		{ id: 'hideNoFaviconNamesPerf', cmd: () => roomybookmarkstoolbarOptions.showName() },
+		{ id: 'userWidthEnabledPerf', cmd: () => roomybookmarkstoolbarOptions.userWidth() },
+		{ id: 'hideBookmarksIconsPerf', cmd: () => roomybookmarkstoolbarOptions.showName() },
+		{ id: 'hideFolderIconsPerf', cmd: () => roomybookmarkstoolbarOptions.showName() },
+		{ id: 'hideDefaultIconsPerf', cmd: () => roomybookmarkstoolbarOptions.showName() },
+	];
+
+	for (const option of optionsMap) {
+		document.getElementById(option.id)?.addEventListener('command', option.cmd);
+	}
 
 }, { once: true });
