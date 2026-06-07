@@ -18,9 +18,7 @@ var progressListener = {
 	onLocationChange: function (aWebProgress, aRequest, aLocationURI, aFlags) {
 		if (roomybookmarkstoolbar.autohide) {
 			// This is like a secondary autoHideBookmarksBar function, just for tab switching
-			if (!(aFlags & Ci.nsIWebProgressListener.LOCATION_CHANGE_SAME_DOCUMENT)) {
-				roomybookmarkstoolbar.setVisibly();
-			}
+			if (!(aFlags & Ci.nsIWebProgressListener.LOCATION_CHANGE_SAME_DOCUMENT)) { roomybookmarkstoolbar.setVisibly(); }
 		}
 	}
 };
@@ -86,7 +84,7 @@ var roomybookmarkstoolbar = {
 		}
 		this.timeOutHide = null;
 
-		if (roomybookmarkstoolbar.autohide &&!roomybookmarkstoolbar.PersonalToolbar.collapsed && !hovered && !popup) {
+		if (roomybookmarkstoolbar.autohide && !roomybookmarkstoolbar.PersonalToolbar.collapsed && !hovered && !popup) {
 			toolbarVisible = false;
 			this.timeOutHide = setTimeout(roomybookmarkstoolbar.setVisibly, roomybookmarkstoolbar.hideBarTime);
 		} else {
