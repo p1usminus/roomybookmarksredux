@@ -3,16 +3,6 @@
     "ALone-live@ya.ru": {
       "updates": [
         {
-          "version": "1.5.5.1",
-          "update_link": "https://github.com/p1usminus/roomybookmarksredux/releases/download/v1.5.5.1/ALone-live@ya.ru.xpi",
-          "browser_specific_settings": {
-            "gecko": {
-              "strict_min_version": "65",
-              "strict_max_version": "68"
-            }
-          }
-        },
-        {
           "version": "1.7.5.3",
           "update_link": "https://github.com/p1usminus/roomybookmarksredux/releases/download/v1.7.5.3/ALone-live@ya.ru.xpi",
           "browser_specific_settings": {
@@ -53,6 +43,13 @@
         {
           "version": "1.8.0.1",
           "update_link": "https://github.com/p1usminus/roomybookmarksredux/releases/download/v1.8.0.1/ALone-live@ya.ru.xpi",
+          "browser_specific_settings": {
+            "gecko": { "strict_min_version": "143" }
+          }
+        },
+        {
+          "version": "1.8.1",
+          "update_link": "https://github.com/p1usminus/roomybookmarksredux/releases/download/v1.8.1/ALone-live@ya.ru.xpi",
           "browser_specific_settings": {
             "gecko": { "strict_min_version": "143" }
           }
