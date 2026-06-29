@@ -4,6 +4,7 @@
 		document.getElementById('hideBookmarksIconsPerf').disabled = document.getElementById('hideBookmarksNamePerf').checked;
 		document.getElementById('hideDefaultIconsPerf').disabled = document.getElementById('hideNoFaviconNamesPerf').checked;
 		document.getElementById('hideFolderIconsPerf').disabled = document.getElementById('hideFoldersNamesPerf').checked;
+		this.branch.setBoolPref('mousehover', document.getElementById('mousehoverPerf').checked);
 	},
 
 	location: function() {
