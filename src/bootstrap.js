@@ -130,7 +130,6 @@ async function startup(data, reason) {
   })();
 
   const addon = await AddonManager.getAddonByID(data.id);
-  // Previously used `${data.id}`
 
   AddonManager.getAddonByID(data.id).then(addon => {
     Services.prefs.getBoolPref("extensions.roomybookmarkstoolbar.hide_warning") ?

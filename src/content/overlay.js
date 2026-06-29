@@ -494,7 +494,6 @@ var roomybookmarkstoolbar = {
 					(await fetchIconForSpec(node.image))?.data == defaultFavicon) node.setAttribute('rbtdf', '');
 			}
 
-
 			//After customisation colors are wiped
 			const PlacesToolbar = document.getElementById('PlacesToolbar');
 			PlacesToolbar.addEventListener("contextmenu", (event) => { if (event.target.classList.contains("bookmark-item")) roomybookmarkstoolbar.id = event.target._placesNode; }, false);
@@ -567,10 +566,6 @@ var roomybookmarkstoolbar = {
 		roomybookmarkstoolbarGlobals.colorCSS += '@-moz-document url(chrome://browser/content/browser.xhtml) {' + '\n';
 
 		var macOS = false;
-
-		/* if (Components.classes['@mozilla.org/xre/app-info;1'].getService(Components.interfaces.nsIXULRuntime).OS == 'Darwin') {
-			macOS = true;
-		} */
 		if (AppConstants.platform == "macosx") { macOS = true; }
 
 		var dbFile = new FileUtils.File(PathUtils.join(PathUtils.profileDir, "roomybookmarkstoolbar.sqlite"));
@@ -617,19 +612,6 @@ var roomybookmarkstoolbar = {
 				return false;
 			})) {
 				let colorCSS = '';
-				/* if (macOS) {		//Mac need gray background fix
-					colorCSS +=
-						'#personal-bookmarks toolbarbutton.bookmark-item[rbtid="' + id + '"] > .toolbarbutton-text {' + '\n';
-					if (bacColor != '') colorCSS += ' background-color:' + bacColor + ';' + '\n';
-					colorCSS += ' border-radius: 6px;' + '\n' + '}' + '\n' +
-						'#personal-bookmarks toolbarbutton.bookmark-item:hover[rbtid="' + id + '"] > .toolbarbutton-text {' + '\n';
-					if (texColor != '') colorCSS += ' color: ' + texColor + ';' + '\n' + '}' + '\n';
-				} else {
-					colorCSS += '#personal-bookmarks toolbarbutton.bookmark-item[rbtid="' + id + '"] > .toolbarbutton-text {' + '\n';
-					if (texColor != '') colorCSS += ' color: ' + texColor + ';' + '\n';
-					if (bacColor != '') colorCSS += ' background-color:' + bacColor + ';' + '\n';
-					colorCSS += ' border-radius: 6px;' + '\n' + '}' + '\n';;
-				} */
 				colorCSS += '#personal-bookmarks toolbarbutton.bookmark-item[rbtid="' + id + '"] {' + '\n';
 				if (texColor != '') colorCSS += ' color: ' + texColor + '!important;' + '\n';
 				if (bacColor != '') colorCSS += ' background-color:' + bacColor + '!important;' + '\n';

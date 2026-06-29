@@ -99,11 +99,7 @@
 	},
 
 	resizeOptions: function() {
-		//let options = document.getElementById("roomybookmarkstoolbarPreferences");
-		//let pl = parseInt(getComputedStyle(options).getPropertyValue("-moz-padding-start"), 10);
-		//let pr = parseInt(getComputedStyle(options).getPropertyValue("-moz-padding-end"), 10);
 		window.requestAnimationFrame(() => {
-			//window.resizeTo(document.getElementsByTagName("tabpanel")[0].scrollWidth+pl+pr, window.outerHeight); // Not working for me on W10
 			window.sizeToContent();
 		  });
 	},
@@ -123,7 +119,6 @@
 };
 
 window.addEventListener('load', () => {
-	
 	roomybookmarkstoolbarOptions.onLoad();
 
 	const optionsMap = [
@@ -150,5 +145,4 @@ window.addEventListener('load', () => {
 	for (const option of optionsMap) {
 		document.getElementById(option.id)?.addEventListener('command', option.cmd);
 	}
-
 }, { once: true });
