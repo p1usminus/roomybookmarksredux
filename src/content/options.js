@@ -1,21 +1,9 @@
 ﻿var roomybookmarkstoolbarOptions = {
 	branch: null,
 	showName: function() {
-		if (document.getElementById('hideBookmarksNamePerf').checked) {
-			document.getElementById('hideBookmarksIconsPerf').disabled = true;
-		} else {
-			document.getElementById('hideBookmarksIconsPerf').disabled = false;
-		};
-		if (document.getElementById('hideNoFaviconNamesPerf').checked ) {
-			document.getElementById('hideDefaultIconsPerf').disabled = true;
-		} else {
-			document.getElementById('hideDefaultIconsPerf').disabled = false;
-		};
-		if (document.getElementById('hideFoldersNamesPerf').checked) {
-			document.getElementById('hideFolderIconsPerf').disabled = true;
-		} else {
-			document.getElementById('hideFolderIconsPerf').disabled = false;
-		};
+		document.getElementById('hideBookmarksIconsPerf').disabled = document.getElementById('hideBookmarksNamePerf').checked;
+		document.getElementById('hideDefaultIconsPerf').disabled = document.getElementById('hideNoFaviconNamesPerf').checked;
+		document.getElementById('hideFolderIconsPerf').disabled = document.getElementById('hideFoldersNamesPerf').checked;
 	},
 
 	location: function() {
