@@ -1,12 +1,18 @@
 if (!document.getElementById('placesContext')) throw 'overlay.js not in place';
-document.getElementById('placesContext').insertBefore(
-MozXULElement.parseXULToFragment(`
-	<menuseparator id="rbtSeparator"
-		insertafter="placesContext_delete"/>
-	<menuitem id="rbtChangeColor"
-		label="&roomybookmarkstoolbar.overlay.rbtChangeColor.label;"
-		insertafter="rbtSeparator"/>
-`,["chrome://roomybookmarkstoolbar/locale/overlay.dtd"]),
+let doc = new window.DOMParser().parseFromSafeString(`
+	<!DOCTYPE box SYSTEM "chrome://roomybookmarkstoolbar/locale/overlay.dtd">
+	<box xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+			xmlns:html="http://www.w3.org/1999/xhtml">
+		<menuseparator id="rbtSeparator"
+			insertafter="placesContext_delete"/>
+		<menuitem id="rbtChangeColor"
+			label="&roomybookmarkstoolbar.overlay.rbtChangeColor.label;"
+			insertafter="rbtSeparator"/>
+	</box>
+    `,"application/xml");
+let range = doc.createRange();
+range.selectNodeContents(doc.querySelector("box"));
+document.getElementById('placesContext').insertBefore(range.extractContents(),
 document.getElementById('placesContext_delete').nextSibling);
 document.getElementById('rbtChangeColor').addEventListener('command', _ => { roomybookmarkstoolbar.openColorMenu() });
 
