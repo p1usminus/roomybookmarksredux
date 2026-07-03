@@ -48,9 +48,8 @@ var roomybookmarkstoolbar = {
 
 	unregister: function () {
 		this.branch.removeObserver("", this);
-		window.removeEventListener("beforecustomization", function () { roomybookmarkstoolbar.styleService('file', 'multirowBar', true); }, false);
-		window.removeEventListener("aftercustomization", function () { roomybookmarkstoolbar.styleService('file', 'multirowBar'); }, false);
-
+		window.removeEventListener("beforecustomization", roomybookmarkstoolbar.onBeforeCustomise, false);
+		window.removeEventListener("aftercustomization", roomybookmarkstoolbar.onAfterCustomise, false);
 	},
 
 	observe: function (subject, topic, data) {
@@ -181,6 +180,14 @@ var roomybookmarkstoolbar = {
 		roomybookmarkstoolbar.hideHandler();
 	},
 
+	onBeforeCustomise: function () {
+		roomybookmarkstoolbar.styleService('file', 'multirowBar', true);
+	},
+
+	onAfterCustomise: function () {
+		roomybookmarkstoolbar.styleService('file', 'multirowBar');
+	},
+
 	mouseMoveListenerhandler: function (on) {
 		var toolbox = document.getElementById("navigator-toolbox");
 
@@ -277,7 +284,6 @@ var roomybookmarkstoolbar = {
 			var bookmarkItem = document.getElementsByClassName("bookmark-item");		//get bookmarks tree and check only 33%(for fast and low load)
 			if (heightFix && bookmarkItem.length > 0) {
 				let computedStyle = document.defaultView.getComputedStyle(bookmarkItem[bookmarkItem.length-1], null);
-				console.log(computedStyle);
 				let marginTop = +computedStyle.getPropertyValue('margin-top').replace('px', '');
 				let marginBottom = +computedStyle.getPropertyValue('margin-bottom').replace('px', '');
 				for (let i = 0; i < bookmarkItem.length; i = i + 3) {
@@ -314,16 +320,16 @@ var roomybookmarkstoolbar = {
 				PlacesToolbar.style.minHeight = heightOrig + 'px';
 			}
 
-			window.addEventListener("beforecustomization", function () { roomybookmarkstoolbar.styleService('file', 'multirowBar', true); }, false);
-			window.addEventListener("aftercustomization", function () { roomybookmarkstoolbar.styleService('file', 'multirowBar'); }, false);
+			window.addEventListener("beforecustomization", roomybookmarkstoolbar.onBeforeCustomise, false);
+			window.addEventListener("aftercustomization", roomybookmarkstoolbar.onAfterCustomise, false);
 		}
 
 		if (change && !multirowBar) {
 			PlacesToolbar.style.minHeight = heightOrig + 'px';
 			this.styleService('file', 'multirowBar', true);
 			this.branch.setBoolPref('fixedHeight', false); //change with options.js:33
-			window.removeEventListener("beforecustomization", function () { roomybookmarkstoolbar.styleService('file', 'multirowBar', true); }, false);
-			window.removeEventListener("aftercustomization", function () { roomybookmarkstoolbar.styleService('file', 'multirowBar'); }, false);
+			window.removeEventListener("beforecustomization", roomybookmarkstoolbar.onBeforeCustomise, false);
+			window.removeEventListener("aftercustomization", roomybookmarkstoolbar.onAfterCustomise, false);
 		}
 	},
 
