@@ -281,9 +281,9 @@ var roomybookmarkstoolbar = {
 				var timeOut = setTimeout(function () { roomybookmarkstoolbar.hideBookmarksBar(); }, 800);
 			}
 
-			var bookmarkItem = document.getElementsByClassName("bookmark-item");		//get bookmarks tree and check only 33%(for fast and low load)
+			var bookmarkItem = document.querySelectorAll("#PlacesToolbar toolbarbutton.bookmark-item"); // get snapshot of bookmark items, some objects outside #PlacesToolbar have the same class name
 			if (heightFix && bookmarkItem.length > 0) {
-				let computedStyle = document.defaultView.getComputedStyle(bookmarkItem[bookmarkItem.length-1], null);
+				let computedStyle = document.defaultView.getComputedStyle(bookmarkItem[0], null);
 				let marginTop = +computedStyle.getPropertyValue('margin-top').replace('px', '');
 				let marginBottom = +computedStyle.getPropertyValue('margin-bottom').replace('px', '');
 				for (let i = 0; i < bookmarkItem.length; i = i + 3) {
