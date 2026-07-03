@@ -13,17 +13,17 @@
 		<html:legend>Select color (HEX)</html:legend>
 		<label value="Text:"/>
 			<hbox align="center">
-		<html:input type="text" id="colorText" value="" onchange="roomybookmarkstoolbarColor.colorChanged(event, 'text')" style='width:165px'/>
-		<html:input type="color" id="colorTextButton" value="#ffffff" onchange="roomybookmarkstoolbarColor.colorChanged(event, 'text')" style='width:165px'/>
+		<html:input type="text" id="colorText" value="" style='width:165px'/>
+		<html:input type="color" id="colorTextButton" value="#ffffff" style='width:165px'/>
 			</hbox>
 		<label value="Background (empty = no background):"/>
 			<hbox align="center">
-		<html:input type="text" id="colorBac" value="" onchange="roomybookmarkstoolbarColor.colorChanged(event, 'background')" style='width:165px'/>
-		<html:input type="color" id="colorBacButton" value="#ffffff" onchange="roomybookmarkstoolbarColor.colorChanged(event, 'background')" style='width:165px'/>
+		<html:input type="text" id="colorBac" value="" style='width:165px'/>
+		<html:input type="color" id="colorBacButton" value="#ffffff" style='width:165px'/>
 			</hbox>
 		</html:fieldset>
 	</vbox>
-	<button label="Save" oncommand="roomybookmarkstoolbarColor.onOk();"/>
-	<button label="Clear" oncommand="roomybookmarkstoolbarColor.clearColor();"/>
-	<button label="Delete all changes" oncommand="roomybookmarkstoolbarColor.deleteDB();"/>
+	<html:button id="saveButton" type="button">Save</html:button>
+	<html:button id="clearButton" type="button">Clear</html:button>
+	<html:button id="deleteAllButton" type="button">Delete all changes</html:button>
 </dialog>

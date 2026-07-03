@@ -151,4 +151,15 @@
 	},
 };
 
-window.addEventListener('load', _ => { roomybookmarkstoolbarColor.onLoad() });
+window.addEventListener('load', _ => {
+	roomybookmarkstoolbarColor.onLoad();
+
+	document.getElementById('saveButton').addEventListener('click', () => { roomybookmarkstoolbarColor.onOk(); });
+	document.getElementById('clearButton').addEventListener('click', () => { roomybookmarkstoolbarColor.clearColor(); });
+	document.getElementById('deleteAllButton').addEventListener('click', () => { roomybookmarkstoolbarColor.deleteDB(); });
+
+	document.getElementById('colorText').addEventListener('change', () => { roomybookmarkstoolbarColor.colorChanged(event, 'text'); });
+	document.getElementById('colorTextButton').addEventListener('change', () => { roomybookmarkstoolbarColor.colorChanged(event, 'text'); });
+	document.getElementById('colorBac').addEventListener('change', () => { roomybookmarkstoolbarColor.colorChanged(event, 'background'); });
+	document.getElementById('colorBacButton').addEventListener('change', () => { roomybookmarkstoolbarColor.colorChanged(event, 'background'); });
+}, { once: true });
