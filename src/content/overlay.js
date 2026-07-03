@@ -622,14 +622,11 @@ var roomybookmarkstoolbar = {
 	},
 
 	openColorMenu: function () {
-		var elementURL;
-		if (PlacesUtils.nodeIsBookmark(roomybookmarkstoolbar.id) == true) { //If bookmarks
-			elementURL = roomybookmarkstoolbar.id.uri;
-		}
-		if ((PlacesUtils.nodeIsFolder ?? PlacesUtils.nodeIsFolderOrShortcut)(roomybookmarkstoolbar.id) == true) {	//If folder
-			elementURL = 'Folder'
-		}
-		var bookmarkData = { inn: { id: roomybookmarkstoolbar.id.bookmarkGuid, url: elementURL, title: roomybookmarkstoolbar.id.title }, out: null };
+		const isBookmark = PlacesUtils.nodeIsBookmark(roomybookmarkstoolbar.id);
+		const isFolder = (PlacesUtils.nodeIsFolder ?? PlacesUtils.nodeIsFolderOrShortcut)(roomybookmarkstoolbar.id);
+		
+		let elementURL = isBookmark ? roomybookmarkstoolbar.id.uri : (isFolder ? 'Folder' : null);
+		let bookmarkData = { inn: { id: roomybookmarkstoolbar.id.bookmarkGuid, url: elementURL, title: roomybookmarkstoolbar.id.title }, out: null };
 		openDialog("chrome://roomybookmarkstoolbar/content/colorMenu.xhtml", "dlg", "chrome, dialog, modal, centerscreen", bookmarkData).focus();
 		this.setColor();	//After dialog close - set colors
 	},
