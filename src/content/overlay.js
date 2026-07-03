@@ -275,14 +275,16 @@ var roomybookmarkstoolbar = {
 			}
 
 			var bookmarkItem = document.getElementsByClassName("bookmark-item");		//get bookmarks tree and check only 33%(for fast and low load)
-			if (heightFix) {
-				for (var i = 0; i < bookmarkItem.length; i = i + 3) {
-					var marginTop = +document.defaultView.getComputedStyle(bookmarkItem[i], null).getPropertyValue('margin-top').replace('px', '');
-					var marginBottom = +document.defaultView.getComputedStyle(bookmarkItem[i], null).getPropertyValue('margin-bottom').replace('px', '');
+			if (heightFix && bookmarkItem.length > 0) {
+				let computedStyle = document.defaultView.getComputedStyle(bookmarkItem[bookmarkItem.length-1], null);
+				console.log(computedStyle);
+				let marginTop = +computedStyle.getPropertyValue('margin-top').replace('px', '');
+				let marginBottom = +computedStyle.getPropertyValue('margin-bottom').replace('px', '');
+				for (let i = 0; i < bookmarkItem.length; i = i + 3) {
 					heightOrig = Math.max(heightOrig, bookmarkItem[i].getBoundingClientRect().height + marginTop + marginBottom);
 				}
 			} else {
-				for (var i = 0; i < bookmarkItem.length; i = i + 3) {
+				for (let i = 0; i < bookmarkItem.length; i = i + 3) {
 					heightOrig = Math.max(heightOrig, bookmarkItem[i].getBoundingClientRect().height);
 				}
 			}
@@ -294,9 +296,9 @@ var roomybookmarkstoolbar = {
 			}
 
 			if (heightOrig < this.branch.getIntPref('iconSize') && this.PersonalToolbar) {			//If height not correct - set it = icon size
-				heightOrig = this.branch.getIntPref('iconSize')
+				heightOrig = this.branch.getIntPref('iconSize');
 				if (this.branch.getIntPref('height') > this.branch.getIntPref('iconSize')) {		//If height was set and correct (bigger than icon size) set it as height
-					heightOrig = this.branch.getIntPref('height')
+					heightOrig = this.branch.getIntPref('height');
 				}
 			}
 
