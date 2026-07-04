@@ -72,19 +72,14 @@
 	},
 
 	autoHideZone: function() {
-		document.getElementById('autoHideZoneTabPerf').disabled = document.getElementById('autoHideZoneAllPerf').disabled;
-		document.getElementById('autoHideZoneNavPerf').disabled = document.getElementById('autoHideZoneAllPerf').disabled;
-		document.getElementById('autoHideZoneMenuPerf').disabled = document.getElementById('autoHideZoneAllPerf').disabled;
-		document.getElementById('autoHideZoneButtonPerf').disabled = document.getElementById('autoHideZoneAllPerf').disabled;
-		document.getElementById('autoHideZoneBackButtonPerf').disabled = document.getElementById('autoHideZoneAllPerf').disabled;
-		document.getElementById('autoHideZoneMenuButtonPerf').disabled = document.getElementById('autoHideZoneAllPerf').disabled;
+		const autoHideSuboptions = ['autoHideZoneTabPerf', 'autoHideZoneNavPerf', 'autoHideZoneMenuPerf', 'autoHideZoneButtonPerf', 'autoHideZoneBackButtonPerf', 'autoHideZoneMenuButtonPerf'];
+		autoHideSuboptions.forEach(id => {
+			document.getElementById(id).disabled = document.getElementById('autoHideZoneAllPerf').disabled
+		});
 		if(document.getElementById('autoHideZoneAllPerf').checked) {
-			document.getElementById('autoHideZoneTabPerf').disabled = document.getElementById('autoHideZoneAllPerf').checked;
-			document.getElementById('autoHideZoneNavPerf').disabled = document.getElementById('autoHideZoneAllPerf').checked;
-			document.getElementById('autoHideZoneMenuPerf').disabled = document.getElementById('autoHideZoneAllPerf').checked;
-			document.getElementById('autoHideZoneButtonPerf').disabled = document.getElementById('autoHideZoneAllPerf').checked;
-			document.getElementById('autoHideZoneBackButtonPerf').disabled = document.getElementById('autoHideZoneAllPerf').checked;
-			document.getElementById('autoHideZoneMenuButtonPerf').disabled = document.getElementById('autoHideZoneAllPerf').checked;
+			autoHideSuboptions.forEach(id => {
+				document.getElementById(id).disabled = document.getElementById('autoHideZoneAllPerf').checked
+			});
 		}
 	},
 
