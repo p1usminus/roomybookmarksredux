@@ -61,7 +61,7 @@ var roomybookmarkstoolbar = {
 	},
 
 	styleService: function (type, object, unregister) {
-		var styleSheet = Components.classes['@mozilla.org/content/style-sheet-service;1'].getService(Components.interfaces.nsIStyleSheetService);
+		var styleSheet = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
 		var styleURI;
 		if (type == 'file') {
 			styleURI = Services.io.newURI('chrome://roomybookmarkstoolbar/skin/css/' + object + '.css', null, null);
