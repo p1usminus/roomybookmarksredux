@@ -5,17 +5,10 @@ input[type="number"] {
 }
 
 hbox checkbox {
-    vertical-align: middle;
     margin-right: 0.5ch;
 }
 
-span {
-    line-height: 2em;
-    vertical-align: middle;
-    margin-right: 0.5ch;
-}
-
-span.edge {
+.edge {
     margin-right: 2ch;
 }
 
@@ -23,7 +16,7 @@ legend {
     font-weight: bold;
 }
 
-checkbox, span {
+checkbox {
     white-space: nowrap;
 }
 

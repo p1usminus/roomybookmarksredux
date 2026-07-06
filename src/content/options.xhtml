@@ -27,11 +27,11 @@
 	<html:fieldset>
 	<html:legend>&roomybookmarkstoolbar.options.multirowBarGroup.label;</html:legend>
 	<vbox>
-		<hbox>
+		<hbox align="center">
 			<checkbox preference="extensions.roomybookmarkstoolbar.multirowBar" id="multirowBarPerf" label="&roomybookmarkstoolbar.options.multirowEnable.label;" />
-			<html:span>&roomybookmarkstoolbar.options.opacityIn.label; </html:span>
+			<label value="&roomybookmarkstoolbar.options.opacityIn.label;" />
 			<html:input type="number" id="rowsPerf" preference="extensions.roomybookmarkstoolbar.rows" min="1" disabled="false" />
-			<html:span> &roomybookmarkstoolbar.options.multirowRows.label;</html:span>
+			<label value="&roomybookmarkstoolbar.options.multirowRows.label;" />
 		</hbox>
 		<hbox>
 			<checkbox preference="extensions.roomybookmarkstoolbar.fixedHeight" id="fixedHeightPerf" label="&roomybookmarkstoolbar.options.multirowBarFixed.label;" />
@@ -43,11 +43,10 @@
 	<html:fieldset>
 	<html:legend>&roomybookmarkstoolbar.options.timeGroup.label;</html:legend>
 	<vbox>
-		<hbox><html:span id="autoHideBarDisabled"></html:span></hbox>
-		<hbox>
+		<hbox align="center">
 			<checkbox preference="extensions.roomybookmarkstoolbar.autoHideBar" id="autoHideBarPerf" label="&roomybookmarkstoolbar.options.autohideBar.label;" />
 			<html:input type="number" preference="extensions.roomybookmarkstoolbar.autoHideBarTime" id="autoHideBarTimePerf" min="0" disabled="false" />
-			<html:span> &roomybookmarkstoolbar.options.seconds.label;</html:span>
+			<label value="&roomybookmarkstoolbar.options.seconds.label;" />
 		</hbox>
 		<html:fieldset>
 		<html:legend>&roomybookmarkstoolbar.options.autoHideZone.label;</html:legend>
@@ -72,13 +71,13 @@
 			<checkbox preference="extensions.roomybookmarkstoolbar.BBonNewTab" id="BBonNewTabPerf" label="&roomybookmarkstoolbar.options.BBonNewTab.label;" />
 		</vbox>
 		<vbox>
-			<hbox>
+			<hbox align="center">
 				<checkbox preference="extensions.roomybookmarkstoolbar.opacity" id="opacityPerf" label="&roomybookmarkstoolbar.options.opacity.label;" />
 				<html:input type="number" preference="extensions.roomybookmarkstoolbar.opacityTime" id="opacityTimePerf" min="0" disabled="false" />
-				<html:span> &roomybookmarkstoolbar.options.seconds.label;</html:span>
-				<html:span> &roomybookmarkstoolbar.options.opacityIn.label; </html:span>
+				<label value="&roomybookmarkstoolbar.options.seconds.label;" />
+				<label value="&roomybookmarkstoolbar.options.opacityIn.label;" />
 				<html:input type="number" preference="extensions.roomybookmarkstoolbar.opacityTimeLong" id="opacityTimeLongPerf" min="0" disabled="false" />
-				<html:span class="edge"> &roomybookmarkstoolbar.options.seconds.label;</html:span>
+				<label class="edge" value="&roomybookmarkstoolbar.options.seconds.label;" />
 			</hbox>
 		</vbox>
 	</vbox>
@@ -119,23 +118,23 @@
 		<checkbox preference="extensions.roomybookmarkstoolbar.hideFoldersNames" id="hideFoldersNamesPerf" label="&roomybookmarkstoolbar.options.hideFoldersNames.label;" />
 		<checkbox preference="extensions.roomybookmarkstoolbar.hideNoFaviconNames" id="hideNoFaviconNamesPerf" label="&roomybookmarkstoolbar.options.hideNoFaviconNames.label;" />
 	</vbox>
-	<hbox>
-		<html:span>&roomybookmarkstoolbar.options.textSize.label; </html:span>
+	<hbox align="center">
+		<label value="&roomybookmarkstoolbar.options.textSize.label;" />
 		<html:input type="number" preference="extensions.roomybookmarkstoolbar.textSize" id="textSizePerf" min="10" />
-		<html:span> %</html:span>
+		<label value="%" />
 	</hbox>
-	<hbox>
-		<html:span>Bookmarks toolbar item top/bottom margin: </html:span>
+	<hbox align="center">
+		<label value="Bookmarks toolbar item top/bottom margin:" />
 		<html:input type="number" preference="extensions.roomybookmarkstoolbar.folderMargin" id="folderMarginPerf" />
-		<html:span> &roomybookmarkstoolbar.options.pixels.label;</html:span>
+		<label value="&roomybookmarkstoolbar.options.pixels.label;" />
 	</hbox>
 	<vbox>
 		<checkbox preference="extensions.roomybookmarkstoolbar.userWidthEnabled" id="userWidthEnabledPerf" label="&roomybookmarkstoolbar.options.userWidthEnabled.label;" />
 	</vbox>
-	<hbox>
-		<html:span>&roomybookmarkstoolbar.options.userWidthMaxWidth.label; </html:span>
+	<hbox align="center">
+		<label value="&roomybookmarkstoolbar.options.userWidthMaxWidth.label;" />
 		<html:input type="number" preference="extensions.roomybookmarkstoolbar.userWidth" id="userWidthPerf" min="10" disabled="false" />
-		<html:span> &roomybookmarkstoolbar.options.pixels.label;</html:span>
+		<label value="&roomybookmarkstoolbar.options.pixels.label;" />
 	</hbox>
 	</html:fieldset>
 	<html:fieldset>
@@ -158,7 +157,7 @@
 	<html:fieldset>
 	<html:legend>&roomybookmarkstoolbar.options.sizeGroup.label;</html:legend>
 		<html:input type="number" preference="extensions.roomybookmarkstoolbar.iconSize" min="1" />
-		<html:span> &roomybookmarkstoolbar.options.pixels.label;</html:span>
+		<label value="&roomybookmarkstoolbar.options.pixels.label;" />
 	</html:fieldset>
 	<html:fieldset>
 	<html:legend>&roomybookmarkstoolbar.options.hideGroup.label;</html:legend>
