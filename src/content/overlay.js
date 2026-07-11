@@ -327,7 +327,7 @@ var roomybookmarkstoolbar = {
 		if (change && !multirowBar) {
 			PlacesToolbar.style.minHeight = heightOrig + 'px';
 			this.styleService('file', 'multirowBar', true);
-			this.branch.setBoolPref('fixedHeight', false); //change with options.js:33
+			this.branch.setBoolPref('fixedHeight', false);
 			window.removeEventListener("beforecustomization", roomybookmarkstoolbar.onBeforeCustomise, false);
 			window.removeEventListener("aftercustomization", roomybookmarkstoolbar.onAfterCustomise, false);
 		}
@@ -350,9 +350,7 @@ var roomybookmarkstoolbar = {
 				this.styleService('string', this.cssStr, true)
 			}
 
-			this.cssStr = '@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);';
-
-			this.cssStr += '@-moz-document url(chrome://browser/content/browser.xhtml) {';
+			this.cssStr = '@-moz-document url(chrome://browser/content/browser.xhtml) {';
 
 			if (opacity) {
 				this.cssStr += '#PersonalToolbar{opacity:0.4; transition: opacity ' + opacityTimeLong + 's linear ' + opacityTime + 's !important;} #navigator-toolbox > #PersonalToolbar:hover {opacity:1; transition:opacity !important}';
