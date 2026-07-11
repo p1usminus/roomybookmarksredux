@@ -1,3 +1,12 @@
+@media (-moz-platform: linux) {
+    #roomybookmarkstoolbarPreferences {
+        min-width: 500px !important;
+        max-width: 500px !important;
+        min-height: 780px !important;
+        max-height: 780px !important;
+    }
+}
+
 input[type="number"] {
     width: 7ch;
     padding: 2px;
