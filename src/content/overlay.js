@@ -16,7 +16,20 @@ document.getElementById('placesContext').insertBefore(range.extractContents(),
 document.getElementById('placesContext_delete').nextSibling);
 document.getElementById('rbtChangeColor').addEventListener('command', _ => { roomybookmarkstoolbar.openColorMenu() });
 
-let toolbarVisible; // Save visibility of toolbar before any location changes
+// Restrict colour context menu entry to bookmark items on main toolbar only
+document.getElementById('placesContext').addEventListener('popupshowing', event => {
+  let separator = document.getElementById('rbtSeparator');
+  let menuitem = document.getElementById('rbtChangeColor');
+  
+  if (separator && menuitem) {
+    let onToolbar = event.target.triggerNode?.parentNode?.id === "PlacesToolbarItems";
+    
+    separator.hidden = !onToolbar;
+    menuitem.hidden = !onToolbar;
+  }
+});
+
+let toolbarVisible = true;
 
 var progressListener = {
 	QueryInterface: ChromeUtils.generateQI([Ci.nsIWebProgressListener]),
