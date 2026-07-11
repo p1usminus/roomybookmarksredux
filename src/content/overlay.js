@@ -473,7 +473,7 @@ var roomybookmarkstoolbar = {
 		await PlacesToolbarHelper.init(); // wait until bookmarks bar has loaded
 		try { gBrowser.addProgressListener(progressListener); } catch(e) { };
 		var PersonalToolbar = document.getElementById('PersonalToolbar');
-		var bookmarkItem = document.getElementsByClassName("bookmark-item");
+		var bookmarkItem = document.querySelectorAll("#PlacesToolbar toolbarbutton.bookmark-item");
 		if (PersonalToolbar && bookmarkItem.length >= 0) {
 
 			this.PersonalToolbar = document.getElementById('PersonalToolbar');
