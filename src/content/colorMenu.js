@@ -158,8 +158,8 @@ window.addEventListener('load', _ => {
 	document.getElementById('clearButton').addEventListener('click', () => { roomybookmarkstoolbarColor.clearColor(); });
 	document.getElementById('deleteAllButton').addEventListener('click', () => { roomybookmarkstoolbarColor.deleteDB(); });
 
-	document.getElementById('colorText').addEventListener('change', () => { roomybookmarkstoolbarColor.colorChanged(event, 'text'); });
-	document.getElementById('colorTextButton').addEventListener('change', () => { roomybookmarkstoolbarColor.colorChanged(event, 'text'); });
-	document.getElementById('colorBac').addEventListener('change', () => { roomybookmarkstoolbarColor.colorChanged(event, 'background'); });
-	document.getElementById('colorBacButton').addEventListener('change', () => { roomybookmarkstoolbarColor.colorChanged(event, 'background'); });
+	document.getElementById('colorText').addEventListener('input', (e) => { roomybookmarkstoolbarColor.colorChanged(e, 'text'); });
+	document.getElementById('colorTextButton').addEventListener('input', (e) => { roomybookmarkstoolbarColor.colorChanged(e, 'text'); });
+	document.getElementById('colorBac').addEventListener('input', (e) => { roomybookmarkstoolbarColor.colorChanged(e, 'background'); });
+	document.getElementById('colorBacButton').addEventListener('input', (e) => { roomybookmarkstoolbarColor.colorChanged(e, 'background'); });
 }, { once: true });
