@@ -634,10 +634,9 @@ var roomybookmarkstoolbar = {
 }
 
 window.addEventListener("load", function load() {
-	window.removeEventListener("load", load, false);
 	roomybookmarkstoolbar.startUpMainCheck();
 	roomybookmarkstoolbar.register();
 	roomybookmarkstoolbar.registerCss();
-}, false);
+}, { once: true });
 
 window.addEventListener("unload", function (event) { roomybookmarkstoolbar.unregister(); }, false);
