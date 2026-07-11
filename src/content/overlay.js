@@ -573,9 +573,6 @@ var roomybookmarkstoolbar = {
 		roomybookmarkstoolbarGlobals.colorCSS = '';
 		roomybookmarkstoolbarGlobals.colorCSS += '@-moz-document url(chrome://browser/content/browser.xhtml) {' + '\n';
 
-		var macOS = false;
-		if (AppConstants.platform == "macosx") { macOS = true; }
-
 		var dbFile = new FileUtils.File(PathUtils.join(PathUtils.profileDir, "roomybookmarkstoolbar.sqlite"));
 		var dbConn = Services.storage.openDatabase(dbFile);
 		dbConn.executeSimpleSQL("create table if not exists colors (id TEXT NOT NULL PRIMARY KEY, textcolor TEXT, backgroundcolor TEXT)");
@@ -596,10 +593,6 @@ var roomybookmarkstoolbar = {
 				},
 				handleCompletion: async function (aResultSet) {
 					await promise;
-					if (macOS) {
-						roomybookmarkstoolbarGlobals.colorCSS += '#personal-bookmarks toolbarbutton.bookmark-item:hover > .toolbarbutton-text {color: #000000;}';
-						roomybookmarkstoolbarGlobals.colorCSS += '#personal-bookmarks toolbarbutton.bookmark-item:hover {background-color:transparent !important;}#personal-bookmarks toolbarbutton.bookmark-item > .toolbarbutton-text {text-shadow: none !important;}';
-					}
 					roomybookmarkstoolbarGlobals.colorCSS += '}';
 					roomybookmarkstoolbar.styleService('string', roomybookmarkstoolbarGlobals.colorCSS);
 					try { dbConn.asyncClose(); } catch (e) { console.log(e) }
