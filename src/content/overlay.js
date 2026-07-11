@@ -37,7 +37,7 @@ var progressListener = {
 	onLocationChange: function (aWebProgress, aRequest, aLocationURI, aFlags) {
 		if (roomybookmarkstoolbar.autohide) {
 			// This is like a secondary autoHideBookmarksBar function, just for tab switching
-			if (!(aFlags & Ci.nsIWebProgressListener.LOCATION_CHANGE_SAME_DOCUMENT)) { roomybookmarkstoolbar.setVisibly(); }
+			if (!(aFlags & Ci.nsIWebProgressListener.LOCATION_CHANGE_SAME_DOCUMENT)) { roomybookmarkstoolbar.setVisibility(); }
 		}
 	}
 };
@@ -89,7 +89,7 @@ var roomybookmarkstoolbar = {
 		}
 	},
 
-	setVisibly: function () {
+	setVisibility: function () {
 		roomybookmarkstoolbar.hideBookmarksBar(!toolbarVisible);
 	},
 
@@ -104,11 +104,11 @@ var roomybookmarkstoolbar = {
 
 		if (roomybookmarkstoolbar.autohide && !roomybookmarkstoolbar.PersonalToolbar.collapsed && !hovered && !popup) {
 			toolbarVisible = false;
-			this.timeOutHide = setTimeout(roomybookmarkstoolbar.setVisibly, roomybookmarkstoolbar.hideBarTime);
+			this.timeOutHide = setTimeout(roomybookmarkstoolbar.setVisibility, roomybookmarkstoolbar.hideBarTime);
 		} else {
 			if (hovered) {
 				toolbarVisible = true;
-				roomybookmarkstoolbar.setVisibly();
+				roomybookmarkstoolbar.setVisibility();
 
 				document.addEventListener('mousemove',e =>{
 					if(!document.getElementById("navigator-toolbox").contains(e.target)){
