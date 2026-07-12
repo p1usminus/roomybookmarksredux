@@ -171,8 +171,7 @@ const roomybookmarkstoolbar = {
 		}
 		roomybookmarkstoolbar.timeOutHide = null;
 
-		let rect = PersonalToolbar.getBoundingClientRect();
-		let y = Math.abs(e.clientY - rect.top);
+		let y = Math.abs(e.clientY - parseFloat(document.defaultView.getComputedStyle(document.getElementById("PersonalToolbar")).top));
 		if (roomybookmarkstoolbar.lastY) {
 			if (y > roomybookmarkstoolbar.lastY) {
 				roomybookmarkstoolbar.lastY = null;
@@ -300,11 +299,11 @@ const roomybookmarkstoolbar = {
 				let marginTop = +computedStyle.getPropertyValue('margin-top').replace('px', '');
 				let marginBottom = +computedStyle.getPropertyValue('margin-bottom').replace('px', '');
 				for (let i = 0; i < bookmarkItem.length; i = i + 3) {
-					heightOrig = Math.max(heightOrig, bookmarkItem[i].getBoundingClientRect().height + marginTop + marginBottom);
+					heightOrig = Math.max(heightOrig, bookmarkItem[i].offsetHeight + marginTop + marginBottom);
 				}
 			} else {
 				for (let i = 0; i < bookmarkItem.length; i = i + 3) {
-					heightOrig = Math.max(heightOrig, bookmarkItem[i].getBoundingClientRect().height);
+					heightOrig = Math.max(heightOrig, bookmarkItem[i].offsetHeight);
 				}
 			}
 
