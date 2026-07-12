@@ -254,7 +254,7 @@ const roomybookmarkstoolbar = {
 			if (autoHideBar && !BBonNewTab) {
 				roomybookmarkstoolbar.autohide = true;
 				roomybookmarkstoolbar.popup = false;
-				setTimeout(function () { roomybookmarkstoolbar.PersonalToolbar.collapsed = true; }, 1000);
+				setTimeout(roomybookmarkstoolbar.hideHandler, 1000);
 				toolbarVisible = false;
 				roomybookmarkstoolbar.toolboxOver = false;
 				roomybookmarkstoolbar.moveListener = false;
@@ -288,10 +288,11 @@ const roomybookmarkstoolbar = {
 			const rows = this.branch.getIntPref('rows');
 
 			// When bookmarks bar collapsed- height = 0px. Make it visible in 800 ms.
-			if (this.PersonalToolbar.collapsed) {
+			// Superseded by one of the handlers?
+			/* if (this.PersonalToolbar.collapsed) {
 				roomybookmarkstoolbar.hideBookmarksBar();
 				const timeOut = setTimeout(function () { roomybookmarkstoolbar.hideBookmarksBar(); }, 800);
-			}
+			} */
 
 			const bookmarkItem = document.querySelectorAll("#PlacesToolbar toolbarbutton.bookmark-item"); // get snapshot of bookmark items, some objects outside #PlacesToolbar have the same class name
 			if (heightFix && bookmarkItem.length > 0) {
