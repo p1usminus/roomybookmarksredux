@@ -171,7 +171,7 @@ const roomybookmarkstoolbar = {
 		}
 		roomybookmarkstoolbar.timeOutHide = null;
 
-		let y = Math.abs(e.clientY - parseFloat(document.defaultView.getComputedStyle(document.getElementById("PersonalToolbar")).top));
+		let y = Math.abs(e.clientY - document.getElementById("PersonalToolbar").offsetTop);
 		if (roomybookmarkstoolbar.lastY) {
 			if (y > roomybookmarkstoolbar.lastY) {
 				roomybookmarkstoolbar.lastY = null;
