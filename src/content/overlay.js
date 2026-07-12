@@ -295,9 +295,9 @@ const roomybookmarkstoolbar = {
 
 			const bookmarkItem = document.querySelectorAll("#PlacesToolbar toolbarbutton.bookmark-item"); // get snapshot of bookmark items, some objects outside #PlacesToolbar have the same class name
 			if (heightFix && bookmarkItem.length > 0) {
-				const computedStyle = document.defaultView.getComputedStyle(bookmarkItem[0], null);
-				let marginTop = +computedStyle.getPropertyValue('margin-top').replace('px', '');
-				let marginBottom = +computedStyle.getPropertyValue('margin-bottom').replace('px', '');
+				const computedStyle = document.defaultView.getComputedStyle(bookmarkItem[0]);
+				let marginTop = parseFloat(computedStyle.marginTop);
+				let marginBottom = parseFloat(computedStyle.marginBottom);
 				for (let i = 0; i < bookmarkItem.length; i = i + 3) {
 					heightOrig = Math.max(heightOrig, bookmarkItem[i].offsetHeight + marginTop + marginBottom);
 				}
