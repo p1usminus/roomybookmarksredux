@@ -1,5 +1,5 @@
 if (!document.getElementById('placesContext')) throw 'overlay.js not in place';
-let doc = new window.DOMParser().parseFromSafeString(`
+const doc = new window.DOMParser().parseFromSafeString(`
 	<!DOCTYPE box SYSTEM "chrome://roomybookmarkstoolbar/locale/overlay.dtd">
 	<box xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 			xmlns:html="http://www.w3.org/1999/xhtml">
@@ -10,7 +10,7 @@ let doc = new window.DOMParser().parseFromSafeString(`
 			insertafter="rbtSeparator"/>
 	</box>
     `,"application/xml");
-let range = doc.createRange();
+const range = doc.createRange();
 range.selectNodeContents(doc.querySelector("box"));
 document.getElementById('placesContext').insertBefore(range.extractContents(),
 document.getElementById('placesContext_delete').nextSibling);
@@ -18,8 +18,8 @@ document.getElementById('rbtChangeColor').addEventListener('command', _ => { roo
 
 // Restrict colour context menu entry to bookmark items on main toolbar only
 document.getElementById('placesContext').addEventListener('popupshowing', event => {
-  let separator = document.getElementById('rbtSeparator');
-  let menuitem = document.getElementById('rbtChangeColor');
+  const separator = document.getElementById('rbtSeparator');
+  const menuitem = document.getElementById('rbtChangeColor');
   
   if (separator && menuitem) {
     let onToolbar = event.target.triggerNode?.parentNode?.id === "PlacesToolbarItems";
@@ -31,7 +31,7 @@ document.getElementById('placesContext').addEventListener('popupshowing', event 
 
 let toolbarVisible = true;
 
-var progressListener = {
+const progressListener = {
 	QueryInterface: ChromeUtils.generateQI([Ci.nsIWebProgressListener]),
 	
 	onLocationChange: function (aWebProgress, aRequest, aLocationURI, aFlags) {
@@ -42,7 +42,7 @@ var progressListener = {
 	}
 };
 
-var roomybookmarkstoolbar = {
+const roomybookmarkstoolbar = {
 	branch: null,				//Perf system
 	cssStr: null,				//CSS string for user style
 	colorCSS: null,				//CSS string for bookmarks color
@@ -74,8 +74,8 @@ var roomybookmarkstoolbar = {
 	},
 
 	styleService: function (type, object, unregister) {
-		var styleSheet = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
-		var styleURI;
+		const styleSheet = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
+		let styleURI;
 		if (type == 'file') {
 			styleURI = Services.io.newURI('chrome://roomybookmarkstoolbar/skin/css/' + object + '.css', null, null);
 		}
@@ -146,7 +146,7 @@ var roomybookmarkstoolbar = {
 			roomybookmarkstoolbar.hovered = false;
 
 			if (!roomybookmarkstoolbar.toolboxOver) {
-				var toolbox = document.getElementById("navigator-toolbox");
+				const toolbox = document.getElementById("navigator-toolbox");
 
 				roomybookmarkstoolbar.mouseMoveListenerhandler(true);
 
@@ -171,8 +171,8 @@ var roomybookmarkstoolbar = {
 		}
 		roomybookmarkstoolbar.timeOutHide = null;
 
-		var rect = PersonalToolbar.getBoundingClientRect();
-		var y = Math.abs(e.clientY - rect.top);
+		let rect = PersonalToolbar.getBoundingClientRect();
+		let y = Math.abs(e.clientY - rect.top);
 		if (roomybookmarkstoolbar.lastY) {
 			if (y > roomybookmarkstoolbar.lastY) {
 				roomybookmarkstoolbar.lastY = null;
@@ -202,7 +202,7 @@ var roomybookmarkstoolbar = {
 	},
 
 	mouseMoveListenerhandler: function (on) {
-		var toolbox = document.getElementById("navigator-toolbox");
+		const toolbox = document.getElementById("navigator-toolbox");
 
 		if (on && !roomybookmarkstoolbar.moveListener) {
 			toolbox.addEventListener("mousemove", roomybookmarkstoolbar.onMouseMove, false);
@@ -214,21 +214,21 @@ var roomybookmarkstoolbar = {
 	},
 
 	eventListenerhandler: function (register, type) {
-		let autoHideZoneAll = this.branch.getBoolPref('autoHideZoneAll');
-		let autoHideZoneTab = this.branch.getBoolPref('autoHideZoneTab');
-		let autoHideZoneNav = this.branch.getBoolPref('autoHideZoneNav');
-		let autoHideZoneMenu = this.branch.getBoolPref('autoHideZoneMenu');
-		let autoHideZoneButton = this.branch.getBoolPref('autoHideZoneButton');
-		let autoHideZoneBackButton = this.branch.getBoolPref('autoHideZoneBackButton');
-		let autoHideZoneMenuButton = this.branch.getBoolPref('autoHideZoneMenuButton');
-		let toolbox = document.getElementById("navigator-toolbox");
-		let toolbarmenubar = document.getElementById("toolbar-menubar");
-		let TabsToolbar = document.getElementById("TabsToolbar");
-		let navBar = document.getElementById("nav-bar");
-		let rbtlibbutton = document.getElementById("rbtlibbutton");
-		let backButton = document.getElementById("back-button");
-		let menuButton = document.getElementById("PanelUI-menu-button");
-		let mainPopupSet = document.getElementById("mainPopupSet");
+		const autoHideZoneAll = this.branch.getBoolPref('autoHideZoneAll');
+		const autoHideZoneTab = this.branch.getBoolPref('autoHideZoneTab');
+		const autoHideZoneNav = this.branch.getBoolPref('autoHideZoneNav');
+		const autoHideZoneMenu = this.branch.getBoolPref('autoHideZoneMenu');
+		const autoHideZoneButton = this.branch.getBoolPref('autoHideZoneButton');
+		const autoHideZoneBackButton = this.branch.getBoolPref('autoHideZoneBackButton');
+		const autoHideZoneMenuButton = this.branch.getBoolPref('autoHideZoneMenuButton');
+		const toolbox = document.getElementById("navigator-toolbox");
+		const toolbarmenubar = document.getElementById("toolbar-menubar");
+		const TabsToolbar = document.getElementById("TabsToolbar");
+		const navBar = document.getElementById("nav-bar");
+		const rbtlibbutton = document.getElementById("rbtlibbutton");
+		const backButton = document.getElementById("back-button");
+		const menuButton = document.getElementById("PanelUI-menu-button");
+		const mainPopupSet = document.getElementById("mainPopupSet");
 		let MPSEventHandler = (e) => {if(["customizationui-widget-panel","placesContext"].includes(e.target.id)) this["on" + e.type]();};
 
 		let E, H, P, T = type ? (E = "mouseenter", H = this.onMouseOver, P = "popupshown", void 0) :
@@ -248,8 +248,8 @@ var roomybookmarkstoolbar = {
 	},
 
 	autoHideBookmarksBar: function (change) {
-		var autoHideBar = this.branch.getBoolPref('autoHideBar');
-		var BBonNewTab = this.branch.getBoolPref('BBonNewTab');
+		const autoHideBar = this.branch.getBoolPref('autoHideBar');
+		const BBonNewTab = this.branch.getBoolPref('BBonNewTab');
 
 		if (this.PersonalToolbar) {
 			if (autoHideBar && !BBonNewTab) {
@@ -276,27 +276,27 @@ var roomybookmarkstoolbar = {
 	},
 
 	multirow: function (change) {
-		var PlacesToolbar = document.getElementById('PlacesToolbar');
-		var multirowBar = this.branch.getBoolPref('multirowBar');
-		var heightOrig = 0;
+		const PlacesToolbar = document.getElementById('PlacesToolbar');
+		const multirowBar = this.branch.getBoolPref('multirowBar');
+		let heightOrig = 0;
 
 		if (multirowBar && this.PersonalToolbar) {
 			this.styleService('file', 'multirowBar', true);
 			this.styleService('file', 'multirowBar');
 
-			var fixedHeight = this.branch.getBoolPref('fixedHeight');
-			var heightFix = this.branch.getBoolPref('heightFix');
-			var rows = this.branch.getIntPref('rows');
+			const fixedHeight = this.branch.getBoolPref('fixedHeight');
+			const heightFix = this.branch.getBoolPref('heightFix');
+			const rows = this.branch.getIntPref('rows');
 
 			// When bookmarks bar collapsed- height = 0px. Make it visible in 800 ms.
 			if (this.PersonalToolbar.collapsed) {
 				roomybookmarkstoolbar.hideBookmarksBar();
-				var timeOut = setTimeout(function () { roomybookmarkstoolbar.hideBookmarksBar(); }, 800);
+				const timeOut = setTimeout(function () { roomybookmarkstoolbar.hideBookmarksBar(); }, 800);
 			}
 
-			var bookmarkItem = document.querySelectorAll("#PlacesToolbar toolbarbutton.bookmark-item"); // get snapshot of bookmark items, some objects outside #PlacesToolbar have the same class name
+			const bookmarkItem = document.querySelectorAll("#PlacesToolbar toolbarbutton.bookmark-item"); // get snapshot of bookmark items, some objects outside #PlacesToolbar have the same class name
 			if (heightFix && bookmarkItem.length > 0) {
-				let computedStyle = document.defaultView.getComputedStyle(bookmarkItem[0], null);
+				const computedStyle = document.defaultView.getComputedStyle(bookmarkItem[0], null);
 				let marginTop = +computedStyle.getPropertyValue('margin-top').replace('px', '');
 				let marginBottom = +computedStyle.getPropertyValue('margin-bottom').replace('px', '');
 				for (let i = 0; i < bookmarkItem.length; i = i + 3) {
@@ -321,7 +321,7 @@ var roomybookmarkstoolbar = {
 				}
 			}
 
-			var height = heightOrig * rows;
+			let height = heightOrig * rows;
 			this.branch.setIntPref('height', heightOrig);  // why?
 
 			PlacesToolbar.style.maxHeight = height + 'px';
@@ -347,17 +347,17 @@ var roomybookmarkstoolbar = {
 	},
 
 	userStyle: function () {
-		var opacity = this.branch.getBoolPref('opacity');
-		var iconSize = this.branch.getIntPref('iconSize');
-		var userWidthEnabled = this.branch.getBoolPref('userWidthEnabled');
-		var folderMargin = this.branch.getIntPref('folderMargin');
-		var textSize = this.branch.getIntPref('textSize');
+		const opacity = this.branch.getBoolPref('opacity');
+		const iconSize = this.branch.getIntPref('iconSize');
+		const userWidthEnabled = this.branch.getBoolPref('userWidthEnabled');
+		const folderMargin = this.branch.getIntPref('folderMargin');
+		const textSize = this.branch.getIntPref('textSize');
 
 		if (opacity || iconSize != 16 || userWidthEnabled || folderMargin != 0 || textSize != 100) {
-			var opacityTime = this.branch.getIntPref('opacityTime');
-			var opacityTimeLong = this.branch.getIntPref('opacityTimeLong');
-			var userWidth = this.branch.getIntPref('userWidth');
-			if (userWidth < iconSize) { var userWidth = iconSize };		//We cannot set 0px as width (bookmarks bar will collapse)
+			const opacityTime = this.branch.getIntPref('opacityTime');
+			const opacityTimeLong = this.branch.getIntPref('opacityTimeLong');
+			const userWidth = this.branch.getIntPref('userWidth');
+			if (userWidth < iconSize) { userWidth = iconSize };		//We cannot set 0px as width (bookmarks bar will collapse)
 
 			if (this.cssStr !== 'null') {
 				this.styleService('string', this.cssStr, true)
@@ -455,13 +455,13 @@ var roomybookmarkstoolbar = {
 	},
 
 	registerCss: function () {
-		var hideFoldersNames = this.branch.getBoolPref('hideFoldersNames');
-		var hideNoFaviconNames = this.branch.getBoolPref('hideNoFaviconNames');
-		var hideFolderIcons = this.branch.getBoolPref('hideFolderIcons');
-		var hideDefaultIcons = this.branch.getBoolPref('hideDefaultIcons');
-		var hideBookmarksName = this.branch.getBoolPref('hideBookmarksName');
-		var hideBookmarksIcons = this.branch.getBoolPref('hideBookmarksIcons');
-		var location = this.branch.getIntPref('location');
+		const hideFoldersNames = this.branch.getBoolPref('hideFoldersNames');
+		const hideNoFaviconNames = this.branch.getBoolPref('hideNoFaviconNames');
+		const hideFolderIcons = this.branch.getBoolPref('hideFolderIcons');
+		const hideDefaultIcons = this.branch.getBoolPref('hideDefaultIcons');
+		const hideBookmarksName = this.branch.getBoolPref('hideBookmarksName');
+		const hideBookmarksIcons = this.branch.getBoolPref('hideBookmarksIcons');
+		const location = this.branch.getIntPref('location');
 
 		this.styleService('file', 'main');
 		this.styleService('file', 'fullscreen');
@@ -485,8 +485,8 @@ var roomybookmarkstoolbar = {
 		if (typeof PlacesToolbarHelper == 'undefined') return;
 		await PlacesToolbarHelper.init(); // wait until bookmarks bar has loaded
 		try { gBrowser.addProgressListener(progressListener); } catch(e) { };
-		var PersonalToolbar = document.getElementById('PersonalToolbar');
-		var bookmarkItem = document.querySelectorAll("#PlacesToolbar toolbarbutton.bookmark-item");
+		const PersonalToolbar = document.getElementById('PersonalToolbar');
+		const bookmarkItem = document.querySelectorAll("#PlacesToolbar toolbarbutton.bookmark-item");
 		if (PersonalToolbar && bookmarkItem.length >= 0) {
 
 			this.PersonalToolbar = document.getElementById('PersonalToolbar');
@@ -509,7 +509,7 @@ var roomybookmarkstoolbar = {
 			if (!roomybookmarkstoolbarGlobals.colorCSS) this.setColor();
 
 			//favicon 
-			var defaultFavicon = (await fetchIconForSpec(PlacesUtils.favicons.defaultFavicon.spec))?.data;
+			let defaultFavicon = (await fetchIconForSpec(PlacesUtils.favicons.defaultFavicon.spec))?.data;
 			for (const node of document.querySelectorAll("#PlacesToolbar toolbarbutton.bookmark-item")) {
 				if (node.image &&
 					(await fetchIconForSpec(node.image))?.data == defaultFavicon) node.setAttribute('rbtdf', '');
@@ -578,7 +578,7 @@ var roomybookmarkstoolbar = {
 		}
 		//If user not set colors, or delete db - stop
 		if (!this.branch.getBoolPref('DBcreated')) {
-			let file = new FileUtils.File(PathUtils.join(PathUtils.profileDir, "roomybookmarkstoolbar.sqlite"));
+			const file = new FileUtils.File(PathUtils.join(PathUtils.profileDir, "roomybookmarkstoolbar.sqlite"));
 			try { file.remove(false); } catch (e) { console.log(e) }
 			return;
 		}
@@ -586,20 +586,20 @@ var roomybookmarkstoolbar = {
 		roomybookmarkstoolbarGlobals.colorCSS = '';
 		roomybookmarkstoolbarGlobals.colorCSS += '@-moz-document url(chrome://browser/content/browser.xhtml) {' + '\n';
 
-		var dbFile = new FileUtils.File(PathUtils.join(PathUtils.profileDir, "roomybookmarkstoolbar.sqlite"));
-		var dbConn = Services.storage.openDatabase(dbFile);
+		const dbFile = new FileUtils.File(PathUtils.join(PathUtils.profileDir, "roomybookmarkstoolbar.sqlite"));
+		const dbConn = Services.storage.openDatabase(dbFile);
 		dbConn.executeSimpleSQL("create table if not exists colors (id TEXT NOT NULL PRIMARY KEY, textcolor TEXT, backgroundcolor TEXT)");
 
 		try {
-			var canClose;
+			let canClose;
 			let promise = new Promise(resolve => {
 				canClose = resolve;
 			});
-			var statement = dbConn.createStatement("SELECT * FROM colors");
+			const statement = dbConn.createStatement("SELECT * FROM colors");
 			statement.executeAsync({
 				handleResult: async function (aResultSet) {
 					let p = [];
-					for (var row = aResultSet.getNextRow(); row; row = aResultSet.getNextRow()) {
+					for (let row = aResultSet.getNextRow(); row; row = aResultSet.getNextRow()) {
 						p.push(setColor(row.getResultByName("id"), row.getResultByName("textcolor"), row.getResultByName("backgroundcolor")));
 					}
 					Promise.allSettled(p).then(canClose);
@@ -639,8 +639,8 @@ var roomybookmarkstoolbar = {
 		const isBookmark = PlacesUtils.nodeIsBookmark(roomybookmarkstoolbar.id);
 		const isFolder = (PlacesUtils.nodeIsFolder ?? PlacesUtils.nodeIsFolderOrShortcut)(roomybookmarkstoolbar.id);
 		
-		let elementURL = isBookmark ? roomybookmarkstoolbar.id.uri : (isFolder ? 'Folder' : null);
-		let bookmarkData = { inn: { id: roomybookmarkstoolbar.id.bookmarkGuid, url: elementURL, title: roomybookmarkstoolbar.id.title }, out: null };
+		const elementURL = isBookmark ? roomybookmarkstoolbar.id.uri : (isFolder ? 'Folder' : null);
+		const bookmarkData = { inn: { id: roomybookmarkstoolbar.id.bookmarkGuid, url: elementURL, title: roomybookmarkstoolbar.id.title }, out: null };
 		openDialog("chrome://roomybookmarkstoolbar/content/colorMenu.xhtml", "dlg", "chrome, dialog, modal, centerscreen", bookmarkData).focus();
 		this.setColor();	//After dialog close - set colors
 	},

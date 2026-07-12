@@ -1,4 +1,4 @@
-﻿var roomybookmarkstoolbarOptions = {
+﻿const roomybookmarkstoolbarOptions = {
 	branch: null,
 	showName: function() {
 		document.getElementById('hideBookmarksIconsPerf').disabled = document.getElementById('hideBookmarksNamePerf').checked;

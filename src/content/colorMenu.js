@@ -1,4 +1,4 @@
-﻿var roomybookmarkstoolbarColor = {
+﻿const roomybookmarkstoolbarColor = {
 	branch: null,
 	onLoad: function() {
 		document.getElementById("colorText").value = document.getElementById("colorTextButton").value;
@@ -8,8 +8,8 @@
 		document.getElementById("title").value = window.arguments[0].inn.title;
 		document.getElementById("url").value = window.arguments[0].inn.url
 
-		var rbtdatas = {id:window.arguments[0].inn.id,}
-		this.db(rbtdatas, 'getGata',  function (data) {
+		let rbtdatas = {id:window.arguments[0].inn.id,}
+		this.db(rbtdatas, 'getData',  function (data) {
 			if(data[0]) {
 				document.getElementById("colorText").value = data[0];
 				document.getElementById("colorTextButton").value = data[0];
@@ -51,7 +51,7 @@
 	},
 
 	onOk: function() {
-		var rbtdata = {id:window.arguments[0].inn.id, textcolor:document.getElementById("colorText").value, backgroundcolor:document.getElementById("colorBac").value};
+		let rbtdata = {id:window.arguments[0].inn.id, textcolor:document.getElementById("colorText").value, backgroundcolor:document.getElementById("colorBac").value};
 		if ((!rbtdata.textcolor && !rbtdata.backgroundcolor) || (rbtdata.textcolor == '' && rbtdata.backgroundcolor == '')) {
 			this.db(rbtdata, 'clearColor');
 			window.close();
@@ -75,11 +75,11 @@
 		dbConn.executeSimpleSQL("create table if not exists colors (id TEXT NOT NULL PRIMARY KEY, textcolor TEXT, backgroundcolor TEXT)");
 
 		if (DBevent == 'saveData') {
-			var list = new Array();
+			let list = new Array();
 				let statement = dbConn.createStatement("SELECT * FROM colors");
 				statement.executeAsync({
 					handleResult: function(aResultSet) {
-								for (var row = aResultSet.getNextRow(); row; row = aResultSet.getNextRow()) {
+								for (let row = aResultSet.getNextRow(); row; row = aResultSet.getNextRow()) {
 								if (row.getResultByName("id") == data.id) {
 									list.push(row.getResultByName("id"))
 								}
@@ -112,13 +112,13 @@
 				});
 		}
 
-		if (DBevent == 'getGata') {
-			var list = new Array();
+		if (DBevent == 'getData') {
+			let list = new Array();
 			let statement = dbConn.createStatement("SELECT * FROM colors");
 			statement.executeAsync({
 				handleResult: function(aResultSet) {
-					var newHistoryString = "";
-						for (var row = aResultSet.getNextRow(); row; row = aResultSet.getNextRow()) {
+					let newHistoryString = "";
+						for (let row = aResultSet.getNextRow(); row; row = aResultSet.getNextRow()) {
 							if (row.getResultByName("id") == data.id) {
 								list.push(row.getResultByName("textcolor"))
 								list.push(row.getResultByName("backgroundcolor"))
@@ -139,7 +139,7 @@
 		if (DBevent == 'deleteDB') {	
 				Services.prefs.setBoolPref("extensions.roomybookmarkstoolbar.DBcreated", false);
 
-				var statement = dbConn.createStatement("DELETE FROM colors");
+				let statement = dbConn.createStatement("DELETE FROM colors");
 				statement.executeAsync({
 					handleCompletion: function(aReason) {
 						dbConn.asyncClose();

@@ -1,7 +1,7 @@
 const { AddonManager } = ChromeUtils.importESModule("resource://gre/modules/AddonManager.sys.mjs");
 const { CustomizableUI } = ChromeUtils.importESModule("moz-src:///browser/components/customizableui/CustomizableUI.sys.mjs");
 
-var Globals = {};
+let Globals = {};
 
 /**
  * restartApplication: Restarts the application, keeping it in
@@ -100,9 +100,9 @@ async function startup(data, reason) {
   }
 
   if (reason === ADDON_INSTALL || (reason === ADDON_ENABLE && !window.document.getElementById('roomybookmarkstoolbar'))) {
-    var enumerator = Services.wm.getEnumerator(null);
+    const enumerator = Services.wm.getEnumerator(null);
     while (enumerator.hasMoreElements()) {
-      var win = enumerator.getNext();
+      let win = enumerator.getNext();
 
       (async function (win) {
         if (win.document.createXULElement) {
