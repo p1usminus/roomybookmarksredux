@@ -1,0 +1,5 @@
+﻿@-moz-document url(chrome://browser/content/browser.xhtml) {
+	:root[inFullscreen] #navigator-toolbox:is(:hover, :focus-within) #PersonalToolbar:not([collapsed="true"]):not([collapsed]) {
+		visibility: visible !important;
+	}
+}

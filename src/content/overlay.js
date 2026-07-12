@@ -433,6 +433,7 @@ var roomybookmarkstoolbar = {
 	unRegisterCss: function () {
 		this.styleService('file', 'base', true);
 		this.styleService('file', 'main', true);
+		this.styleService('file', 'fullscreen', true);
 		this.styleService('file', 'mousehover', true);
 		this.styleService('file', 'hideFoldersNames', true);
 		this.styleService('file', 'hideNoFaviconNames', true);
@@ -463,6 +464,7 @@ var roomybookmarkstoolbar = {
 		var location = this.branch.getIntPref('location');
 
 		this.styleService('file', 'main');
+		this.styleService('file', 'fullscreen');
 
 		if (hideFoldersNames) { this.styleService('file', 'hideFoldersNames'); }
 		if (hideNoFaviconNames) { this.styleService('file', 'hideNoFaviconNames'); }
