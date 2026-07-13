@@ -111,11 +111,11 @@ const roomybookmarkstoolbar = {
 				toolbarVisible = true;
 				roomybookmarkstoolbar.setVisibility();
 
-				document.addEventListener('mousemove',e =>{
-					if(!document.getElementById("navigator-toolbox").contains(e.target)){
+				document.addEventListener('mousemove', function cancelHide(e) {
+					if(!document.getElementById("navigator-toolbox").contains(e.target)) {
 						roomybookmarkstoolbar.hovered = false;
 						roomybookmarkstoolbar.hideHandler();
-						document.removeEventListener('mousemove', arguments.callee);
+						document.removeEventListener('mousemove', cancelHide);
 					}
 				});
 				if (typeof document.getElementById('PlacesToolbar')._placesView == 'undefined') {
