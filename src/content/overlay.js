@@ -146,10 +146,10 @@ const roomybookmarkstoolbar = {
 		if (roomybookmarkstoolbar.autohide) {
 			roomybookmarkstoolbar.hovered = false;
 
-				const toolbox = document.getElementById("navigator-toolbox");
-				roomybookmarkstoolbar.mouseMoveListenerhandler(true);
+			const toolbox = document.getElementById("navigator-toolbox");
+			roomybookmarkstoolbar.mouseMoveListenerhandler(true);
 
-				if (e.target == toolbox) roomybookmarkstoolbar.timeOutHide = setTimeout(roomybookmarkstoolbar.hideHandler, 100);
+			if (e.target == toolbox) roomybookmarkstoolbar.timeOutHide = setTimeout(roomybookmarkstoolbar.hideHandler, 100);
 
 		}
 	},
