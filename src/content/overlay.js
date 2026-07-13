@@ -146,14 +146,10 @@ const roomybookmarkstoolbar = {
 		if (roomybookmarkstoolbar.autohide) {
 			roomybookmarkstoolbar.hovered = false;
 
-			if (!roomybookmarkstoolbar.toolboxOver) {
 				const toolbox = document.getElementById("navigator-toolbox");
-
 				roomybookmarkstoolbar.mouseMoveListenerhandler(true);
 
 				if (e.target == toolbox) roomybookmarkstoolbar.timeOutHide = setTimeout(roomybookmarkstoolbar.hideHandler, 100);
-			}
-			else roomybookmarkstoolbar.hideHandler();
 
 		}
 	},
@@ -232,7 +228,7 @@ const roomybookmarkstoolbar = {
 		let MPSEventHandler = (e) => {if(["customizationui-widget-panel","placesContext"].includes(e.target.id)) this["on" + e.type]();};
 
 		let E, H, P, T = type ? (E = "mouseenter", H = this.onMouseOver, P = "popupshown", void 0) :
-			(E = "mouseleave", H = this.onMouseOutput, P = "popuphidden", autoHideZoneAll && (this.toolboxOver = true), toolbox)
+			(E = "mouseleave", H = this.onMouseOutput, P = "popuphidden", toolbox)
 		if (register) {
 			(autoHideZoneAll ? [toolbox] : [PersonalToolbar, T,
 				autoHideZoneNav	? navBar : void 0,		autoHideZoneMenu	? toolbarmenubar : void 0,	autoHideZoneBackButton ? backButton : void 0,
@@ -257,7 +253,6 @@ const roomybookmarkstoolbar = {
 				roomybookmarkstoolbar.popup = false;
 				setTimeout(roomybookmarkstoolbar.hideHandler, 1000);
 				toolbarVisible = false;
-				roomybookmarkstoolbar.toolboxOver = false;
 				roomybookmarkstoolbar.moveListener = false;
 				roomybookmarkstoolbar.hideBarTime = this.branch.getIntPref('autoHideBarTime') * 1000 + 250;
 
