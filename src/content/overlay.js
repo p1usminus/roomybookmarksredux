@@ -43,16 +43,17 @@ const progressListener = {
 };
 
 const roomybookmarkstoolbar = {
-	branch: null,				//Perf system
+	branch: null,				//Pref system
 	cssStr: null,				//CSS string for user style
 	colorCSS: null,				//CSS string for bookmarks color
-	visible: null,				//Autohide visible
 	hovered: null,				//Autohide if mouse on browser panel- not hide
 	popup: null,				//Autohide if popup open- not hide bookmrks bar
 	autohide: null,				//Autohide enabled\disabled
+	moveListener: null,			//If movement listener is in use
 	hideBarTime: null,			//Auto-hide time
 	timeOutHide: null,			//Timer for autohide
-	PersonalToolbar: null,			//PersonalToolbar CSS id?
+	PersonalToolbar: null,		//PersonalToolbar HTML id?
+	lastY: null,				//Vertical distance from toolbar?
 
 	register: function () {
 		this.branch = Services.prefs.getBranch("extensions.roomybookmarkstoolbar.");
