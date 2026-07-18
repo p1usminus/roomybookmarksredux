@@ -8,12 +8,10 @@ Please read the tips.
 
 ## Tips ##
 * Browser & version compatibility
-  * Firefox 143+: [latest version](https://github.com/p1usminus/roomybookmarksredux/releases/latest)
-  * Firefox 129-142 and Waterfox G6.6.0+: [v1.7.7.8](https://github.com/p1usminus/roomybookmarksredux/releases/tag/v1.7.7.8)
+  * Firefox 143+ and Waterfox G6.6.0+: [latest version](https://github.com/p1usminus/roomybookmarksredux/releases/latest)
+  * Firefox 129-142: [v1.7.7.8](https://github.com/p1usminus/roomybookmarksredux/releases/tag/v1.7.7.8)
   * Firefox 113-128 and Waterfox G6.0-6.5.10: [v1.7.7.7](https://github.com/p1usminus/roomybookmarksredux/releases/tag/v1.7.7.7)
-  * Firefox 108-112: [v1.7.6.1](https://github.com/p1usminus/roomybookmarksredux/releases/tag/v1.7.6.1)
-  * Firefox 78-107 and Waterfox G4.0.3.1+: [v1.7.5.3](https://github.com/p1usminus/roomybookmarksredux/releases/tag/v1.7.5.3)
-  * Waterfox Classic: [v1.4.17/original](https://web.archive.org/web/20191029180906/https://legacycollector.org/firefox-addons/210846/roomy-bookmarks-toolbar-1.4.17.xpi) (pls update)
+  * Waterfox Classic: [v1.4.17/original](https://files.inbox.eu/shared/file/b1a0ff64de1483eac916d5d2ef3a1d8eafdc7bf2) (pls update)
   * Pale Moon: Try [Cozy Bookmarks Toolbar](https://addons.palemoon.org/addon/cozy-bookmarks-toolbar/)
 * The fixed height option should be used when the multirow option is selected, otherwise the toolbar will try to stay at single row height.
 * The toolbar behaves strangely when using the multirow option with a non-standard favicon size. Solution: Use the option to fix incorrect height ~~__with__ a non-zero margin size (see 2nd option tab). I wish this was less complicated.~~
