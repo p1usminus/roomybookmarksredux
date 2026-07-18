@@ -150,7 +150,6 @@ const roomybookmarkstoolbar = {
 			roomybookmarkstoolbar.mouseMoveListenerhandler(true);
 
 			if (e.target == toolbox) roomybookmarkstoolbar.timeOutHide = setTimeout(roomybookmarkstoolbar.hideHandler, 100);
-
 		}
 	},
 
@@ -168,7 +167,8 @@ const roomybookmarkstoolbar = {
 		}
 		roomybookmarkstoolbar.timeOutHide = null;
 
-		let y = Math.abs(e.clientY - document.getElementById("PersonalToolbar").offsetTop);
+		let toolbarTop = (PersonalToolbar.offsetTop > 0 ? PersonalToolbar.offsetTop : null) ?? PersonalToolbar.getBoundingClientRect().top;
+		let y = Math.abs(e.clientY - toolbarTop);
 		if (roomybookmarkstoolbar.lastY) {
 			if (y > roomybookmarkstoolbar.lastY) {
 				roomybookmarkstoolbar.lastY = null;
@@ -290,15 +290,15 @@ const roomybookmarkstoolbar = {
 
 			const bookmarkItem = document.querySelectorAll("#PlacesToolbar toolbarbutton.bookmark-item"); // get snapshot of bookmark items, some objects outside #PlacesToolbar have the same class name
 			if (heightFix && bookmarkItem.length > 0) {
-				const computedStyle = document.defaultView.getComputedStyle(bookmarkItem[0]);
+				let computedStyle = document.defaultView.getComputedStyle(bookmarkItem[0]);
 				let marginTop = parseFloat(computedStyle.marginTop);
 				let marginBottom = parseFloat(computedStyle.marginBottom);
 				for (let i = 0; i < bookmarkItem.length; i = i + 3) {
-					heightOrig = Math.max(heightOrig, bookmarkItem[i].offsetHeight + marginTop + marginBottom);
+					heightOrig = Math.max(heightOrig, bookmarkItem[i].getBoundingClientRect().height + marginTop + marginBottom);
 				}
 			} else {
 				for (let i = 0; i < bookmarkItem.length; i = i + 3) {
-					heightOrig = Math.max(heightOrig, bookmarkItem[i].offsetHeight);
+					heightOrig = Math.max(heightOrig, bookmarkItem[i].getBoundingClientRect().height);
 				}
 			}
 
@@ -483,7 +483,7 @@ const roomybookmarkstoolbar = {
 		const bookmarkItem = document.querySelectorAll("#PlacesToolbar toolbarbutton.bookmark-item");
 		if (PersonalToolbar && bookmarkItem.length >= 0) {
 
-			this.PersonalToolbar = document.getElementById('PersonalToolbar');
+			this.PersonalToolbar = PersonalToolbar;
 			this.userStyle();
 			if (this.branch.getBoolPref('multirowBar')) {
 				this.multirow();

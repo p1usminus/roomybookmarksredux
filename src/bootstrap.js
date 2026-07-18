@@ -1,5 +1,11 @@
 const { AddonManager } = ChromeUtils.importESModule("resource://gre/modules/AddonManager.sys.mjs");
-const { CustomizableUI } = ChromeUtils.importESModule("moz-src:///browser/components/customizableui/CustomizableUI.sys.mjs");
+let cuiModule;
+try {
+  cuiModule = ChromeUtils.importESModule("moz-src:///browser/components/customizableui/CustomizableUI.sys.mjs");
+} catch(e) {
+  cuiModule = ChromeUtils.importESModule("resource:///modules/CustomizableUI.sys.mjs");
+}
+const { CustomizableUI } = cuiModule;
 
 let Globals = {};
 
