@@ -167,7 +167,7 @@ const roomybookmarkstoolbar = {
 		}
 		roomybookmarkstoolbar.timeOutHide = null;
 
-		let toolbarTop = (PersonalToolbar.offsetTop > 0 ? PersonalToolbar.offsetTop : null) ?? PersonalToolbar.getBoundingClientRect().top;
+		let toolbarTop = (PersonalToolbar.offsetTop > 0 ? PersonalToolbar.offsetTop : null) ?? Math.round(PersonalToolbar.getBoundingClientRect().top);
 		let y = Math.abs(e.clientY - toolbarTop);
 		if (roomybookmarkstoolbar.lastY) {
 			if (y > roomybookmarkstoolbar.lastY) {
@@ -291,8 +291,8 @@ const roomybookmarkstoolbar = {
 			const bookmarkItem = document.querySelectorAll("#PlacesToolbar toolbarbutton.bookmark-item"); // get snapshot of bookmark items, some objects outside #PlacesToolbar have the same class name
 			if (heightFix && bookmarkItem.length > 0) {
 				let computedStyle = document.defaultView.getComputedStyle(bookmarkItem[0]);
-				let marginTop = parseFloat(computedStyle.marginTop);
-				let marginBottom = parseFloat(computedStyle.marginBottom);
+				let marginTop = parseInt(computedStyle.marginTop);
+				let marginBottom = parseInt(computedStyle.marginBottom);
 				for (let i = 0; i < bookmarkItem.length; i = i + 3) {
 					heightOrig = Math.max(heightOrig, bookmarkItem[i].getBoundingClientRect().height + marginTop + marginBottom);
 				}
