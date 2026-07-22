@@ -8,7 +8,7 @@ Please read the tips.
 
 ## Tips ##
 * Browser & version compatibility
-  * Firefox 143+ and Waterfox G6.6.0+: [latest version](https://github.com/p1usminus/roomybookmarksredux/releases/latest)
+  * Firefox 143+, ESR 140+ and Waterfox G6.6.0+: [latest version](https://github.com/p1usminus/roomybookmarksredux/releases/latest)
   * Firefox 129-142: [v1.7.7.8](https://github.com/p1usminus/roomybookmarksredux/releases/tag/v1.7.7.8)
   * Firefox 113-128 and Waterfox G6.0-6.5.10: [v1.7.7.7](https://github.com/p1usminus/roomybookmarksredux/releases/tag/v1.7.7.7)
   * Waterfox Classic: [v1.4.17/original](https://files.inbox.eu/shared/file/b1a0ff64de1483eac916d5d2ef3a1d8eafdc7bf2) (pls update)
