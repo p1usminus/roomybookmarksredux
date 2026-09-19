@@ -86,6 +86,7 @@
 							}
 					},
 					handleCompletion: function(aReason) {
+						statement.finalize();
 						if (list[0]) {
 							let statement = dbConn.createStatement("UPDATE colors set textcolor = :textcolor, backgroundcolor = :backgroundcolor where id = :id");
 							statement.params.id = data.id;
@@ -93,6 +94,7 @@
 							statement.params.backgroundcolor = data.backgroundcolor;
 							statement.executeAsync({
 								handleCompletion: function(aReason) {
+									statement.finalize();
 									callback();
 								}   
 							});
@@ -103,6 +105,7 @@
 							statement.params.backgroundcolor = data.backgroundcolor;
 							statement.executeAsync({
 								handleCompletion: function(aReason) {
+									statement.finalize();
 									callback();
 								}   
 							});
@@ -127,13 +130,21 @@
 						}
 				},
 				handleCompletion: function(aReason) {
+					statement.finalize();
 					dbConn.asyncClose();
 				}   
 			});
 		}
 
 		if (DBevent == 'clearColor') {
-			dbConn.executeSimpleSQL(`DELETE FROM colors WHERE id = "${data.id}"`);
+			let statement = dbConn.createStatement("DELETE FROM colors WHERE id = :id");
+			statement.params.id = data.id;
+			statement.executeAsync({
+				handleCompletion: function(aReason) {
+					statement.finalize();
+					try { dbConn.asyncClose(); } catch(e) {}
+				}
+			});
 		}
 
 		if (DBevent == 'deleteDB') {	
@@ -142,6 +153,7 @@
 				let statement = dbConn.createStatement("DELETE FROM colors");
 				statement.executeAsync({
 					handleCompletion: function(aReason) {
+						statement.finalize();
 						dbConn.asyncClose();
 						window.close();
 					}}

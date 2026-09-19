@@ -599,6 +599,7 @@ const roomybookmarkstoolbar = {
 					Promise.allSettled(p).then(canClose);
 				},
 				handleCompletion: async function (aResultSet) {
+					statement.finalize();
 					await promise;
 					roomybookmarkstoolbarGlobals.colorCSS += '}';
 					roomybookmarkstoolbar.styleService('string', roomybookmarkstoolbarGlobals.colorCSS);
@@ -614,7 +615,13 @@ const roomybookmarkstoolbar = {
 				if (r?.parentGuid == "toolbar_____") return true;
 				try {
 					if (!r) {
-						dbConn.executeSimpleSQL(`DELETE FROM colors WHERE id = "${id}"`);
+						let statement = dbConn.createStatement("DELETE FROM colors WHERE id = :id");
+						statement.params.id = id;
+						statement.executeAsync({
+							handleCompletion: function(aReason) {
+								statement.finalize();
+							}
+						});
 					}
 				} catch (e) { console.log(e) }
 				return false;
