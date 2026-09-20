@@ -305,11 +305,9 @@ const roomybookmarkstoolbar = {
 				heightOrig += 2;
 			}
 
-			if (heightOrig < this.branch.getIntPref('iconSize') && this.PersonalToolbar) {			//If height not correct - set it = icon size
-				heightOrig = this.branch.getIntPref('iconSize');
-				if (this.branch.getIntPref('height') > this.branch.getIntPref('iconSize')) {		//If height was set and correct (bigger than icon size) set it as height
-					heightOrig = this.branch.getIntPref('height');
-				}
+			const iconSize = this.branch.getIntPref('iconSize');
+			if (heightOrig < iconSize && this.PersonalToolbar) {
+				heightOrig = Math.max(iconSize, this.branch.getIntPref('height'));
 			}
 
 			let height = heightOrig * rows;
@@ -347,8 +345,7 @@ const roomybookmarkstoolbar = {
 		if (opacity || iconSize != 16 || userWidthEnabled || folderMargin != 0 || textSize != 100) {
 			const opacityTime = this.branch.getIntPref('opacityTime');
 			const opacityTimeLong = this.branch.getIntPref('opacityTimeLong');
-			const userWidth = this.branch.getIntPref('userWidth');
-			if (userWidth < iconSize) { userWidth = iconSize };		//We cannot set 0px as width (bookmarks bar will collapse)
+			const userWidth = Math.max(this.branch.getIntPref('userWidth'), iconSize);		//We cannot set 0px as width (bookmarks bar will collapse)
 
 			if (this.cssStr !== 'null') {
 				this.styleService('string', this.cssStr, true)
