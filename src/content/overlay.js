@@ -299,13 +299,9 @@ const roomybookmarkstoolbar = {
 				}
 			}
 
-			if (this.branch.getIntPref('iconSize') >= 18) {
-				heightOrig += 3;
-			} else {
-				heightOrig += 2;
-			}
-
 			const iconSize = this.branch.getIntPref('iconSize');
+			heightOrig += iconSize >= 18 ? 3 : 2;
+
 			if (heightOrig < iconSize && this.PersonalToolbar) {
 				heightOrig = Math.max(iconSize, this.branch.getIntPref('height'));
 			}
@@ -316,11 +312,7 @@ const roomybookmarkstoolbar = {
 			PlacesToolbar.style.maxHeight = height + 'px';
 			this.PersonalToolbar.style.maxHeight = height + 'px';
 
-			if (fixedHeight) {
-				PlacesToolbar.style.minHeight = height + 'px';
-			} else {
-				PlacesToolbar.style.minHeight = heightOrig + 'px';
-			}
+			PlacesToolbar.style.minHeight = (fixedHeight ? height : heightOrig) + 'px';
 
 			window.addEventListener("beforecustomization", roomybookmarkstoolbar.onBeforeCustomise, false);
 			window.addEventListener("aftercustomization", roomybookmarkstoolbar.onAfterCustomise, false);
