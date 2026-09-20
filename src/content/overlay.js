@@ -526,7 +526,7 @@ const roomybookmarkstoolbar = {
 			return new Promise((resolve, reject) => {
 				NetUtil.asyncFetch(
 					{
-						uri: NetUtil.newURI(spec),
+						uri: Services.io.newURI(spec),
 						loadUsingSystemPrincipal: true,
 						contentPolicyType: Ci.nsIContentPolicy.TYPE_INTERNAL_IMAGE_FAVICON,
 					},
