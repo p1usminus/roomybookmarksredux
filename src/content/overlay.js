@@ -10,10 +10,7 @@ const doc = new window.DOMParser().parseFromSafeString(`
 			insertafter="rbtSeparator"/>
 	</box>
     `,"application/xml");
-const range = doc.createRange();
-range.selectNodeContents(doc.querySelector("box"));
-document.getElementById('placesContext').insertBefore(range.extractContents(),
-document.getElementById('placesContext_delete').nextSibling);
+document.getElementById('placesContext_delete').after(...doc.querySelector("box").children);
 document.getElementById('rbtChangeColor').addEventListener('command', _ => { roomybookmarkstoolbar.openColorMenu() });
 
 // Restrict colour context menu entry to bookmark items on main toolbar only
