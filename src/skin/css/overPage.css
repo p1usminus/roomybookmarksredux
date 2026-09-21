@@ -2,6 +2,7 @@
 	#navigator-toolbox:has(#PersonalToolbar:not([collapsed])),
 	#navigator-toolbox:has(#PersonalToolbar[collapsed="false"]) {
 		position: relative;
+		overflow: visible !important;
 	}
 
 	#navigator-toolbox:has(#PersonalToolbar:not([collapsed])) ~ #browser,
