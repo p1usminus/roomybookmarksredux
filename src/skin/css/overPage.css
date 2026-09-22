@@ -1,12 +1,10 @@
 @-moz-document url(chrome://browser/content/browser.xhtml) {
-	#navigator-toolbox:has(#PersonalToolbar:not([collapsed])),
-	#navigator-toolbox:has(#PersonalToolbar[collapsed="false"]) {
+	#navigator-toolbox {
 		position: relative;
 		overflow: visible !important;
 	}
 
-	#navigator-toolbox:has(#PersonalToolbar:not([collapsed])) ~ #browser,
-	#navigator-toolbox:has(#PersonalToolbar[collapsed="false"]) ~ #browser {
+	#navigator-toolbox ~ #browser {
 		z-index: 0;
 	}
 
@@ -14,6 +12,7 @@
 		position: absolute;
 		top: 100%;
 		width: 100% !important;
+		z-index: 3 !important;
 		border-bottom-color: inherit;
 		border-bottom-left-radius: inherit;
 		border-bottom-right-radius: inherit;

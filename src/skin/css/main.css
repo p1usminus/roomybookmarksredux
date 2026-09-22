@@ -15,9 +15,23 @@
 		padding-left: 4px !important;
 	}	
 
-	@media -moz-pref("extensions.roomybookmarkstoolbar.autoHideBar", true){
+	@media -moz-pref("extensions.roomybookmarkstoolbar.autoHideBar", true) {
+		#PersonalToolbar {
+			transition: max-height var(--rbt-anim-time, 0.2s) ease-out, padding var(--rbt-anim-time, 0.2s) ease-out, margin var(--rbt-anim-time, 0.2s) ease-out !important;
+			max-height: 100px;
+		}
+
+		#PersonalToolbar[collapsed="true"],
 		#PersonalToolbar[collapsed] {
-			visibility: hidden !important;
+			display: flex !important;
+			visibility: visible !important;
+			max-height: 0px !important;
+			padding-top: 0px !important;
+			padding-bottom: 0px !important;
+			margin-top: 0px !important;
+			margin-bottom: 0px !important;
+			pointer-events: none !important;
+			overflow: hidden !important;
 		}
 	}
 }

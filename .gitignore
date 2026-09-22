@@ -2,3 +2,4 @@
 *.xpi
 *.sh
 .github/
+.vscode/settings.json

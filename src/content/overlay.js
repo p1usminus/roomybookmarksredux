@@ -288,8 +288,8 @@ const roomybookmarkstoolbar = {
 			const bookmarkItem = document.querySelectorAll("#PlacesToolbar toolbarbutton.bookmark-item"); // get snapshot of bookmark items, some objects outside #PlacesToolbar have the same class name
 			if (heightFix && bookmarkItem.length > 0) {
 				let computedStyle = document.defaultView.getComputedStyle(bookmarkItem[0]);
-				let marginTop = parseInt(computedStyle.marginTop);
-				let marginBottom = parseInt(computedStyle.marginBottom);
+				let marginTop = parseFloat(computedStyle.marginTop) || 0;
+				let marginBottom = parseFloat(computedStyle.marginBottom) || 0;
 				for (let i = 0; i < bookmarkItem.length; i = i + 3) {
 					heightOrig = Math.max(heightOrig, bookmarkItem[i].getBoundingClientRect().height + marginTop + marginBottom);
 				}
@@ -311,6 +311,8 @@ const roomybookmarkstoolbar = {
 
 			PlacesToolbar.style.maxHeight = height + 'px';
 			this.PersonalToolbar.style.maxHeight = height + 'px';
+			let animTime = Math.max(0.2, height / 300).toFixed(2);
+			this.PersonalToolbar.style.setProperty('--rbt-anim-time', animTime + 's');
 
 			PlacesToolbar.style.minHeight = (fixedHeight ? height : heightOrig) + 'px';
 
@@ -320,6 +322,11 @@ const roomybookmarkstoolbar = {
 
 		if (change && !multirowBar) {
 			PlacesToolbar.style.minHeight = heightOrig + 'px';
+			PlacesToolbar.style.removeProperty('max-height');
+			if (this.PersonalToolbar) {
+				this.PersonalToolbar.style.removeProperty('--rbt-anim-time');
+				this.PersonalToolbar.style.removeProperty('max-height');
+			}
 			this.styleService('file', 'multirowBar', true);
 			this.branch.setBoolPref('fixedHeight', false);
 			window.removeEventListener("beforecustomization", roomybookmarkstoolbar.onBeforeCustomise, false);
