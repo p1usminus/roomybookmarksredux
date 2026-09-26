@@ -1,5 +1,5 @@
 if (!document.getElementById('placesContext')) throw 'overlay.js not in place';
-const doc = new window.DOMParser().parseFromSafeString(`
+var doc = new window.DOMParser().parseFromSafeString(`
 	<!DOCTYPE box SYSTEM "chrome://roomybookmarkstoolbar/locale/overlay.dtd">
 	<box xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 			xmlns:html="http://www.w3.org/1999/xhtml">
@@ -14,7 +14,7 @@ document.getElementById('placesContext_delete').after(...doc.querySelector("box"
 document.getElementById('rbtChangeColor').addEventListener('command', _ => { roomybookmarkstoolbar.openColorMenu() });
 
 // Restrict colour context menu entry to bookmark items on main toolbar only
-document.getElementById('placesContext').addEventListener('popupshowing', event => {
+function rbtPlacesContextPopupShowing(event) {
   const separator = document.getElementById('rbtSeparator');
   const menuitem = document.getElementById('rbtChangeColor');
   
@@ -24,11 +24,12 @@ document.getElementById('placesContext').addEventListener('popupshowing', event 
     separator.hidden = !onToolbar;
     menuitem.hidden = !onToolbar;
   }
-});
+}
+document.getElementById('placesContext').addEventListener('popupshowing', rbtPlacesContextPopupShowing);
 
-let toolbarVisible = true;
+var toolbarVisible = true;
 
-const progressListener = {
+var progressListener = {
 	QueryInterface: ChromeUtils.generateQI([Ci.nsIWebProgressListener]),
 	
 	onLocationChange: function (aWebProgress, aRequest, aLocationURI, aFlags) {
@@ -39,7 +40,7 @@ const progressListener = {
 	}
 };
 
-const roomybookmarkstoolbar = {
+var roomybookmarkstoolbar = {
 	branch: null,				//Pref system
 	cssStr: null,				//CSS string for user style
 	colorCSS: null,				//CSS string for bookmarks color
@@ -222,7 +223,10 @@ const roomybookmarkstoolbar = {
 		const backButton = document.getElementById("back-button");
 		const menuButton = document.getElementById("PanelUI-menu-button");
 		const mainPopupSet = document.getElementById("mainPopupSet");
-		let MPSEventHandler = (e) => {if(["customizationui-widget-panel","placesContext"].includes(e.target.id)) this["on" + e.type]();};
+		if (!this.MPSEventHandler) {
+			this.MPSEventHandler = (e) => {if(["customizationui-widget-panel","placesContext"].includes(e.target.id)) this["on" + e.type]();};
+		}
+		let MPSEventHandler = this.MPSEventHandler;
 
 		let E, H, P, T = type ? (E = "mouseenter", H = this.onMouseOver, P = "popupshown", void 0) :
 			(E = "mouseleave", H = this.onMouseOutput, P = "popuphidden", toolbox)
@@ -468,6 +472,32 @@ const roomybookmarkstoolbar = {
 		if (location != 0) { this.styleService('file', 'location-' + location); }
 	},
 
+	unregisterCss: function () {
+		this.styleService('file', 'main', true);
+		this.styleService('file', 'fullscreen', true);
+
+		this.styleService('file', 'hideFoldersNames', true);
+		this.styleService('file', 'hideNoFaviconNames', true);
+		this.styleService('file', 'hideFolderIcons', true);
+		this.styleService('file', 'hideNoFavicon', true);
+		this.styleService('file', 'base', true);
+		this.styleService('file', 'hideBookmarksIcons', true);
+
+		this.styleService('file', 'mousehover', true);
+		this.styleService('file', 'multirowBar', true);
+		this.styleService('file', 'top', true);
+		this.styleService('file', 'overPage', true);
+
+		this.styleService('file', 'spacing-0', true);
+		this.styleService('file', 'spacing-1', true);
+		this.styleService('file', 'spacing-2', true);
+		this.styleService('file', 'spacing-3', true);
+		this.styleService('file', 'spacing-4', true);
+
+		this.styleService('file', 'location-1', true);
+		this.styleService('file', 'location-2', true);
+	},
+
 	startUpMainCheck: async function () {
 		if (typeof PlacesToolbarHelper == 'undefined') return;
 		await PlacesToolbarHelper.init(); // wait until bookmarks bar has loaded
@@ -504,7 +534,10 @@ const roomybookmarkstoolbar = {
 
 			//After customisation colors are wiped
 			const PlacesToolbar = document.getElementById('PlacesToolbar');
-			PlacesToolbar.addEventListener("contextmenu", (event) => { if (event.target.classList.contains("bookmark-item")) roomybookmarkstoolbar.id = event.target._placesNode; }, false);
+			if (!this.contextMenuHandler) {
+				this.contextMenuHandler = (event) => { if (event.target.classList.contains("bookmark-item")) roomybookmarkstoolbar.id = event.target._placesNode; };
+			}
+			PlacesToolbar.addEventListener("contextmenu", this.contextMenuHandler, false);
 
 			for (const node of document.querySelectorAll("#PlacesToolbar toolbarbutton.bookmark-item")) {
 				node._placesNode ? node.setAttribute('rbtid', node._placesNode.bookmarkGuid) : '';
@@ -525,8 +558,11 @@ const roomybookmarkstoolbar = {
 					}
 				}
 			};
-			const observer = new MutationObserver(callback);
-			observer.observe(PlacesToolbar, config);
+			if (this.observer) {
+				try { this.observer.disconnect(); } catch (e) {}
+			}
+			this.observer = new MutationObserver(callback);
+			this.observer.observe(PlacesToolbar, config);
 		}
 
 		function fetchIconForSpec(spec) { //took from mozilla's test file
@@ -638,12 +674,83 @@ const roomybookmarkstoolbar = {
 		openDialog("chrome://roomybookmarkstoolbar/content/colorMenu.xhtml", "dlg", "chrome, dialog, modal, centerscreen", bookmarkData).focus();
 		this.setColor();	//After dialog close - set colors
 	},
+
+	unload: function () {
+		this.unregister();
+		this.unregisterCss();
+
+		this.eventListenerhandler(false, true);
+		this.eventListenerhandler(false, false);
+
+		if (this.cssStr && this.cssStr !== 'null') {
+			this.styleService('string', this.cssStr, true);
+		}
+		if (typeof roomybookmarkstoolbarGlobals !== 'undefined' && roomybookmarkstoolbarGlobals.colorCSS) {
+			this.styleService('string', roomybookmarkstoolbarGlobals.colorCSS, true);
+		}
+
+		try {
+			const placesContext = document.getElementById('placesContext');
+			if (placesContext) {
+				placesContext.removeEventListener('popupshowing', rbtPlacesContextPopupShowing);
+			}
+		} catch (e) {}
+
+		try {
+			const separator = document.getElementById('rbtSeparator');
+			if (separator) separator.remove();
+			const menuitem = document.getElementById('rbtChangeColor');
+			if (menuitem) menuitem.remove();
+		} catch (e) {}
+
+		try {
+			if (typeof gBrowser !== 'undefined' && gBrowser.removeProgressListener) {
+				gBrowser.removeProgressListener(progressListener);
+			}
+		} catch (e) {}
+
+		if (this.moveListener) {
+			this.mouseMoveListenerhandler(false);
+		}
+
+		if (this.observer) {
+			try { this.observer.disconnect(); } catch (e) {}
+			this.observer = null;
+		}
+
+		const PlacesToolbar = document.getElementById('PlacesToolbar');
+		if (PlacesToolbar) {
+			PlacesToolbar.style.removeProperty('min-height');
+			PlacesToolbar.style.removeProperty('max-height');
+			if (this.contextMenuHandler) {
+				PlacesToolbar.removeEventListener("contextmenu", this.contextMenuHandler, false);
+			}
+			for (const node of PlacesToolbar.querySelectorAll("toolbarbutton.bookmark-item")) {
+				node.removeAttribute('rbtdf');
+				node.removeAttribute('rbtid');
+			}
+		}
+
+		if (this.PersonalToolbar) {
+			this.PersonalToolbar.style.removeProperty('--rbt-anim-time');
+			this.PersonalToolbar.style.removeProperty('max-height');
+			this.PersonalToolbar.collapsed = false;
+		}
+	},
 }
 
-window.addEventListener("load", function load() {
+function rbtInit() {
 	roomybookmarkstoolbar.startUpMainCheck();
 	roomybookmarkstoolbar.register();
 	roomybookmarkstoolbar.registerCss();
-}, { once: true });
+}
 
-window.addEventListener("unload", function (event) { roomybookmarkstoolbar.unregister(); }, false);
+if (document.readyState === "complete") {
+	rbtInit();
+} else {
+	window.addEventListener("load", function load() {
+		rbtInit();
+	}, { once: true });
+}
+
+window.addEventListener("unload", function (event) { roomybookmarkstoolbar.unload(); }, false);

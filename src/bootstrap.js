@@ -9,80 +9,34 @@ const { CustomizableUI } = cuiModule;
 
 let Globals = {};
 
-/**
- * restartApplication: Restarts the application, keeping it in
- * safe mode if it is already in safe mode.
- */
-function restartApplication() {
-  const cancelQuit = Cc["@mozilla.org/supports-PRBool;1"].createInstance(
-    Ci.nsISupportsPRBool
-  );
-  Services.obs.notifyObservers(
-    cancelQuit,
-    "quit-application-requested",
-    "restart"
-  );
-  if (cancelQuit.data) {
-    // The quit request has been canceled.
-    return false;
-  }
-  // if already in safe mode restart in safe mode
-  if (Services.appinfo.inSafeMode) {
-    Services.startup.restartInSafeMode(
-      Ci.nsIAppStartup.eAttemptQuit | Ci.nsIAppStartup.eRestart
-    );
-    return undefined;
-  }
-  Services.startup.quit(
-    Ci.nsIAppStartup.eAttemptQuit | Ci.nsIAppStartup.eRestart
-  );
-  return undefined;
-}
-
-function showRestartNotifcation(verb, window) {
-  window.PopupNotifications._currentNotifications.shift();
-  window.PopupNotifications.show(
-    window.gBrowser.selectedBrowser,
-    'addon-install-restart',
-    'Roomy Bookmarks Toolbar has been ' + verb + ', but a restart is required to ' + ((verb == 'upgraded' || verb == 'installed') || verb == 're-enabled' ? 'enable' : 'remove') + ' add-on functionality.',
-    'addons-notification-icon',
-    {
-      label: 'Restart Now',
-      accessKey: 'R',
-      callback() {
-        restartApplication();
-      }
-    },
-    [{
-      label: 'Not Now',
-      accessKey: 'N',
-      callback: () => { },
-    }],
-    {
-      popupIconURL: 'chrome://roomybookmarkstoolbar/skin/addon-install-restart.svg',
-      persistent: false,
-      hideClose: true,
-      timeout: Date.now() + 30000,
-      removeOnDismissal: true
-    }
-  );
-}
-
-function install(data, reason) {
-  if (reason === ADDON_INSTALL) {
-    Services.prefs.setBoolPref("extensions.roomybookmarkstoolbar.hide_warning", true);
-  }
-  
-  const window = Services.wm.getMostRecentWindow('navigator:browser');
-  showRestartNotifcation("installed", window);
-  return;
-}
-
+function install() { }
 function uninstall() { }
+
+function loadIntoBrowserDocument(document) {
+  if (document.createXULElement &&
+      document.defaultView &&
+      document.defaultView.location.origin + document.defaultView.location.pathname === "chrome://browser/content/browser.xhtml") {
+    
+    // Prevent duplicate injection
+    if (document.defaultView.roomybookmarkstoolbar) return;
+
+    (document.ownerGlobal ?? document.documentGlobal).roomybookmarkstoolbarGlobals = Globals;
+    Services.scriptloader.loadSubScript("chrome://roomybookmarkstoolbar/content/overlay.js", document.defaultView);
+  }
+}
+
+const documentObserver = {
+  observe(document, topic, data) {
+    if (topic === "chrome-document-loaded") {
+      loadIntoBrowserDocument(document);
+    }
+  }
+};
 
 async function startup(data, reason) {
   Services.scriptloader.loadSubScript("chrome://roomybookmarkstoolbar/content/prefs.js", {}, 'UTF-8');
 
+  // Register CustomizableUI widget
   try {
     CustomizableUI.createWidget({
       id: 'rbtlibbutton',
@@ -93,67 +47,56 @@ async function startup(data, reason) {
         toolbaritem.setAttribute('image', 'chrome://roomybookmarkstoolbar/skin/button32.png');
       }
     });
-  } catch (error) { }
+  } catch (error) {}
 
-  const window = Services.wm.getMostRecentWindow('navigator:browser');
-
-  if (reason === ADDON_UPGRADE || reason === ADDON_DOWNGRADE) {
-    showRestartNotifcation("upgraded", window);
-    return;
-  } else if (reason === ADDON_ENABLE && window.document.getElementById('roomybookmarkstoolbar')) {
-    showRestartNotifcation("re-enabled", window);
-    return;
+  // Load into all current open windows
+  const enumerator = Services.wm.getEnumerator("navigator:browser");
+  while (enumerator.hasMoreElements()) {
+    const win = enumerator.getNext();
+    loadIntoBrowserDocument(win.document);
   }
 
-  if (reason === ADDON_INSTALL || (reason === ADDON_ENABLE && !window.document.getElementById('roomybookmarkstoolbar'))) {
-    const enumerator = Services.wm.getEnumerator(null);
-    while (enumerator.hasMoreElements()) {
-      let win = enumerator.getNext();
+  // Listen for new windows
+  Services.obs.addObserver(documentObserver, "chrome-document-loaded");
 
-      (async function (win) {
-        if (win.document.createXULElement) {
-          if (win.location.origin + win.location.pathname == "chrome://browser/content/browser.xhtml") {
-            (win.document.ownerGlobal ?? win.document.documentGlobal).roomybookmarkstoolbarGlobals = Globals;
-            Services.scriptloader.loadSubScript("chrome://roomybookmarkstoolbar/content/overlay.js", win.document.defaultView);
-          }
-        }
-      })(win);
+  // Bypass signature check if preferred
+  try {
+    const addon = await AddonManager.getAddonByID(data.id);
+    if (addon && addon.__AddonInternal__) {
+      addon.__AddonInternal__.signedState = Services.prefs.getBoolPref("extensions.roomybookmarkstoolbar.hide_warning", false)
+        ? AddonManager.SIGNEDSTATE_NOT_REQUIRED
+        : AddonManager.SIGNEDSTATE_MISSING;
     }
-  }
-
-  (async function () {
-    let documentObserver = {
-      observe(document) {
-        if (document.createXULElement) {
-          if (document.defaultView.location.origin + document.defaultView.location.pathname == "chrome://browser/content/browser.xhtml") {
-            (document.ownerGlobal ?? document.documentGlobal).roomybookmarkstoolbarGlobals = Globals;
-            Services.scriptloader.loadSubScript("chrome://roomybookmarkstoolbar/content/overlay.js", document.defaultView);
-          }
-        }
-      }
-    };
-    Services.obs.addObserver(documentObserver, "chrome-document-loaded");
-  })();
-
-  const addon = await AddonManager.getAddonByID(data.id);
-
-  AddonManager.getAddonByID(data.id).then(addon => {
-    Services.prefs.getBoolPref("extensions.roomybookmarkstoolbar.hide_warning") ?
-        addon.__AddonInternal__.signedState = AddonManager.SIGNEDSTATE_NOT_REQUIRED
-        : addon.__AddonInternal__.signedState = AddonManager.SIGNEDSTATE_MISSING;
-    }
-  );
+  } catch (e) {}
 }
 
 function shutdown(data, reason) {
-  const window = Services.wm.getMostRecentWindow('navigator:browser');
-  if (reason === ADDON_DISABLE) {
-    showRestartNotifcation("disabled", window);
-    return;
-  } else if (reason === ADDON_UNINSTALL) {
-    showRestartNotifcation("uninstalled", window);
+  if (reason === APP_SHUTDOWN) {
     return;
   }
 
-  CustomizableUI.destroyWidget('rbtlibbutton');
+  // Unregister window observer
+  try {
+    Services.obs.removeObserver(documentObserver, "chrome-document-loaded");
+  } catch (e) {}
+
+  // Remove CustomizableUI widget
+  try {
+    CustomizableUI.destroyWidget('rbtlibbutton');
+  } catch (e) {}
+
+  // Clean up injected overlay in all open browser windows
+  const enumerator = Services.wm.getEnumerator("navigator:browser");
+  while (enumerator.hasMoreElements()) {
+    const win = enumerator.getNext();
+    
+    if (win.roomybookmarkstoolbar && typeof win.roomybookmarkstoolbar.unload === 'function') {
+      try {
+        win.roomybookmarkstoolbar.unload();
+      } catch (e) {
+        console.error("Error unloading roomybookmarkstoolbar:", e);
+      }
+      delete win.roomybookmarkstoolbar;
+    }
+  }
 }
